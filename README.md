@@ -12,3 +12,14 @@ this is leetcode exercise.
 3. climbStairs
   same as fib
 
+4. mincostTickets
+  这题大体上和 `coinchange` 差不多，但有一点需要注意，由于天数不是连续的，所有没有去旅游的那天 cost 和前一天一样。
+  ```
+  if (dp[i] != 0) {
+    
+    ...
+
+     } else {
+      dp[i] = dp[i - 1];
+    }
+  ```
