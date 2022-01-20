@@ -23,3 +23,5 @@ this is leetcode exercise.
       dp[i] = dp[i - 1];
     }
   ```
+5. lengthOfLIS
+ 思路和 `coinchange` 一样，即：最长递增子序列等于前面的比自己小的元素中的最长递增子序列加1。
