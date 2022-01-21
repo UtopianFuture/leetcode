@@ -37,7 +37,7 @@ this is leetcode exercise.
   o 2
   s 3
   ```
-  当 `i = 1, j = 1` 时
-  dp[i - 1][j]; // 删除 h
-  dp[i][j - 1]; // 在 r 前面增加 h
-  dp[i - 1][j - 1]; // 替换
+  当 `i = 1, j = 1` 时  
+  `dp[i - 1][j]; // 删除 h `  
+  `dp[i][j - 1]; // 在 r 前面增加 h`  
+  `dp[i - 1][j - 1]; // 替换`  
