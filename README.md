@@ -25,3 +25,19 @@ this is leetcode exercise.
   ```
 5. lengthOfLIS
  思路和 `coinchange` 一样，即：最长递增子序列等于前面的比自己小的元素中的最长递增子序列加1。
+
+6. minDistance
+  还是动态规划，思路是最短距离等于上 word1[size1] ~ word2[size2 - 1] 的最短距离加1。但这题的 dp 是二维数组，
+  dp[i][j] 表示 word1[i] 到 word2[j] 的最短距离。
+  然后关于增，删和替换操作体现在 dp 上就是:
+  ```
+    x h o r s e
+  x 0 1 2 3 4 5
+  r 1
+  o 2
+  s 3
+  ```
+  当 `i = 1, j = 1` 时
+  dp[i - 1][j]; // 删除 h
+  dp[i][j - 1]; // 在 r 前面增加 h
+  dp[i - 1][j - 1]; // 替换
