@@ -41,3 +41,11 @@ this is leetcode exercise.
   `dp[i - 1][j]; // 删除 h `  
   `dp[i][j - 1]; // 在 r 前面增加 h`  
   `dp[i - 1][j - 1]; // 替换`  
+
+7. minimumDeleteSum
+ 思路和上一题基本一致，有几个关键点:
+ - dp 数组是二维的，
+ - dp base 是 `val[0][i] = val[0][i - 1] + s2[i - 1];`
+ - 状态转移方程为 `min = {(val[i - 1][j] + s1[i - 1]), (val[i][j - 1] + s2[j - 1])}`
+ - dp 数组一定要先初始化再使用，不然会出现在本地机器上正常执行而 leetcode 的编译器上返回未初始化的值，  
+   这应该是编译器的问题，本地的编译器将这个隐藏的 bug 优化了。
