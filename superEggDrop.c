@@ -1,7 +1,40 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-int superEggDrop(int k, int n) {
+int superEggDrop_kn(int k, int n) {
+  int **dp = malloc((n + 1) * sizeof(int *));
+  for (int i = 0; i < n + 1; i++) {
+    dp[i] = malloc((k + 1) * sizeof(int));
+  }
+
+  if (n == 1) {
+    return 1;
+  }
+
+  for (int i = 0; i < n + 1; i++) {
+    for (int j = 0; j < k + 1; j++) {
+      dp[i][j] = 0;
+    }
+  }
+
+  for (int i = 1; i < k + 1; i++) {
+    dp[1][i] = 1;
+  }
+
+  int ans = -1;
+  for (int i = 2; i < n + 1; i++) { // 最多测试 n + 1 次
+    for (int j = 1; j < k + 1; j++) {
+      dp[i][j] = 1 + dp[i - 1][j - 1] + dp[i - 1][j];
+    }
+    if (dp[i][k] >= n) {
+      ans = i;
+      break;
+    }
+  }
+  return ans;
+}
+
+int superEggDrop_nn(int k, int n) {
   int **dp = malloc((n + 1) * sizeof(int *));
   int mid = 0;
   int val1 = 0x7fffffff, val2 = 0x7fffffff;
@@ -64,6 +97,6 @@ int main() {
   int n, k;
   scanf("%d %d", &k, &n);
 
-  printf("superEggDrop: %d\n", superEggDrop(k, n));
+  printf("superEggDrop: %d\n", superEggDrop_kn(k, n));
   return 0;
 }

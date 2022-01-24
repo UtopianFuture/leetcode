@@ -52,3 +52,18 @@ this is leetcode exercise.
 
 8. superEggDrop
   在使用二分查找优化时遇到困难，我想不用递归的方式优化，但是无法实现。
+  `superEggDrop_nn` 的思路是这样的，dp 数组表示 i 层楼 j 个鸡蛋需要测几次，所以有 kn 中情况，  
+  然后要测出每种情况在最坏情况下需要测几次需要遍历 i - 1 层楼，找出最好的情况。
+  举个例子，当 `k = 2, n = 9` 时，我们在 5 楼测一次，那么 `dp[2][9] = dp[1][4] + 1 ? dp[2][4] + 1`，  
+  但是这种方法的时间复杂度为 kn^2。
+  ![](https://github.com/UtopianFuture/leetcode/blob/main/image/superEggDrop_1.jpg)
+  `superEggDrop_kn` 的思路时这样的，题目的要求为 k  个鸡蛋，n 层楼，最坏情况下最少的测试次数 m，  
+  我们可以转换成 k 个鸡蛋，测试 m 次，最坏情况下最多能测试 n 层楼，即 `dp[i][j]` 表示 n 层楼，当 `dp[i][i] == n` 时的 m 即为所求。
+  dp base 为 `dp[1][i] = 1;`，  
+  状态转换方程为
+  ```dp[i][j] = 1 + dp[i - 1][j - 1] + dp[i - 1][j];```
+  i 表示测试次数，j 表示鸡蛋数。
+  ![](https://github.com/UtopianFuture/leetcode/blob/main/image/superEggDrop_2.jpg)
+
+### reference
+[1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
