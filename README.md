@@ -65,5 +65,14 @@ this is leetcode exercise.
   i 表示测试次数，j 表示鸡蛋数。
   ![](https://github.com/UtopianFuture/leetcode/blob/main/image/superEggDrop_2.jpg)
 
+9. longestPalindromeSubseq
+  这题的思路是这样的：dp[i][j] 表示 s[i ~ j] 子序列的最长回文子序列，对于任一个子序列的 s[i], s[j] 都有两种情况：
+  - s[i] = s[j]  
+    那么 s[i] s[j] 就可以加入到最长回文子序列中  
+    ```dp[i][j] = dp[i + 1][j - 1] + 2;```
+  - s[i] != s[j]
+  - 那 s[i], s[j] 就不能作为最长回文子序列首尾  
+    ```dp[i][j] = dp[i + 1][j] > dp[i][j - 1] ? dp[i + 1][j] : dp[i][j - 1];```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
