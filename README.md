@@ -50,7 +50,7 @@ this is leetcode exercise.
  - dp 数组一定要先初始化再使用，不然会出现在本地机器上正常执行而 leetcode 的编译器上返回未初始化的值，  
    这应该是编译器的问题，本地的编译器将这个隐藏的 bug 优化了。
 
-8. superEggDrop
+8. [superEggDrop](https://leetcode-cn.com/problems/super-egg-drop/)
   在使用二分查找优化时遇到困难，我想不用递归的方式优化，但是无法实现。
   `superEggDrop_nn` 的思路是这样的，dp 数组表示 i 层楼 j 个鸡蛋需要测几次，所以有 kn 中情况，  
   然后要测出每种情况在最坏情况下需要测几次需要遍历 i - 1 层楼，找出最好的情况。
@@ -65,7 +65,7 @@ this is leetcode exercise.
   i 表示测试次数，j 表示鸡蛋数。
   ![](https://github.com/UtopianFuture/leetcode/blob/main/image/superEggDrop_2.jpg)
 
-9. longestPalindromeSubseq
+9. [longestPalindromeSubseq](https://leetcode-cn.com/problems/longest-palindromic-subsequence)
   这题的思路是这样的：dp[i][j] 表示 s[i ~ j] 子序列的最长回文子序列，对于任一个子序列的 s[i], s[j] 都有两种情况：
   - s[i] = s[j]  
     那么 s[i] s[j] 就可以加入到最长回文子序列中  
@@ -73,6 +73,14 @@ this is leetcode exercise.
   - s[i] != s[j]
   - 那 s[i], s[j] 就不能作为最长回文子序列首尾  
     ```dp[i][j] = dp[i + 1][j] > dp[i][j - 1] ? dp[i + 1][j] : dp[i][j - 1];```
+
+10. [stoneGame](https://leetcode-cn.com/problems/stone-game)
+  这题的思路和上一题一致。dp[i][j] 表示 piles[i ~ j] 石子堆中最大差值，dp base 是 dp[i][i] = piles[i]，要求的是 dp[0][size]，  
+  而状态转移方程为: dp[i][j] = max{piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]}。  
+  总结一下这两题，虽然给出的都是一个序列，但是 dp 数组都是二维的，因为需要遍历这个序列中每个字符的每种组合。  
+  然后关于状态转移方程，应该先考虑将问题分为子问题，如这题分成 piles[i ~ j] 子序列，上题也是分成 s[i ~ j] 子序列。  
+  分成子问题之后再考虑怎样转移，那么就要确定最终要求什么，如上题要求最长回文子序列的长度，那么子问题就也是求长度，  
+  加上新的字符长度会怎样变化，这题需要将胜负转换成差值，然后求差值的变化。  
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
