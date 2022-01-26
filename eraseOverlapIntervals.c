@@ -1,8 +1,9 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-int cmp(int** a, int** b) {
-    return (*a)[0] - (*b)[0];
+int cmp(const void *_a, const void *_b) {
+  int *a = *(int **)_a, *b = *(int **)_b;
+  return a[0] < b[0] ? -1 : 1;
 }
 
 int eraseOverlapIntervals(int **intervals, int intervalsSize,
