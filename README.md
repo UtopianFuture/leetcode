@@ -75,12 +75,18 @@ this is leetcode exercise.
     ```dp[i][j] = dp[i + 1][j] > dp[i][j - 1] ? dp[i + 1][j] : dp[i][j - 1];```
 
 10. [stoneGame](https://leetcode-cn.com/problems/stone-game)
-  这题的思路和上一题一致。dp[i][j] 表示 piles[i ~ j] 石子堆中最大差值，dp base 是 dp[i][i] = piles[i]，要求的是 dp[0][size]，  
-  而状态转移方程为: dp[i][j] = max{piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]}。  
+  这题的思路和上一题一致。`dp[i][j]` 表示 `piles[i ~ j]` 石子堆中最大差值，dp base 是 `dp[i][i] = piles[i]`，要求的是 `dp[0][size]`，  
+  而状态转移方程为: ```dp[i][j] = max{piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]}```。  
   总结一下这两题，虽然给出的都是一个序列，但是 dp 数组都是二维的，因为需要遍历这个序列中每个字符的每种组合。  
-  然后关于状态转移方程，应该先考虑将问题分为子问题，如这题分成 piles[i ~ j] 子序列，上题也是分成 s[i ~ j] 子序列。  
+  然后关于状态转移方程，应该先考虑将问题分为子问题，如这题分成 `piles[i ~ j]` 子序列，上题也是分成 `s[i ~ j]` 子序列。  
   分成子问题之后再考虑怎样转移，那么就要确定最终要求什么，如上题要求最长回文子序列的长度，那么子问题就也是求长度，  
   加上新的字符长度会怎样变化，这题需要将胜负转换成差值，然后求差值的变化。  
+
+11. [eraseOverlapIntervals](https://leetcode-cn.com/problems/non-overlapping-intervals/)
+  首先这题的代码在 leetcode 上能通过，但是在本地编译错误，应该是使用的 `qsort` 不同。  
+  这题是区间调度的题目，思路和之前的动态规划有很大不同，将它归为单纯的贪心比较合适。  
+  将 intervals 按 end 递增序排列，不重叠要满足条件 `intervals[i][0] >= base[1]` ，即 `end >= start`，  
+  将不满足条件的 `intervals[i]` 去掉即可。  
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
