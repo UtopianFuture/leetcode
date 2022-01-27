@@ -123,5 +123,10 @@ this is leetcode exercise.
   }
   ```
 
+14. [repeatedSubstringPattern](https://leetcode-cn.com/problems/repeated-substring-pattern/)  
+  这题也是用 kmp 算法，但是比较巧妙，给定一个非空的字符串，判断它是否可以由它的一个子串重复多次构成。  
+  将这个字符串重复两次，变成 `s[0 ~ 2 * size - 1]`， 如果这个字符串可以由它的一个子串重复多次构成，  
+  那么在 `s[1 ~ 2 * size -2]` 中一定存在该子串。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
