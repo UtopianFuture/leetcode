@@ -91,5 +91,37 @@ this is leetcode exercise.
 12. [findMinArrowShots](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/)  
   这题和上一题一样。  
 
+13. [strStr](https://leetcode-cn.com/problems/implement-strstr/)  
+  这题用暴力解法法超时，需要使用 kmp 算法。使用 kmp 算法解决字符匹配类问题的关键就是 pat 字符串的 kmp 数组。  
+  然后根据 kmp 数组求解。  
+  每个字符串对应的 kmp 数组是确定的，可以用这个算法来求:  
+  ```
+  int pi[size2];
+  pi[0] = 0;
+  for (int i = 1, j = 0; i < size2; i++) {
+    while (j > 0 && needle[i] != needle[j]) {
+      j = pi[j - 1];
+    }
+    if (needle[i] == needle[j]) {
+      j++;
+    }
+    pi[i] = j;
+  }
+  ```
+  然后确定 pat 字符串是否在 txt 字符串中出现过，可以使用这个算法:  
+  ```
+  for (int i = 0, j = 0; i < size1; i++) {
+    while (j > 0 && haystack[i] != needle[j]) {
+      j = pi[j - 1];
+    }
+    if (haystack[i] == needle[j]) {
+      j++;
+    }
+    if (j == size2) {
+      return i - size2 + 1;
+    }
+  }
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md

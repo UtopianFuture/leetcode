@@ -1,5 +1,6 @@
 #include "stdio.h"
 #include "stdlib.h"
+#include "string.h"
 
 int strStr_nm(char *haystack, char *needle) {
   int size1 = 0, size2 = 0;
@@ -20,6 +21,43 @@ int strStr_nm(char *haystack, char *needle) {
         if (j == size2 - 1)
           return i;
       }
+    }
+  }
+
+  return -1;
+}
+
+int strStr_kmp(char *haystack, char *needle) {
+  int size1 = 0, size2 = 0;
+  while (haystack[size1])
+    size1++;
+  while (needle[size2])
+    size2++;
+
+  if (size2 == 0)
+    return 0;
+
+  int pi[size2];
+  pi[0] = 0;
+  for (int i = 1, j = 0; i < size2; i++) {
+    while (j > 0 && needle[i] != needle[j]) {
+      j = pi[j - 1];
+    }
+    if (needle[i] == needle[j]) {
+      j++;
+    }
+    pi[i] = j;
+  }
+
+  for (int i = 0, j = 0; i < size1; i++) {
+    while (j > 0 && haystack[i] != needle[j]) {
+      j = pi[j - 1];
+    }
+    if (haystack[i] == needle[j]) {
+      j++;
+    }
+    if (j == size2) {
+      return i - size2 + 1;
     }
   }
 
