@@ -133,6 +133,33 @@ this is leetcode exercise.
   而 KMP 算法是先求出原字符串的 next 数组，然后将字符串反转等到 txt 数组。之后按照 kmp 遍历，看 txt 数组的最后一个字符  
   对应 next 数组的哪个字符，将该字符之后的字符都加入到 txt 数组。  
 
+16. [longestPalindrome](https://leetcode-cn.com/problems/longest-palindromic-substring/)
+  - [] 原做法（错误）
+  这题没有使用 kmp 算法，而是使用动态规划，`dp[i][j]` 表示 `s[i ~ j]` 的最长回文串，  
+  注意这里还需要考虑一个事情  
+  ```
+  if (s[i] == s[j] && ((dp[i + 1][j] >= j - i - 1) || (dp[i][j - 1] >= j - i - 1)))
+  ```
+  即当 `s[i] == s[j]` 时还要看 `s[i + 1 ~ j]` 和 `s[i ~ j - 1]` 是否是回文串。  
+  如果不考虑会出现这种情况: `asdfa` 最后一个字符和第一个字符相等，但是中间的三个字符不是回文串，所以不能直接加2。  
+  - [] 新做法
+  不要想的那么复杂，考虑两点:  
+  （1）遍历每一个子串，  
+  （2）动态转移方程  
+  动态转移方程是这样的:  
+  （1）dp 数组表示 `s[i] ~ s[j]` 是否是回文串；  
+  （1）如果该子串 `s[i] != s[j]`， 那么这个子串肯定不会回文；  
+  （2）如果 `s[i] == s[j]`，那么该子串是否是回文跟 `s[i + 1] ~ s[j - 1]` 相同。  
+  
+  还有一点需要注意，由于使用了 `-fsanitize=address` 来进行边界检查，所以在创建 `char *` 时要这样  
+  ```
+  char *res = malloc((max + 1) * sizeof(char));
+   for (int i = 0; i < max; i++) {
+     res[res_size++] = s[i + low];
+   }
+   res[res_size] = 0;
+  ```
+  即数组大小比需要的大 1，然后最后一个 byte 设为 0。  
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md

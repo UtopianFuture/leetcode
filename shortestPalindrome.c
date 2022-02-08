@@ -40,6 +40,9 @@ char *shortestPalindrome(char *s) {
   while (j < size1) {
     txt[size2++] = s[j++];
   }
+  for (int i = size2; i < size1 * 2; i++){
+    txt[i] = 0;
+  }
 
   return txt;
 }
