@@ -183,6 +183,34 @@ this is leetcode exercise.
   // 今天没有持有股票，可能是保持昨天的状态，也可能是今天买入股票，那么最大交易次数就减 1。
   dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
   ```
+18. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
+  dp base 还是和上题一样  
+  ```
+  int dp_0 = 0, dp_1 = 0x80000001;
+  ```
+  状态转移方程也是一样的，  
+  ```
+  dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+  dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
+  ``` 
+  但是 k 是无限的，`[k]` 和 `[k - 1]` 一样，可以约掉，  
+  得到如下状态转移方程，
+  ```
+  dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+  dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])
+  ```
+  那么 k 成为无关状态，  
+  ```
+  dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
+  dp[i][1] = max(dp[i-1][1], dp[i-1][0] - prices[i])
+  ```
+  再将 `dp[i][0]` 化简为 `dp_0`，这里有一点需要注意，`dp[i][0]` 表示的是上一天的利润，  
+  换成 `dp_0` 后  
+  ```
+  dp_0 = max(dp_0, dp_1 + prices[i]);
+  dp_1 = max(dp_1, dp_0 - prices[i]);
+  ```
+  `dp_0` 已经经过计算，变成今天的利润，所以要利用一个 temp 来记录昨天的利润。  
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
