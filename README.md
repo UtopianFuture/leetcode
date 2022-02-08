@@ -161,5 +161,28 @@ this is leetcode exercise.
   ```
   即数组大小比需要的大 1，然后最后一个 byte 设为 0。  
 
+17. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
+  股票问题：
+  这种问题有3个状态，天数，允许交易的最大次数和当前是否持有股票。利用三维 dp 数组可以表示所以的状态：  
+  ```
+  dp[i][k][0 or 1]
+  0 <= i <= n - 1, 1 <= k <= K
+  n 为天数，大 K 为交易数的上限，0 和 1 代表是否持有股票。
+  此问题共 n × K × 2 种状态，全部穷举就能搞定。
+
+  for 0 <= i < n:
+    for 1 <= k <= K:
+        for s in {0, 1}:
+            dp[i][k][s] = max(buy, sell, rest)
+  ```
+  然后最后要求的就是 `dp[n - 1][K][0]`  
+  那么状态转移方程是这样的：  
+  ```
+  // 今天没有持有股票，可能是保持昨天的状态，也可能是昨天持有股票，但是今天卖了
+  dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+  // 今天没有持有股票，可能是保持昨天的状态，也可能是今天买入股票，那么最大交易次数就减 1。
+  dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
