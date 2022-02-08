@@ -1,5 +1,5 @@
 #!/usr/bin/make
-CFLAGS = -g -Wall -Werror
+CFLAGS = -g -Wall -Werror -fsanitize=address
 C_SRC_FILES  = $(wildcard *.c)
 OBJ_FILES := $(patsubst %.c, %, ${C_SRC_FILES})
 

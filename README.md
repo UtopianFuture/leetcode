@@ -128,5 +128,11 @@ this is leetcode exercise.
   将这个字符串重复两次，变成 `s[0 ~ 2 * size - 1]`， 如果这个字符串可以由它的一个子串重复多次构成，  
   那么在 `s[1 ~ 2 * size -2]` 中一定存在该子串。  
 
+15. [shortestPalindrome](https://leetcode-cn.com/problems/shortest-palindrome/)  
+  这题的做法很巧妙，求最短回文串，用暴力的解法比较简单，将后面的字符和前面的字符一个个遍历对比，如果不相同，则插入。  
+  而 KMP 算法是先求出原字符串的 next 数组，然后将字符串反转等到 txt 数组。之后按照 kmp 遍历，看 txt 数组的最后一个字符  
+  对应 next 数组的哪个字符，将该字符之后的字符都加入到 txt 数组。  
+
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
