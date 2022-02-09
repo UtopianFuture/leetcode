@@ -296,5 +296,29 @@ this is leetcode exercise.
     ```
   返回大的哪个。  
 
+25. [rob_iii](https://leetcode-cn.com/problems/house-robber-iii/)  
+  这题虽然用的也是和上题类似的动态规划思路，但由于需要遍历的是二插树，又有些不一样。  
+  每个节点可能被抢也可能没被抢，定义一个结构体来表示每个节点的状态，   
+    ```
+    struct status {
+    int do_rob; // 该 house 被抢劫后的总金额
+    int dont_rob; // 该 house 没被抢劫的总金额
+    };
+    ```
+  遍历每个节点，  
+  ```
+  struct status left = dp(node->left);
+  struct status right = dp(node->right);
+  ```
+  而该节点的状态是这样的，  
+  ```
+  // 如果该节点被抢劫，那么总金额为该节点的金额加上子结点没有被抢劫的金额
+  int do_rob = node->val + left.dont_rob + right.dont_rob;
+  // 如果该节点没有被抢劫，那么子结点可被抢也可不被抢，总金额为大的那个
+  int dont_rob =
+      (left.do_rob > left.dont_rob ? left.do_rob : left.dont_rob) +
+      (right.do_rob > right.dont_rob ? right.do_rob : right.dont_rob);
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
