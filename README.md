@@ -251,6 +251,28 @@ this is leetcode exercise.
     ```
     dp_0 = dp_0 > dp_1 + prices[i] - fee ? dp_0 : dp_1 + prices[i] - fee;
     ```
+23. [rob](https://leetcode-cn.com/problems/house-robber/)  
+  这题比较简单，用一个一维的 dp 数组表示到当前房间时最高金额。
+  #### dp base  
+    ```
+    if(numsSize == 1){
+      return nums[0];
+    }
+    if(numsSize == 2){
+      return nums[0] > nums[1] ? nums[0] : nums[1];
+    }
+    if(numsSize == 3){
+      return nums[0] + nums[2] > nums[1] ? nums[0] + nums[2] : nums[1];
+    }
+  
+    dp[0] = nums[0];
+    dp[1] = nums[1];
+    dp[2] = nums[2] + dp[0];
+    ```
+  #### 状态转移方程  
+    ```
+    dp[i] = max(dp[i - 2], dp[i - 3]) + nums[i]
+    ```
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
