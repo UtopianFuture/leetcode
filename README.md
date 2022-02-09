@@ -236,6 +236,13 @@ this is leetcode exercise.
     return maxProfit_inf(prices, pricesSize);
   }
   ```
+21. [maxProfit_freeze](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)  
+  这题在 18 的基础上简单修改一下即可，冰冻期为 n 则状态转移方程变为：  
+    ```
+    dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+    dp[i][k][1] = max(dp[i-1][k][1], dp[i-n][k][0] - prices[i])
+    ```
+  然后一样，k 变成无关变量，可以约掉。  
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
