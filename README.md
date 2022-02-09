@@ -133,7 +133,7 @@ this is leetcode exercise.
   而 KMP 算法是先求出原字符串的 next 数组，然后将字符串反转等到 txt 数组。之后按照 kmp 遍历，看 txt 数组的最后一个字符  
   对应 next 数组的哪个字符，将该字符之后的字符都加入到 txt 数组。  
 
-16. [longestPalindrome](https://leetcode-cn.com/problems/longest-palindromic-substring/)
+16. [longestPalindrome](https://leetcode-cn.com/problems/longest-palindromic-substring/)  
   - [] 原做法（错误）
   这题没有使用 kmp 算法，而是使用动态规划，`dp[i][j]` 表示 `s[i ~ j]` 的最长回文串，  
   注意这里还需要考虑一个事情  
@@ -161,7 +161,7 @@ this is leetcode exercise.
   ```
   即数组大小比需要的大 1，然后最后一个 byte 设为 0。  
 
-17. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
+17. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)  
   股票问题：
   这种问题有3个状态，天数，允许交易的最大次数和当前是否持有股票。利用三维 dp 数组可以表示所以的状态：  
   ```
@@ -183,7 +183,7 @@ this is leetcode exercise.
   // 今天没有持有股票，可能是保持昨天的状态，也可能是今天买入股票，那么最大交易次数就减 1。
   dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
   ```
-18. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
+18. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)  
   dp base 还是和上题一样  
   ```
   int dp_0 = 0, dp_1 = 0x80000001;
@@ -211,6 +211,24 @@ this is leetcode exercise.
   dp_1 = max(dp_1, dp_0 - prices[i]);
   ```
   `dp_0` 已经经过计算，变成今天的利润，所以要利用一个 temp 来记录昨天的利润。  
+
+19. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)  
+  这题是上一题的进一步，`k = 2`，之后类似的题目都是套这种模板，  
+  dp base  
+  ```
+  for (int i = 0; i < pricesSize; i++) {
+    dp_0[i][0] = 0;
+    dp_1[i][0] = -prices[i];
+  }
+  ```
+  因为 i 是从 0 开始的，所有要初始化 `i - 1 == -1` 的情况，  
+  ```
+  if (i - 1 == -1) {
+    dp_0[i][k] = 0;
+    dp_1[i][k] = -prices[i];
+    continue;
+  }
+  ```
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
