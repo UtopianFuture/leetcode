@@ -273,6 +273,28 @@ this is leetcode exercise.
     ```
     dp[i] = max(dp[i - 2], dp[i - 3]) + nums[i]
     ```
+24. [rob_ii](https://leetcode-cn.com/problems/house-robber-ii/)  
+  首尾是连接的，那么就分两种情况考虑，
+  （1）抢劫 first house 不抢劫 last house  
+    ```
+    dp[0] = nums[0];
+    dp[1] = nums[1];
+    dp[2] = nums[2] + dp[0];
+    for (int i = 3; i < numsSize - 1; i++) { // don't rob the last house
+      dp[i] = dp[i - 2] > dp[i - 3] ? dp[i - 2] + nums[i] : dp[i - 3] + nums[i];
+    }
+    ```
+  （2）抢劫 last house 不抢劫 first house  
+    ```
+    dp[1] = nums[1];
+    dp[2] = nums[2];
+    dp[3] = nums[3] + dp[1];
+    for (int i = 4; i < numsSize; i++) { // don't rob the first house
+      dp[i] = 0;
+      dp[i] = dp[i - 2] > dp[i - 3] ? dp[i - 2] + nums[i] : dp[i - 3] + nums[i];
+    }
+    ```
+  返回大的哪个。  
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
