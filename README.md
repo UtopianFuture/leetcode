@@ -183,7 +183,7 @@ this is leetcode exercise.
   // 今天没有持有股票，可能是保持昨天的状态，也可能是今天买入股票，那么最大交易次数就减 1。
   dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
   ```
-18. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)  
+18. [maxProfit_ii](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)  
   dp base 还是和上题一样  
   ```
   int dp_0 = 0, dp_1 = 0x80000001;
@@ -212,7 +212,7 @@ this is leetcode exercise.
   ```
   `dp_0` 已经经过计算，变成今天的利润，所以要利用一个 temp 来记录昨天的利润。  
 
-19. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)  
+19. [maxProfit_iii](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)  
   这题是上一题的进一步，`k = 2`，之后类似的题目都是套这种模板，  
   dp base  
   ```
@@ -227,6 +227,13 @@ this is leetcode exercise.
     dp_0[i][k] = 0;
     dp_1[i][k] = -prices[i];
     continue;
+  }
+  ```
+20. [maxProfit_iv](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)  
+  `k = integer`，但是如果 `k > days / 2` 的就和 `k = inf` 一样的，所以在上一题的基础加上加一个限制条件即可  
+  ```
+  if (k > pricesSize / 2) {
+    return maxProfit_inf(prices, pricesSize);
   }
   ```
 
