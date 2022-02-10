@@ -320,5 +320,25 @@ this is leetcode exercise.
       (right.do_rob > right.dont_rob ? right.do_rob : right.dont_rob);
   ```
 
+26. [isMatch_regular](https://leetcode-cn.com/problems/regular-expression-matching/)  
+  这题开始想错了方向，想着直接使用 kmp 字符匹配，然后对 '.', '*' 对特殊处理即可，  
+  例如：  
+  ```
+  if ((p[i] == '*' && (p[i - 1] == s[j] || p[i - 1] == '.')) ||
+    p[i] == s[j] || p[i] == '.') {
+    j++;
+  }
+  ```
+  但是没有抓住问题的关键，即 '*' 的匹配的次数，可以为任意次。  
+  那么当 `p[i + 1] == '*'` 时，我们遍历所有的情况，即匹配 0 次或多次。  
+  ```
+  if (p[j + 1] == '*') {
+      // "j + 2" - '*' match 0 time, "i + 1" - '*' match 1 time
+      // dp(s, i + 1, p, j) can match many times
+      res = dp(s, i, p, j + 2) || dp(s, i + 1, p, j);
+    }
+  ```
+  但关键是这点想不到啊。  
+  
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
