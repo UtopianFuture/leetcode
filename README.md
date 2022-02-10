@@ -341,6 +341,40 @@ this is leetcode exercise.
   但关键是这点想不到啊。  
 
 27. [isMatch_wildcard](https://leetcode-cn.com/problems/wildcard-matching/)
+  这题和上一题一样，只是 '*' 的意义变成匹配任意字符串，  
+  那么当 `p[j] == '*'` 时还是匹配 0 个字符或多个字符。
+  ```
+  if (p[j] == '*') {
+    // 'j + 1' match 0 time, 'i + 1' match 1 time
+    res = dp(s, i, sizes, p, j + 1, sizep) || dp(s, i + 1, sizes, p, j, sizep);
+  }
+  ```
+  但是这个做法会超时，所以使用了参考解法，还是动态规划的思路，  
+  动态转移方程：  
+  ```
+  if (s[j - 1] == p[i - 1] || p[i - 1] == '?') {
+    dp[i][j] = dp[i - 1][j - 1];
+  } else if (p[i - 1] == '*') {
+    dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+  } else {
+    dp[i][j] = 0;
+  }
+  ```
+  dp base:  
+  这里 dp base 比较巧妙，当两个空字符串匹配时返回 true，  
+  当 `p[i] == '*'` 时返回 true。  
+  ```
+  int dp[sizep + 1][sizes + 1];
+  memset(dp, 0, sizeof(dp));
+  dp[0][0] = 1;
+  for (int i = 1; i <= sizep; i++) {
+    if (p[i - 1] == '*') {
+      dp[i][0] = 1;
+    } else {
+      break;
+    }
+  }
+  ```
 
 28. [longestCommonSubsequence](https://leetcode-cn.com/problems/longest-common-subsequence)  
   这题是比较简单的动态规划问题。看到两个字符串，条件反射的想到 dp 数组是二维的，  
