@@ -1,6 +1,7 @@
 #include "stdbool.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include "string.h"
 
 bool dp(char *s, int i, char *p, int j) {
   int sizes = 0, sizep = 0;
@@ -89,6 +90,45 @@ bool isMatch(char *s, char *p) { return dp(s, 0, p, 0); }
 //     }
 //   }
 //   return false;
+// }
+
+// bool isMatch(char *s, char *p) {
+//   int sizes = 0, sizep = 0;
+//   while (s[sizes])
+//     sizes++;
+//   while (p[sizep])
+//     sizep++;
+// 
+//   int dp[sizep + 1][sizes + 1];
+//   memset(dp, 0, sizeof(dp));
+//   dp[0][0] = 1;
+//   for (int i = 2; i <= sizep; i += 2) {
+//     if (p[i - 1] == '*') {
+//       dp[i][0] = 1;
+//     } else {
+//       break;
+//     }
+//   }
+// 
+//   for (int i = 1; i <= sizep; i++) {
+//     for (int j = 1; j <= sizes; j++) {
+//       if (s[j - 1] == p[i - 1] || p[i - 1] == '.') {
+//         dp[i][j] = dp[i - 1][j - 1];
+//       } else if (p[i - 1] == '*') {
+//         if (p[i - 2] != s[j - 1] && !(p[i - 2] == '.')) {
+//           dp[i][j] = dp[i - 2][j];
+//         } else {
+//           for (int k = 0; k <= j; k++){
+//             dp[i][j] |= dp[i- 1][k];
+//           }
+//           // dp[i][j] = dp[i - 1][j] || dp[i - 1][j - 1];
+//         }
+//       } else {
+//         dp[i][j] = 0;
+//       }
+//     }
+//   }
+//   return dp[sizep][sizes];
 // }
 
 int main() {
