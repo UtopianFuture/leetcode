@@ -400,5 +400,16 @@ this is leetcode exercise.
 30. [maxSubArray](https://leetcode-cn.com/problems/maximum-subarray/)  
   这题比较简单。
 
+31. [deleteAndEarn](https://leetcode-cn.com/problems/delete-and-earn/)  
+  这题和 [rob](#23. [rob](https://leetcode-cn.com/problems/house-robber/)) 类似，但要做一个转换。  
+  删除所有等于 `nums[i] - 1` 和 `nums[i] + 1` 的元素就等于不抢劫相邻房子。  
+  定义一个 sum 数组，  
+  ```c
+    for (int i = 0; i < numsSize; i++) {
+    sum[nums[i]] += nums[i];
+  }
+  ```
+  即将无序的 nums 排列成有序的房子，没有的地方初始化为 0。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
