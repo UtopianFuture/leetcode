@@ -386,5 +386,16 @@ this is leetcode exercise.
     dp[i][j] = dp[i - 1][j] > dp[i][j - 1] ? dp[i - 1][j] : dp[i][j - 1];
   ```
 
+29. [maxProduct](https://leetcode-cn.com/problems/maximum-product-subarray/)  
+  这题和之前的动态规划有些不一样，因为它不满足“最优子结构”，  
+  即当前位置的最优解未必是由前一个位置的最优解转移得到的。所以不能直接用二维 dp 数组来解决。  
+  考虑题义，`nums[i]` 可正可负，可能前一个子序列的乘积是负的，但是负负得正，  
+  所以动态转移方程是这样的：  
+  ```
+  dp_max = max(dp_max * nums[i], dp_min * nums[i], nums[i]);
+  dp_min = min(dp_max * nums[i], dp_min * nums[i], nums[i]);
+  ```
+  不但记录最大值，还记录最小值。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
