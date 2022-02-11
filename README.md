@@ -7,14 +7,16 @@ this is leetcode exercise.
   最重要的是理解 'dp'，'dp' 是一个数组，长度为 amount + 1(0 ~ amount)，每个元素表示该 amount 最少的分配方式，  
   除 dp[0] = 0 外，其他的元素都初始化为 amount + 1，即默认是没有正确的分配方式。  
   另一个关键是理解 amount 的最少分配方式是 amount - coins[i] 的最少分配方式加1。  
-    ```dp[i] = (dp[i] < (dp[i - coins[j]] + 1)) ? dp[i] : (dp[i - coins[j]] + 1);```
+    ```c
+    dp[i] = (dp[i] < (dp[i - coins[j]] + 1)) ? dp[i] : (dp[i - coins[j]] + 1);
+    ```
 
 3. climbStairs  
   same as fib  
 
 4. mincostTickets  
   这题大体上和 `coinchange` 差不多，但有一点需要注意，由于天数不是连续的，所有没有去旅游的那天 cost 和前一天一样。  
-    ```
+    ```c
     if (dp[i] != 0) {
       
       ...
@@ -31,7 +33,7 @@ this is leetcode exercise.
   还是动态规划，思路是最短距离等于上 word1[size1] ~ word2[size2 - 1] 的最短距离加1。但这题的 dp 是二维数组，  
   dp[i][j] 表示 word1[i] 到 word2[j] 的最短距离。  
   然后关于增，删和替换操作体现在 dp 上就是:  
-    ```
+    ```c
       x h o r s e
     x 0 1 2 3 4 5
     r 1
@@ -62,7 +64,9 @@ this is leetcode exercise.
   我们可以转换成 k 个鸡蛋，测试 m 次，最坏情况下最多能测试 n 层楼，即 `dp[i][j]` 表示 n 层楼，当 `dp[i][i] == n` 时的 m 即为所求。  
   dp base 为 `dp[1][i] = 1;`，  
   状态转换方程为  
-  ```dp[i][j] = 1 + dp[i - 1][j - 1] + dp[i - 1][j];```  
+  ```c
+  dp[i][j] = 1 + dp[i - 1][j - 1] + dp[i - 1][j];
+  ```
   i 表示测试次数，j 表示鸡蛋数。  
   ![](https://github.com/UtopianFuture/leetcode/blob/main/image/superEggDrop_2.jpg)
 
@@ -70,14 +74,21 @@ this is leetcode exercise.
   这题的思路是这样的：dp[i][j] 表示 s[i ~ j] 子序列的最长回文子序列，对于任一个子序列的 s[i], s[j] 都有两种情况：  
   - s[i] = s[j]  
     那么 s[i] s[j] 就可以加入到最长回文子序列中  
-    ```dp[i][j] = dp[i + 1][j - 1] + 2;```  
+    ```c
+    dp[i][j] = dp[i + 1][j - 1] + 2;
+    ```
   - s[i] != s[j]
   - 那 s[i], s[j] 就不能作为最长回文子序列首尾  
-      ```dp[i][j] = dp[i + 1][j] > dp[i][j - 1] ? dp[i + 1][j] : dp[i][j - 1];```
+      ```c
+      dp[i][j] = dp[i + 1][j] > dp[i][j - 1] ? dp[i + 1][j] : dp[i][j - 1];
+      ```
 
 10. [stoneGame](https://leetcode-cn.com/problems/stone-game)  
   这题的思路和上一题一致。`dp[i][j]` 表示 `piles[i ~ j]` 石子堆中最大差值，dp base 是 `dp[i][i] = piles[i]`，要求的是 `dp[0][size]`，  
-  而状态转移方程为: ```dp[i][j] = max{piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]}```。  
+  而状态转移方程为:  
+  ```c
+  dp[i][j] = max{piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]}
+  ```
   总结一下这两题，虽然给出的都是一个序列，但是 dp 数组都是二维的，因为需要遍历这个序列中每个字符的每种组合。  
   然后关于状态转移方程，应该先考虑将问题分为子问题，如这题分成 `piles[i ~ j]` 子序列，上题也是分成 `s[i ~ j]` 子序列。  
   分成子问题之后再考虑怎样转移，那么就要确定最终要求什么，如上题要求最长回文子序列的长度，那么子问题就也是求长度，  
@@ -96,7 +107,7 @@ this is leetcode exercise.
   这题用暴力解法法超时，需要使用 kmp 算法。使用 kmp 算法解决字符匹配类问题的关键就是 pat 字符串的 kmp 数组。  
   然后根据 kmp 数组求解。  
   每个字符串对应的 kmp 数组是确定的，可以用这个算法来求:  
-    ```
+    ```c
     int pi[size2];
     pi[0] = 0;
     for (int i = 1, j = 0; i < size2; i++) {
@@ -110,7 +121,7 @@ this is leetcode exercise.
     }
     ```
   然后确定 pat 字符串是否在 txt 字符串中出现过，可以使用这个算法:  
-    ```
+    ```c
     for (int i = 0, j = 0; i < size1; i++) {
       while (j > 0 && haystack[i] != needle[j]) {
         j = pi[j - 1];
@@ -138,7 +149,7 @@ this is leetcode exercise.
   - 原做法（错误）
   这题没有使用 kmp 算法，而是使用动态规划，`dp[i][j]` 表示 `s[i ~ j]` 的最长回文串，  
   注意这里还需要考虑一个事情  
-    ```
+    ```c
     if (s[i] == s[j] && ((dp[i + 1][j] >= j - i - 1) || (dp[i][j - 1] >= j - i - 1)))
     ```
   即当 `s[i] == s[j]` 时还要看 `s[i + 1 ~ j]` 和 `s[i ~ j - 1]` 是否是回文串。  
@@ -153,7 +164,7 @@ this is leetcode exercise.
   （2）如果 `s[i] == s[j]`，那么该子串是否是回文跟 `s[i + 1] ~ s[j - 1]` 相同。  
   
   还有一点需要注意，由于使用了 `-fsanitize=address` 来进行边界检查，所以在创建 `char *` 时要这样  
-    ```
+    ```c
     char *res = malloc((max + 1) * sizeof(char));
      for (int i = 0; i < max; i++) {
        res[res_size++] = s[i + low];
@@ -165,7 +176,7 @@ this is leetcode exercise.
 17. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)  
   股票问题：
   这种问题有3个状态，天数，允许交易的最大次数和当前是否持有股票。利用三维 dp 数组可以表示所以的状态：  
-    ```
+    ```c
     dp[i][k][0 or 1]
     0 <= i <= n - 1, 1 <= k <= K
     n 为天数，大 K 为交易数的上限，0 和 1 代表是否持有股票。
@@ -178,7 +189,7 @@ this is leetcode exercise.
     ```
   然后最后要求的就是 `dp[n - 1][K][0]`  
   那么状态转移方程是这样的：  
-    ```
+    ```c
     // 今天没有持有股票，可能是保持昨天的状态，也可能是昨天持有股票，但是今天卖了
     dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
     // 今天没有持有股票，可能是保持昨天的状态，也可能是今天买入股票，那么最大交易次数就减 1。
@@ -187,28 +198,28 @@ this is leetcode exercise.
 
 18. [maxProfit_ii](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)  
   dp base 还是和上题一样  
-    ```
+    ```c
     int dp_0 = 0, dp_1 = 0x80000001;
     ```
   状态转移方程也是一样的，  
-    ```
+    ```c
     dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
     dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
     ``` 
   但是 k 是无限的，`[k]` 和 `[k - 1]` 一样，可以约掉，  
   得到如下状态转移方程，
-    ```
+    ```c
     dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
     dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])
     ```
   那么 k 成为无关状态，  
-    ```
+    ```c
     dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
     dp[i][1] = max(dp[i-1][1], dp[i-1][0] - prices[i])
     ```
   再将 `dp[i][0]` 化简为 `dp_0`，这里有一点需要注意，`dp[i][0]` 表示的是上一天的利润，  
   换成 `dp_0` 后  
-    ```
+    ```c
     dp_0 = max(dp_0, dp_1 + prices[i]);
     dp_1 = max(dp_1, dp_0 - prices[i]);
     ```
@@ -217,14 +228,14 @@ this is leetcode exercise.
 19. [maxProfit_iii](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)  
   这题是上一题的进一步，`k = 2`，之后类似的题目都是套这种模板，  
   #### dp base  
-    ```
+    ```c
     for (int i = 0; i < pricesSize; i++) {
       dp_0[i][0] = 0;
       dp_1[i][0] = -prices[i];
     }
     ```
   因为 i 是从 0 开始的，所有要初始化 `i - 1 == -1` 的情况，  
-    ```
+    ```c
     if (i - 1 == -1) {
       dp_0[i][k] = 0;
       dp_1[i][k] = -prices[i];
@@ -233,14 +244,14 @@ this is leetcode exercise.
     ```
 20. [maxProfit_iv](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)  
   `k = integer`，但是如果 `k > days / 2` 的就和 `k = inf` 一样的，所以在上一题的基础加上加一个限制条件即可  
-    ```
+    ```c
     if (k > pricesSize / 2) {
       return maxProfit_inf(prices, pricesSize);
     }
     ```
 21. [maxProfit_freeze](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)  
   这题在 18 的基础上简单修改一下即可，冰冻期为 n 则状态转移方程变为：  
-    ```
+    ```c
     dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
     dp[i][k][1] = max(dp[i-1][k][1], dp[i-n][k][0] - prices[i])
     ```
@@ -248,13 +259,13 @@ this is leetcode exercise.
 
 22. [maxProfit_fee](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)  
   这题还是 18 的变种，只需要在收入上减去 fee 即可。  
-    ```
+    ```c
     dp_0 = dp_0 > dp_1 + prices[i] - fee ? dp_0 : dp_1 + prices[i] - fee;
     ```
 23. [rob](https://leetcode-cn.com/problems/house-robber/)  
   这题比较简单，用一个一维的 dp 数组表示到当前房间时最高金额。
   #### dp base  
-    ```
+    ```c
     if(numsSize == 1){
       return nums[0];
     }
@@ -270,13 +281,13 @@ this is leetcode exercise.
     dp[2] = nums[2] + dp[0];
     ```
   #### 状态转移方程  
-    ```
+    ```c
     dp[i] = max(dp[i - 2], dp[i - 3]) + nums[i]
     ```
 24. [rob_ii](https://leetcode-cn.com/problems/house-robber-ii/)  
   首尾是连接的，那么就分两种情况考虑，
   （1）抢劫 first house 不抢劫 last house  
-    ```
+    ```c
     dp[0] = nums[0];
     dp[1] = nums[1];
     dp[2] = nums[2] + dp[0];
@@ -285,7 +296,7 @@ this is leetcode exercise.
     }
     ```
   （2）抢劫 last house 不抢劫 first house  
-    ```
+    ```c
     dp[1] = nums[1];
     dp[2] = nums[2];
     dp[3] = nums[3] + dp[1];
@@ -299,19 +310,19 @@ this is leetcode exercise.
 25. [rob_iii](https://leetcode-cn.com/problems/house-robber-iii/)  
   这题虽然用的也是和上题类似的动态规划思路，但由于需要遍历的是二插树，又有些不一样。  
   每个节点可能被抢也可能没被抢，定义一个结构体来表示每个节点的状态，   
-    ```
+    ```c
     struct status {
     int do_rob; // 该 house 被抢劫后的总金额
     int dont_rob; // 该 house 没被抢劫的总金额
     };
     ```
   遍历每个节点，  
-  ```
+  ```c
   struct status left = dp(node->left);
   struct status right = dp(node->right);
   ```
   而该节点的状态是这样的，  
-  ```
+  ```c
   // 如果该节点被抢劫，那么总金额为该节点的金额加上子结点没有被抢劫的金额
   int do_rob = node->val + left.dont_rob + right.dont_rob;
   // 如果该节点没有被抢劫，那么子结点可被抢也可不被抢，总金额为大的那个
@@ -323,7 +334,7 @@ this is leetcode exercise.
 26. [isMatch_regular](https://leetcode-cn.com/problems/regular-expression-matching/)  
   这题开始想错了方向，想着直接使用 kmp 字符匹配，然后对 '.', '*' 对特殊处理即可，  
   例如：  
-  ```
+  ```c
   if ((p[i] == '*' && (p[i - 1] == s[j] || p[i - 1] == '.')) ||
     p[i] == s[j] || p[i] == '.') {
     j++;
@@ -331,7 +342,7 @@ this is leetcode exercise.
   ```
   但是没有抓住问题的关键，即 '*' 的匹配的次数，可以为任意次。  
   那么当 `p[i + 1] == '*'` 时，我们遍历所有的情况，即匹配 0 次或多次。  
-  ```
+  ```c
   if (p[j + 1] == '*') {
       // "j + 2" - '*' match 0 time, "i + 1" - '*' match 1 time
       // dp(s, i + 1, p, j) can match many times
@@ -343,7 +354,7 @@ this is leetcode exercise.
 27. [isMatch_wildcard](https://leetcode-cn.com/problems/wildcard-matching/)
   这题和上一题一样，只是 '*' 的意义变成匹配任意字符串，  
   那么当 `p[j] == '*'` 时还是匹配 0 个字符或多个字符。
-  ```
+  ```c
   if (p[j] == '*') {
     // 'j + 1' match 0 time, 'i + 1' match 1 time
     res = dp(s, i, sizes, p, j + 1, sizep) || dp(s, i + 1, sizes, p, j, sizep);
@@ -351,7 +362,7 @@ this is leetcode exercise.
   ```
   但是这个做法会超时，所以使用了参考解法，还是动态规划的思路，  
   动态转移方程：  
-  ```
+  ```c
   if (s[j - 1] == p[i - 1] || p[i - 1] == '?') {
     dp[i][j] = dp[i - 1][j - 1];
   } else if (p[i - 1] == '*') {
@@ -363,7 +374,7 @@ this is leetcode exercise.
   dp base:  
   这里 dp base 比较巧妙，当两个空字符串匹配时返回 true，  
   当 `p[i] == '*'` 时返回 true。  
-  ```
+  ```c
   int dp[sizep + 1][sizes + 1];
   memset(dp, 0, sizeof(dp));
   dp[0][0] = 1;
@@ -379,7 +390,7 @@ this is leetcode exercise.
 28. [longestCommonSubsequence](https://leetcode-cn.com/problems/longest-common-subsequence)  
   这题是比较简单的动态规划问题。看到两个字符串，条件反射的想到 dp 数组是二维的，  
   然后状态转移方程是  
-  ```
+  ```c
   if (text1[i - 1] == text2[j - 1]) {
     dp[i][j] = dp[i - 1][j - 1] + 1;
   } else {
@@ -391,7 +402,7 @@ this is leetcode exercise.
   即当前位置的最优解未必是由前一个位置的最优解转移得到的。所以不能直接用二维 dp 数组来解决。  
   考虑题义，`nums[i]` 可正可负，可能前一个子序列的乘积是负的，但是负负得正，  
   所以动态转移方程是这样的：  
-  ```
+  ```c
   dp_max = max(dp_max * nums[i], dp_min * nums[i], nums[i]);
   dp_min = min(dp_max * nums[i], dp_min * nums[i], nums[i]);
   ```
