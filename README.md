@@ -422,5 +422,28 @@ this is leetcode exercise.
   ```
   即将无序的 nums 排列成有序的房子，没有的地方初始化为 0。  
 
+32. [LRUCache](https://leetcode-cn.com/problems/lru-cache/)  
+  这题需要用到双向链表和哈希表，双向循环链表作为 cache 保存 value，  
+  哈希表保存 key 与 value 在 cache 中位置的映射。  
+  对于 put 操作而言，如果 key 在哈希表中存在，那么只需要改变对应的 value，  
+  同时将这个 node 移到双向链表的头部；如果不存在，需要考虑 capacity 是否足够，  
+  如果 `used < capacity` 那么直接在链表头部插入一个 node，并将这个 node 的地址  
+  写入哈希表 key 对应的位置；否则需要将链表尾部的一个 node 删除，并创建一个 node  
+  插入到链表头部。  
+  对于 get 操作，如果哈希表中存在，那么将对应的 node 移到链表头部；否则返回 -1 。  
+  cache 的数据结构是这样的：  
+  ```c
+  typedef struct {
+    struct node *value_location[10001]; // hash table
+    int used;
+    int capacity;
+    struct node *head, *tail; // list head node and tail node
+  } LRUCache;
+  ```
+  这里哈希表还可以优化，因为解决哈希冲突太麻烦了，所以将 key 的映射关系保存在 `value_location[key]`，  
+  size 就是 `max(key) + 1`。
+  然后还有一个小技巧，在双向链表的实现中，使用一个伪头部（dummy head）和伪尾部（dummy tail）标记界限，  
+  就是这里的 `struct node *head, *tail;` 这样在添加节点和删除节点的时候就不需要检查相邻的节点是否存在。
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
