@@ -1,37 +1,41 @@
 # leetcode
 this is leetcode exercise.
-1. fib  
-  easy, nothing important.
+1. [fib](https://leetcode-cn.com/problems/fibonacci-number/)  
+  这题动态规划解法和递归解法的区别是消除重复子问题。
 
-2. coinChange  
-  最重要的是理解 'dp'，'dp' 是一个数组，长度为 amount + 1(0 ~ amount)，每个元素表示该 amount 最少的分配方式，  
-  除 dp[0] = 0 外，其他的元素都初始化为 amount + 1，即默认是没有正确的分配方式。  
+2. [coinChange](https://leetcode-cn.com/problems/coin-change/)  
+  最重要的是理解 'dp'，'dp' 是一个数组，长度为 amount + 1(0 ~ amount)，  
+  每个元素表示该 amount 最少的分配方式，除 dp[0] = 0 外，  
+  其他的元素都初始化为 amount + 1，即默认是没有正确的分配方式。  
   另一个关键是理解 amount 的最少分配方式是 amount - coins[i] 的最少分配方式加1。  
     ```c
     dp[i] = (dp[i] < (dp[i - coins[j]] + 1)) ? dp[i] : (dp[i - coins[j]] + 1);
     ```
 
-3. climbStairs  
-  same as fib  
+3. [climbStairs](https://leetcode-cn.com/problems/climbing-stairs/)  
+  最后一次可能是跨一步或两步，即：
+  ```c
+  dp[i] = dp[i - 1] + dp[i - 2];
+  ```
 
-4. mincostTickets  
-  这题大体上和 `coinchange` 差不多，但有一点需要注意，由于天数不是连续的，所有没有去旅游的那天 cost 和前一天一样。  
+4. [mincostTickets](https://leetcode-cn.com/problems/minimum-cost-for-tickets/)  
+  这题大体上和 `coinchange` 一样，但有一点需要注意，由于天数不是连续的，  
+  所有没有去旅游的那天 cost 和前一天一样。  
     ```c
     if (dp[i] != 0) {
-      
-      ...
-  
-       } else {
-        dp[i] = dp[i - 1];
-      }
+      dp[i] = dp[i] < dp[i - tickets[j]] + 1 ? dp[i] : dp[i - tickets[j]] + 1;
+    } else {
+      dp[i] = dp[i - 1];
+    }
     ```
 
-5. lengthOfLIS  
- 思路和 `coinchange` 一样，即：最长递增子序列等于前面的比自己小的元素中的最长递增子序列加1。  
+5. [lengthOfLIS](https://leetcode-cn.com/problems/longest-increasing-subsequence/)  
+  LIS: 最长递增自序列  
+  思路和 `coinchange` 一样，即：LIS 等于前面的比自己小的元素中的 LIS 加1。  
 
-6. minDistance  
-  还是动态规划，思路是最短距离等于上 word1[size1] ~ word2[size2 - 1] 的最短距离加1。但这题的 dp 是二维数组，  
-  dp[i][j] 表示 word1[i] 到 word2[j] 的最短距离。  
+6. [minDistance](https://leetcode-cn.com/problems/edit-distance/)  
+  还是动态规划，思路是最短距离等于上 word1[size1] ~ word2[size2 - 1] 的最短距离加1。  
+  但这题的 dp 是二维数组，dp[i][j] 表示 word1[i] 到 word2[j] 的最短距离。  
   然后关于增，删和替换操作体现在 dp 上就是:  
     ```c
       x h o r s e
@@ -45,7 +49,7 @@ this is leetcode exercise.
   `dp[i][j - 1]; // 在 r 前面增加 h`  
   `dp[i - 1][j - 1]; // 替换`  
 
-7. minimumDeleteSum  
+7. [minimumDeleteSum](https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/)  
  思路和上一题基本一致，有几个关键点:  
  - dp 数组是二维的，
  - dp base 是 `val[0][i] = val[0][i - 1] + s2[i - 1];`
@@ -55,9 +59,10 @@ this is leetcode exercise.
 
 8. [superEggDrop](https://leetcode-cn.com/problems/super-egg-drop/)  
   在使用二分查找优化时遇到困难，我想不用递归的方式优化，但是无法实现。  
-  `superEggDrop_nn` 的思路是这样的，dp 数组表示 i 层楼 j 个鸡蛋需要测几次，所以有 kn 中情况，  
-  然后要测出每种情况在最坏情况下需要测几次需要遍历 i - 1 层楼，找出最好的情况。  
-  举个例子，当 `k = 2, n = 9` 时，我们在 5 楼测一次，那么 `dp[2][9] = dp[1][4] + 1 ? dp[2][4] + 1`，  
+  `superEggDrop_nn` 的思路是这样的，dp 数组表示 i 层楼 j 个鸡蛋需要测几次，  
+  所以有 kn 中情况，然后要测出每种情况在最坏情况下需要测几次需要遍历 i - 1 层楼，  
+  找出最好的情况。举个例子，当 `k = 2, n = 9` 时，我们在 5 楼测一次，  
+  那么 `dp[2][9] = dp[1][4] + 1 ? dp[2][4] + 1`，  
   但是这种方法的时间复杂度为 kn^2。  
   ![](https://github.com/UtopianFuture/leetcode/blob/main/image/superEggDrop_1.jpg)
   `superEggDrop_kn` 的思路时这样的，题目的要求为 k  个鸡蛋，n 层楼，最坏情况下最少的测试次数 m，  
