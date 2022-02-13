@@ -38,6 +38,10 @@ bool stoneGame_two(int *piles, int pilesSize) {
   return dp[pilesSize - 1] > 0;
 }
 
+bool stoneGame_zero(int *piles, int pilesSize) {
+  return true;
+}
+
 int main() {
   int size = 0;
   scanf("%d", &size);

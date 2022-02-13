@@ -89,17 +89,16 @@ int main() {
   int capacity = 0;
   scanf("%d\n", &capacity);
 
-  int value;
-  LRUCache *cache = lRUCacheCreate(capacity);
-  lRUCachePut(cache, 1, 1);
-  lRUCachePut(cache, 2, 2);
-  value = lRUCacheGet(cache, 1);
-  lRUCachePut(cache, 3, 3);
-  value = lRUCacheGet(cache, 2);
-  lRUCachePut(cache, 4, 4);
-  value = lRUCacheGet(cache, 1);
-  value = lRUCacheGet(cache, 3);
-  value = lRUCacheGet(cache, 4);
-
+  // int value;
+  // LRUCache *cache = lRUCacheCreate(capacity);
+  // lRUCachePut(cache, 1, 1);
+  // lRUCachePut(cache, 2, 2);
+  // value = lRUCacheGet(cache, 1);
+  // lRUCachePut(cache, 3, 3);
+  // value = lRUCacheGet(cache, 2);
+  // lRUCachePut(cache, 4, 4);
+  // value = lRUCacheGet(cache, 1);
+  // value = lRUCacheGet(cache, 3);
+  // value = lRUCacheGet(cache, 4);
   return 0;
 }

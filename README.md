@@ -60,12 +60,12 @@ this is leetcode exercise.
 8. [superEggDrop](https://leetcode-cn.com/problems/super-egg-drop/)  
   在使用二分查找优化时遇到困难，我想不用递归的方式优化，但是无法实现。  
   `superEggDrop_nn` 的思路是这样的，dp 数组表示 i 层楼 j 个鸡蛋需要测几次，  
-  所以有 kn 中情况，然后要测出每种情况在最坏情况下需要测几次需要遍历 i - 1 层楼，  
+  所以有 kn 种情况，然后要测出每种情况在最坏情况下需要测几次需要遍历 i - 1 层楼，  
   找出最好的情况。举个例子，当 `k = 2, n = 9` 时，我们在 5 楼测一次，  
   那么 `dp[2][9] = dp[1][4] + 1 ? dp[2][4] + 1`，  
   但是这种方法的时间复杂度为 kn^2。  
   ![](https://github.com/UtopianFuture/leetcode/blob/main/image/superEggDrop_1.jpg)
-  `superEggDrop_kn` 的思路时这样的，题目的要求为 k  个鸡蛋，n 层楼，最坏情况下最少的测试次数 m，  
+  `superEggDrop_kn` 的思路时这样的，题目的要求为 k 个鸡蛋，n 层楼，最坏情况下最少的测试次数 m，  
   我们可以转换成 k 个鸡蛋，测试 m 次，最坏情况下最多能测试 n 层楼，即 `dp[i][j]` 表示 n 层楼，当 `dp[i][i] == n` 时的 m 即为所求。  
   dp base 为 `dp[1][i] = 1;`，  
   状态转换方程为  
@@ -89,12 +89,16 @@ this is leetcode exercise.
       ```
 
 10. [stoneGame](https://leetcode-cn.com/problems/stone-game)  
-  这题的思路和上一题一致。`dp[i][j]` 表示 `piles[i ~ j]` 石子堆中最大差值，dp base 是 `dp[i][i] = piles[i]`，要求的是 `dp[0][size]`，  
-  而状态转移方程为:  
+  `dp[i][j]` 表示 `piles[i ~ j]` 石子堆中当前玩家与另一个玩家的石子数量差的最大值，  
+  dp base 是 `dp[i][i] = piles[i]`，要求的是 `dp[0][size]`，  
+  当 `i < j` 时，当前玩家可以选择取走 `piles[i]` 或 `piles[j]`，  
+  然后轮到另一个玩家在剩下的石子堆中取走石子。在两种方案中，当前玩家会选择最优的方案，  
+  使得自己的石子数量最大化。而状态转移方程为:  
   ```c
   dp[i][j] = max{piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]}
   ```
-  总结一下这两题，虽然给出的都是一个序列，但是 dp 数组都是二维的，因为需要遍历这个序列中每个字符的每种组合。  
+  官方解析中给出了数学分析，这种情况永远是先手获胜，所以可以直接返回 true。  
+  总结一下这题和上一题，虽然给出的都是一个序列，但是，虽然给出的都是一个序列，但是 dp 数组都是二维的，因为需要遍历这个序列中每个字符的每种组合。  
   然后关于状态转移方程，应该先考虑将问题分为子问题，如这题分成 `piles[i ~ j]` 子序列，上题也是分成 `s[i ~ j]` 子序列。  
   分成子问题之后再考虑怎样转移，那么就要确定最终要求什么，如上题要求最长回文子序列的长度，那么子问题就也是求长度，  
   加上新的字符长度会怎样变化，这题需要将胜负转换成差值，然后求差值的变化。  
@@ -146,9 +150,10 @@ this is leetcode exercise.
   那么在 `s[1 ~ 2 * size -2]` 中一定存在该子串。  
 
 15. [shortestPalindrome](https://leetcode-cn.com/problems/shortest-palindrome/)  
-  这题的做法很巧妙，求最短回文串，用暴力的解法比较简单，将后面的字符和前面的字符一个个遍历对比，如果不相同，则插入。  
-  而 KMP 算法是先求出原字符串的 next 数组，然后将字符串反转等到 txt 数组。之后按照 kmp 遍历，看 txt 数组的最后一个字符  
-  对应 next 数组的哪个字符，将该字符之后的字符都加入到 txt 数组。  
+  这题的做法很巧妙，求最短回文串，用暴力的解法比较简单，将后面的字符和前面的字符一个个遍历对比,    
+  如果不相同，则插入。  
+  而 KMP 算法是先求出原字符串的 next 数组，然后将字符串反转得到 txt 数组。之后按照 kmp 遍历，  
+  看 txt 数组的最后一个字符对应 next 数组的哪个字符，将该字符之后的字符都加入到 txt 数组。  
 
 16. [longestPalindrome](https://leetcode-cn.com/problems/longest-palindromic-substring/)  
   - 原做法（错误）
@@ -165,8 +170,11 @@ this is leetcode exercise.
   （2）动态转移方程  
   动态转移方程是这样的:  
   （1）dp 数组表示 `s[i] ~ s[j]` 是否是回文串；  
-  （1）如果该子串 `s[i] != s[j]`， 那么这个子串肯定不会回文；  
+  （1）如果该子串 `s[i] != s[j]`， 那么这个子串肯定不是回文；  
   （2）如果 `s[i] == s[j]`，那么该子串是否是回文跟 `s[i + 1] ~ s[j - 1]` 相同。  
+  这题和[最长回文子序列](#9. [longestPalindromeSubseq](https://leetcode-cn.com/problems/longest-palindromic-subsequence))  
+  需要分清楚，一个是子序列，可以不连续，dp 数组表示的是 `s[i ~ j]` 子串中的最长回文子序列长度，  
+  而这题 dp 数组表示的 `s[i ~ j]` 是否是回文子串。动态转移方程是是类似的。  
   
   还有一点需要注意，由于使用了 `-fsanitize=address` 来进行边界检查，所以在创建 `char *` 时要这样  
     ```c
@@ -197,7 +205,7 @@ this is leetcode exercise.
     ```c
     // 今天没有持有股票，可能是保持昨天的状态，也可能是昨天持有股票，但是今天卖了
     dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
-    // 今天没有持有股票，可能是保持昨天的状态，也可能是今天买入股票，那么最大交易次数就减 1。
+    // 今天持有股票，可能是保持昨天的状态，也可能是今天买入股票，那么最大交易次数就减 1。
     dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
     ```
 
@@ -232,7 +240,7 @@ this is leetcode exercise.
 
 19. [maxProfit_iii](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)  
   这题是上一题的进一步，`k = 2`，之后类似的题目都是套这种模板，  
-  #### dp base  
+  - dp base  
     ```c
     for (int i = 0; i < pricesSize; i++) {
       dp_0[i][0] = 0;
@@ -247,15 +255,18 @@ this is leetcode exercise.
       continue;
     }
     ```
+
 20. [maxProfit_iv](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)  
-  `k = integer`，但是如果 `k > days / 2` 的就和 `k = inf` 一样的，所以在上一题的基础加上加一个限制条件即可  
+  `k = integer`，但是如果 `k > days / 2` 的就和 `k = inf` 一样的，  
+  所以在上一题的基础加上加一个限制条件即可  
     ```c
     if (k > pricesSize / 2) {
       return maxProfit_inf(prices, pricesSize);
     }
     ```
+
 21. [maxProfit_freeze](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)  
-  这题在 18 的基础上简单修改一下即可，冰冻期为 n 则状态转移方程变为：  
+  这题在 18 题的基础上简单修改一下即可，冰冻期为 n 则状态转移方程变为：  
     ```c
     dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
     dp[i][k][1] = max(dp[i-1][k][1], dp[i-n][k][0] - prices[i])
@@ -263,13 +274,14 @@ this is leetcode exercise.
   然后一样，k 变成无关变量，可以约掉。  
 
 22. [maxProfit_fee](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)  
-  这题还是 18 的变种，只需要在收入上减去 fee 即可。  
+  这题还是 18 题的变种，只需要在收入上减去 fee 即可。  
     ```c
     dp_0 = dp_0 > dp_1 + prices[i] - fee ? dp_0 : dp_1 + prices[i] - fee;
     ```
+
 23. [rob](https://leetcode-cn.com/problems/house-robber/)  
   这题比较简单，用一个一维的 dp 数组表示到当前房间时最高金额。
-  #### dp base  
+  - dp base  
     ```c
     if(numsSize == 1){
       return nums[0];
@@ -285,7 +297,7 @@ this is leetcode exercise.
     dp[1] = nums[1];
     dp[2] = nums[2] + dp[0];
     ```
-  #### 状态转移方程  
+  - 状态转移方程  
     ```c
     dp[i] = max(dp[i - 2], dp[i - 3]) + nums[i]
     ```
@@ -310,7 +322,7 @@ this is leetcode exercise.
       dp[i] = dp[i - 2] > dp[i - 3] ? dp[i - 2] + nums[i] : dp[i - 3] + nums[i];
     }
     ```
-  返回大的哪个。  
+  返回大的那个。  
 
 25. [rob_iii](https://leetcode-cn.com/problems/house-robber-iii/)  
   这题虽然用的也是和上题类似的动态规划思路，但由于需要遍历的是二插树，又有些不一样。  
@@ -337,7 +349,7 @@ this is leetcode exercise.
   ```
 
 26. [isMatch_regular](https://leetcode-cn.com/problems/regular-expression-matching/)  
-  这题开始想错了方向，想着直接使用 kmp 字符匹配，然后对 '.', '*' 对特殊处理即可，  
+  这题开始想错了方向，想着直接使用 kmp 字符匹配，然后对 '.', '*' 进行特殊处理即可，  
   例如：  
   ```c
   if ((p[i] == '*' && (p[i - 1] == s[j] || p[i - 1] == '.')) ||
@@ -401,6 +413,8 @@ this is leetcode exercise.
   } else {
     dp[i][j] = dp[i - 1][j] > dp[i][j - 1] ? dp[i - 1][j] : dp[i][j - 1];
   ```
+  总结一下，涉及的公共子序列，子串等的题目都是用二维 dp 数组，然后在 `dp[i - 1][j]`, `dp[i][j - 1]`,  
+  `dp[i - 1][j - 1]` 中找转移方程。  
 
 29. [maxProduct](https://leetcode-cn.com/problems/maximum-product-subarray/)  
   这题和之前的动态规划有些不一样，因为它不满足“最优子结构”，  

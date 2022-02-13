@@ -39,13 +39,9 @@ bool repeatedSubstringPattern(char *s) {
 }
 
 int main() {
-  int size;
-  scanf("%d\n", &size);
-
+  int size = 10001;
   char *s = malloc(size * sizeof(char));
-  for (int i = 0; i < size; i++) {
-    scanf("%c", &s[i]);
-  }
+  scanf("%s", s);
 
   if (repeatedSubstringPattern(s))
     printf("true\n");

@@ -6,6 +6,10 @@ char *shortestPalindrome(char *s) {
   while (s[size1])
     size1++;
 
+  if (size1 == 0) {
+    return "";
+  }
+
   char *txt = malloc(2 * size1 * sizeof(char));
   for (int i = 0; i < size1; i++) {
     txt[i] = s[size1 - 1 - i];
@@ -40,7 +44,7 @@ char *shortestPalindrome(char *s) {
   while (j < size1) {
     txt[size2++] = s[j++];
   }
-  for (int i = size2; i < size1 * 2; i++){
+  for (int i = size2; i < size1 * 2; i++) {
     txt[i] = 0;
   }
 
@@ -48,13 +52,8 @@ char *shortestPalindrome(char *s) {
 }
 
 int main() {
-  int size;
-  scanf("%d\n", &size);
-
-  char *s = malloc(size * sizeof(char));
-  for (int i = 0; i < size; i++) {
-    scanf("%c", &s[i]);
-  }
+  char *s = malloc(1000 * sizeof(char));
+  scanf("%s", s);
 
   printf("%s\n", shortestPalindrome(s));
   return 0;
