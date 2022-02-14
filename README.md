@@ -488,7 +488,7 @@ this is leetcode exercise.
 
 38. [isValidBST](https://leetcode-cn.com/problems/validate-binary-search-tree/)  
   因为所有的左右子树都要满足二叉搜索树，所以需要加个上下限，防止如下情况出现：  
-  ```
+  ```c
   5
    \
    6
@@ -504,13 +504,36 @@ this is leetcode exercise.
 39. [nextGreaterElement](https://leetcode-cn.com/problems/next-greater-element-i/)  
   这题需要使用哈希表和堆栈，用 c 语言写不方便，故用 c++ 。   
   但是核心都是一样的，  
-  ```
+  ```c
   for (int i = 0; i < nums2Size; i++) {
     while (!Empty(s) && Top(s) < nums2[i]) { // 栈非空，同时栈顶元素要大于当前需要比较的元素
       Pop(s);
     }
     tmp[i] = Empty(s) ? -1 : Top(s); // 后面的元素中有比该元素大的
     Push(s, nums2[i]);
+  }
+  ```
+
+40. [maxSlidingWindow](https://leetcode-cn.com/problems/sliding-window-maximum/)  
+  这题用了一个单调队列，这个队列中的元素是单调递增（递减）的。
+  对于给定的数组，将每个元素入队，因为队列是单调的，所以如果队尾的元素小于将要入队的元素，  
+  那么将队列中的元素删除，  
+  ```c
+  for (int i = 0; i < k; i++) {
+    while (head < tail && nums[i] > nums[q[tail - 1]]) {
+      tail--;
+    }
+    q[tail++] = i;
+  }
+  ```
+  同时需要注意的是队列保存的是该元素的索引。  
+  窗口每向后移动一次，将新加的元素入队，如果该元素最大，那么队列前面保存的元素自然就被删除了，  
+  如果不够大，该元素入队之后也到不了队列头部。这样入队之后，    
+  因为队列的头部始终是这个窗口的最大值，那么直接保存队列头部元素即可。  
+  如果该头部已经不在该窗口范围，需要更新队列头部。  
+  ```c
+  while (q[head] <= i - k) {
+    head++;
   }
   ```
 
