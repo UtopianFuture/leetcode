@@ -1,56 +1,4 @@
-#include "stdbool.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
-
-typedef struct tagListNode {
-  struct tagListNode *next;
-  int val;
-} ListNode;
-
-typedef struct {
-  ListNode *top;
-} Stack;
-
-Stack *Create() {
-  Stack *stk = calloc(1, sizeof(Stack));
-  return stk;
-}
-
-void Push(Stack *obj, int x) {
-  ListNode *node = malloc(sizeof(ListNode));
-  node->val = x;
-  node->next = obj->top;
-  obj->top = node;
-}
-
-int Pop(Stack *obj) {
-  ListNode *node = obj->top;
-  int val = node->val;
-  obj->top = node->next;
-  free(node);
-
-  return val;
-}
-
-int Top(Stack *obj) { return obj->top->val; }
-
-bool Empty(Stack *obj) { return (obj->top == NULL); }
-
-void Free(Stack *obj) {
-  while (obj->top != NULL) {
-    ListNode *node = obj->top;
-    obj->top = obj->top->next;
-    free(node);
-  }
-  free(obj);
-}
-
-struct TreeNode {
-  int val;
-  struct TreeNode *left;
-  struct TreeNode *right;
-};
+#include "buildTree.h"
 
 struct TreeNode *build(int *preorder, int *inorder, int preorderSize,
                        int preorder_left, int preorder_right, int inorder_left,
@@ -88,4 +36,19 @@ struct TreeNode *buildTree(int *preorder, int preorderSize, int *inorder,
                            int inorderSize) {
   return build(preorder, inorder, preorderSize, 0, preorderSize - 1, 0,
                preorderSize - 1);
+}
+
+int main(){
+  int size = 0;
+  scanf("%d\n", &size);
+
+  int preorder[size], inorder[size];
+  for(int i = 0; i < size; i++){
+    scanf("%d", &preorder[i]);
+  }
+  for(int i = 0; i < size; i++){
+    scanf("%d", &inorder[i]);
+  }
+
+  return 0;
 }
