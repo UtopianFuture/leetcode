@@ -38,17 +38,18 @@ struct TreeNode *buildTree(int *preorder, int preorderSize, int *inorder,
                preorderSize - 1);
 }
 
-int main(){
+int main() {
   int size = 0;
   scanf("%d\n", &size);
 
   int preorder[size], inorder[size];
-  for(int i = 0; i < size; i++){
+  for (int i = 0; i < size; i++) {
     scanf("%d", &preorder[i]);
   }
-  for(int i = 0; i < size; i++){
+  for (int i = 0; i < size; i++) {
     scanf("%d", &inorder[i]);
   }
 
+  buildTree(preorder, size, inorder, size);
   return 0;
 }

@@ -5,12 +5,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
-
-struct TreeNode {
-  int val;
-  struct TreeNode *left;
-  struct TreeNode *right;
-};
+#include "tree.h"
 
 struct TreeNode *build(int *preorder, int *inorder, int preorderSize,
                        int preorder_left, int preorder_right, int inorder_left,
