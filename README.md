@@ -477,5 +477,11 @@ this is leetcode exercise.
   这样以来，就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，  
   之后递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置即可。
 
+36. [deleteNode](https://leetcode-cn.com/problems/delete-node-in-a-bst/)  
+  删除节点分 3 种情况：
+  - 叶子节点，直接删除；
+  - 有右子树，使用后继节点替代，然后在右子树中删除该后继节点；
+  - 没有右子树，但有左子树，使用前驱节点替代，然后在左子树中删除该前驱节点；  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
