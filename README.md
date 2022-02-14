@@ -501,5 +501,18 @@ this is leetcode exercise.
   }
   ```
 
+39. [nextGreaterElement](https://leetcode-cn.com/problems/next-greater-element-i/)  
+  这题需要使用哈希表和堆栈，用 c 语言写不方便，故用 c++ 。   
+  但是核心都是一样的，  
+  ```
+  for (int i = 0; i < nums2Size; i++) {
+    while (!Empty(s) && Top(s) < nums2[i]) { // 栈非空，同时栈顶元素要大于当前需要比较的元素
+      Pop(s);
+    }
+    tmp[i] = Empty(s) ? -1 : Top(s); // 后面的元素中有比该元素大的
+    Push(s, nums2[i]);
+  }
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
