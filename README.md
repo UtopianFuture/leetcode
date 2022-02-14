@@ -471,5 +471,11 @@ this is leetcode exercise.
 34. [implementStack](https://leetcode-cn.com/problems/implement-stack-using-queues/)  
   这题只是为了使用 stack，直接复制官方的解答。
 
+35. [buildTree](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)  
+  根据前序遍历和中序遍历构造二叉树。  
+  前序遍历的第一个节点是根节点，然后在中序遍历中定位到根节点，即可知道左子树和右子树中的节点数目。  
+  这样以来，就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，  
+  之后递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置即可。
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
