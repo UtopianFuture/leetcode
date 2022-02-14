@@ -1,6 +1,7 @@
 #!/usr/bin/make
 CFLAGS = -g -Wall -Werror -fsanitize=address
-C_SRC_FILES  = $(wildcard *.c)
+C_SRC_FILES = $(ENV_SRC_FILES)
+C_SRC_FILES += $(wildcard *.c)
 OBJ_FILES := $(patsubst %.c, %, ${C_SRC_FILES})
 
 .PHONY: all clean
