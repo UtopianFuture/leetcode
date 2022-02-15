@@ -537,5 +537,9 @@ this is leetcode exercise.
   }
   ```
 
+41. [mergeTwoLists](https://leetcode-cn.com/problems/merge-two-sorted-lists/)  
+  定义一个 next 指向两个链表中值较小的那个，然后将较小的那个链表表头指向下一个元素，  
+  再重复进行下一个比较。  
+ 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
