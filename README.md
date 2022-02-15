@@ -546,5 +546,32 @@ this is leetcode exercise.
   开始只是给每个 ListNode 赋值了，但是没有将节点链接起来，所以在 `mergeTwoLists` 中  
   访问 `list2->next` 总是报空指针异常。需要注意阿。  
 
+43. [designTwitter](https://leetcode-cn.com/problems/design-twitter/)  
+  这题超时了，没有通过。先记录一下思路。  
+  首先是几个关键的数据结构：
+  ```c
+  struct Tweet {
+    int tweetId;
+    int time;
+    struct Tweet *next;
+  };
+
+  struct User {
+    int userId;
+    int followed[501];
+    int follows_nums;
+    struct Tweet *head;
+  };
+
+  typedef struct {
+    struct Tweet *tweet;
+    struct User *user[501];
+    int timestamp;
+  } Twitter;
+ ```
+  每个 User 都有自己的 Tweet 和 follow 列表，当需要输出自己和 follow 的前 10 条 tweet 时，  
+  将需要计算的几个 tweet 列表集中到 `struct Tweet **res;` 中，然后用上一题的 `mergeKLists`  
+  来将所有的列表按照时间顺序排列，输出前 10 个。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
