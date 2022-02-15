@@ -33,8 +33,8 @@ int main() {
   scanf("%d\n", &size1);
   scanf("%d\n", &size2);
 
-  struct ListNode *list1 = malloc(size1 * sizeof(int));
-  struct ListNode *list2 = malloc(size2 * sizeof(int));
+  struct ListNode *list1 = malloc(size1 * sizeof(struct ListNode));
+  struct ListNode *list2 = malloc(size2 * sizeof(struct ListNode));
 
   for (int i = 0; i < size1; i++) {
     scanf("%d", &list1[i].val);

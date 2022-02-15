@@ -541,5 +541,10 @@ this is leetcode exercise.
   定义一个 next 指向两个链表中值较小的那个，然后将较小的那个链表表头指向下一个元素，  
   再重复进行下一个比较。  
  
+42. [mergeKLists](https://leetcode-cn.com/problems/merge-k-sorted-lists/)  
+  思路很简单，就是不断的两两合并，利用上一题的代码，大部分时间用在调整指针上。  
+  开始只是给每个 ListNode 赋值了，但是没有将节点链接起来，所以在 `mergeTwoLists` 中  
+  访问 `list2->next` 总是报空指针异常。需要注意阿。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
