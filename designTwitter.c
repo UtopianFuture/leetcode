@@ -154,10 +154,10 @@ void twitterUnfollow(Twitter *obj, int followerId, int followeeId) {
 void twitterFree(Twitter *obj) { free(obj); }
 
 int main() {
-  int *news = NULL;
-  Twitter *obj = twitterCreate();
-  twitterFollow(obj, 1, 5);
-  news = twitterGetNewsFeed(obj, 1, NULL);
+  // int *news = NULL;
+  // Twitter *obj = twitterCreate();
+  // twitterFollow(obj, 1, 5);
+  // news = twitterGetNewsFeed(obj, 1, NULL);
 
   return 0;
 }

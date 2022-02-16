@@ -573,5 +573,10 @@ this is leetcode exercise.
   将需要计算的几个 tweet 列表集中到 `struct Tweet **res;` 中，然后用上一题的 `mergeKLists`  
   来将所有的列表按照时间顺序排列，输出前 10 个。  
 
+44. [reverseBetween](https://leetcode-cn.com/problems/reverse-linked-list-ii/)  
+  这题思路不难，主要是实现需要想清楚，之后遇到链表的题目要画图帮助理解。  
+  记录 left 的前一个节点和 right 的后一个节点，用于之后的链接。  
+  记录 reverse list 的头尾节点，用于链接。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
