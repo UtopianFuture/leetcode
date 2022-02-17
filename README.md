@@ -623,6 +623,28 @@ this is leetcode exercise.
 
 49. [getPermutation](https://leetcode-cn.com/problems/permutation-sequence/)  
   过于困难，暂时搁置。  
+  重新尝试后算法是正确的，但是超时了。  
+  这题和上一题的不同之处在与需要按顺序排列所有情况，那么就需要在交换元素之后  
+  按照元素的大小重新排列顺序，之后再恢复。  
+  ```c
+  for (int i = first; i < len; i++) {
+    swap(nums[i], nums[first]);
+    tmp = i;
+    while (tmp > first + 1) {
+      swap(nums[tmp], nums[tmp - 1]);
+      tmp--;
+    }
+    backtrace(res, nums, first + 1, len);
+    tmp = first + 1;
+    while (tmp < i) {
+      swap(nums[tmp], nums[tmp + 1]);
+      tmp++;
+    }
+    swap(nums[i], nums[first]);
+  }
+  ```
+  例如在序列 `12345` 中，如果交换`2` `5`，数组变成 `15342`，这时如果进行回溯顺序就不对，  
+  因此将其调整为 `15234`。  
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
