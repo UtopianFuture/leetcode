@@ -578,5 +578,10 @@ this is leetcode exercise.
   记录 left 的前一个节点和 right 的后一个节点，用于之后的链接。  
   记录 reverse list 的头尾节点，用于链接。  
 
+45. [permute](https://leetcode-cn.com/problems/permutations/)  
+  这题使用回溯法，这幅图清晰的解释了什么是回溯法。  
+  ![](https://github.com/UtopianFuture/leetcode/blob/main/image/permute_1.jpg)  
+  即选择路径，遍历该路径下所有的节点，当达到结束条件后返回，恢复路径，进行回溯。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
