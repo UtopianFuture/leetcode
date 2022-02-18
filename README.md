@@ -652,5 +652,12 @@ this is leetcode exercise.
   交换 `a[i - 1]`, `a[j]`，将 `a[i - 1]` 后面的数按升序重排。因为 `a[i ~ n]` 为降序，  
   所以直接用 reverse 交换顺序即可。  
 
+51. [subsets](https://leetcode-cn.com/problems/subsets/)  
+  这题还是使用回溯法，但是遍历方法有所不同。首先是结束条件，子集需要将所有的路径  
+  添加进取，而排列只要 `n = nums.size()` 时才添加。然后是回溯状态的变化，  
+  ```c
+  backtrace(trace, nums, i + 1);
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
