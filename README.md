@@ -646,5 +646,11 @@ this is leetcode exercise.
   例如在序列 `12345` 中，如果交换`2` `5`，数组变成 `15342`，这时如果进行回溯顺序就不对，  
   因此将其调整为 `15234`。  
 
+50. [nextPermutation](https://leetcode-cn.com/problems/next-permutation/)  
+  这题思路是这样的，找到第一个升序的 `a[i - 1]` 和 `a[i]`，因为都是降序没有下一个  
+  更大的序列，然后再从后往前遍历，找到尽可能小的比 `a[i - 1]` 大的 `a[j]`，  
+  交换 `a[i - 1]`, `a[j]`，将 `a[i - 1]` 后面的数按升序重排。因为 `a[i ~ n]` 为降序，  
+  所以直接用 reverse 交换顺序即可。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
