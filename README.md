@@ -659,5 +659,27 @@ this is leetcode exercise.
   backtrace(trace, nums, i + 1);
   ```
 
+52. [subsetsWithDup](https://leetcode-cn.com/problems/subsets-ii/)  
+  这题和上一题基本一样，但是由于有重复元素，需要跳过，  
+  ```c
+  if (!(i > 0 && nums[i] == nums[i - 1] && i > n)) {
+     trace.push_back(nums[i]);
+  } else {
+    continue;
+  }
+  ```
+  需要判断 `i > n` 是为了避免如下情况：
+  ```
+            O
+     1/    2|   2\(1)
+     O      O    O
+   2/ \2   2|(2)
+   O  O     O
+  2|
+   O
+  ```
+  情况（2）的 `22` 这个子集是符合要求的，但是如果按照 `nums[i] == nums[i - 1]` 条件会将其排除，  
+  也就是说只有两个元素在同一层级上相等才需要去除，如情况（1）就是两个 `2` 在同一层次。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
