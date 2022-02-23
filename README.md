@@ -681,5 +681,14 @@ this is leetcode exercise.
   情况（2）的 `22` 这个子集是符合要求的，但是如果按照 `nums[i] == nums[i - 1]` 条件会将其排除，  
   也就是说只有两个元素在同一层级上相等才需要去除，如情况（1）就是两个 `2` 在同一层次。  
 
+53. [combine](https://leetcode-cn.com/problems/combinations/)  
+  这题比较简单，还是用回溯的框架，然后结束的条件是  
+  ```c
+  if ((int)trace.size() == k) {
+    res.push_back(trace);
+    return;
+  }
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
