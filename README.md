@@ -704,5 +704,9 @@ this is leetcode exercise.
   开始想用回溯法，因为就是求两个数的和，跟 [combine](53. [combine](https://leetcode-cn.com/problems/combinations/)) 一样。  
   但是会超时。还是需要使用双指针法，只要数组有序，就应该想到双指针技巧。  
 
+58. [findDuplicate](https://leetcode-cn.com/problems/find-the-duplicate-number/)  
+  这题确实想不到，在数组中使用双指针。因为有两个重复的数，那么有一个元素一定有两个入口，  
+  和判断链表是否有环一样的。找到有两个入口的点后再用链表中找环入口的方法即可找到对应的元素。  
+  
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
