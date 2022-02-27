@@ -708,5 +708,17 @@ this is leetcode exercise.
   这题确实想不到，在数组中使用双指针。因为有两个重复的数，那么有一个元素一定有两个入口，  
   和判断链表是否有环一样的。找到有两个入口的点后再用链表中找环入口的方法即可找到对应的元素。  
   
+59. [minWindow](https://leetcode-cn.com/problems/minimum-window-substring/)  
+  这题使用滑动窗口法，该方法可以分为如下几步：  
+  （1）在数组中维持 left, right 指针，将 `s[left, right]` 称为一个 window，  
+  （2）先不断增大 right 指针，直到 window 中的字符串符合条件，记录下 window 的长度，  
+  （3）停止增加 right 指针，转而不断增加 left 指针，直到 window 中的字符串不再符合条件，  
+  （4）重复（2）（3）部，直到 s 的末尾。  
+  而这里有一个问题就是如何判断 window 中的字符串是否满足条件，这里使用了 `unordered_map` 当作计数器，  
+  `unordered_map` 会记录每个字符出现的次数，如果该字符在 `need` 中存在，那么这个字符就需要加入 `has`，  
+  如果 `(int)has[tmp] == (int)need[tmp]` 就说明这个字符已经匹配好了，将计数器加1。  
+  如果所有的字符都匹配好了，那么 left 开始增加，直到 `(int)has[tmp] < (int)need[tmp]`   
+  说明 window 中的字符串已经不能匹配 need，进行下一次循环。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
