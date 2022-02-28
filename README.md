@@ -731,5 +731,15 @@ this is leetcode exercise.
 62. [checkInclusion](https://leetcode-cn.com/problems/permutation-in-string/)  
   和上一题一样，只是修改一下返回值。  
 
+63. [floodFill](https://leetcode-cn.com/problems/flood-fill/)  
+  这题需要遍历二维矩阵，使用多叉树的遍历，  
+  ```c
+  DFS(image, row + 1, col, origincolor, newColor);
+  DFS(image, row, col + 1, origincolor, newColor);
+  DFS(image, row - 1, col, origincolor, newColor);
+  DFS(image, row, col - 1, origincolor, newColor);
+  ```
+  同时考虑返回条件，即该元素的颜色和 origincolor 不一样，或者超出数组范围。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
