@@ -6,7 +6,8 @@ using namespace std;
 class Solution {
 public:
   bool inArea(vector<vector<int>> &image, int row, int col) {
-    return row >= 0 && row < (int)image.size() && col >= 0 && col < (int)image[0].size();
+    return row >= 0 && row < (int)image.size() && col >= 0 &&
+           col < (int)image[0].size();
   }
 
   void DFS(vector<vector<int>> &image, int row, int col, int origincolor,
