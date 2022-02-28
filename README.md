@@ -725,5 +725,8 @@ this is leetcode exercise.
   如果存在则将 `has[s[left]]` 置为 0，将 left 加1 ，直到 window 中没有该字符，再将该字符加入 window，  
   right 指针加 1。  
 
+61. [findAnagrams](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)  
+  还是使用滑动窗口，注意判断 window 中的字符串是否满足的条件是 `match == (int)need.size()`  
+  
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
