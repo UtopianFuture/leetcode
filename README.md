@@ -755,5 +755,9 @@ this is leetcode exercise.
 66. [numIslands](https://leetcode-cn.com/problems/number-of-islands/submissions/)  
   同上。  
 
+67. [solve](https://leetcode-cn.com/problems/surrounded-regions/)  
+  依旧用 FloodFill 算法，先遍历四周的元素，将所有不符合条件的元素替换成‘2’，  
+  然后遍历整个矩阵，将所有符合条件的元素进行转换，通过将‘2’替换回来。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
