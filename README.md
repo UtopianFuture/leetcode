@@ -745,5 +745,12 @@ this is leetcode exercise.
   这题使用和上一题一样的模板，但是需要找到一块陆地作为搜索起点，同时需要避免重复遍历，  
   将遍历过的元素置为 2。  
 
+65. [maxAreaOfIsland](https://leetcode-cn.com/problems/max-area-of-island/)  
+  还是一样的，不过这里是计算符合条件的元素个数，所以返回值需要修改一下，  
+  ```c
+  return 1 + DFS(grid, row + 1, col) + DFS(grid, row, col + 1) +
+           DFS(grid, row - 1, col) + DFS(grid, row, col - 1);
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
