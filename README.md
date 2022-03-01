@@ -759,5 +759,15 @@ this is leetcode exercise.
   依旧用 FloodFill 算法，先遍历四周的元素，将所有不符合条件的元素替换成‘2’，  
   然后遍历整个矩阵，将所有符合条件的元素进行转换，通过将‘2’替换回来。  
 
+68. [equationsPossible](https://leetcode-cn.com/problems/satisfiability-of-equality-equations/)  
+  这题很抽象，不太懂。首先使用的是 UnionFind 算法，这个算法需要实现 3 个 API，  
+  union：将两个节点所在的树连接，这需要用到 find，即找到该节点的父节点，  
+  将一颗树的父节点指向另一棵树即可。  
+  find：找到该节点的父节点。这里还顺带做了压缩操作，对这个操作还不懂。  
+  connected：两个节点所在的树是否是连接的。  
+  而将 UnionFind 算法应用到这题是这样的：  
+  首先将所有等式两端的值代表的节点通过 `union` 建立连接，然后遍历所有不等式，  
+  如果不等式两端的值已经连接了，那么该等式组就不成立。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
