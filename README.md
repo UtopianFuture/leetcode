@@ -769,5 +769,9 @@ this is leetcode exercise.
   首先将所有等式两端的值代表的节点通过 `union` 建立连接，然后遍历所有不等式，  
   如果不等式两端的值已经连接了，那么该等式组就不成立。  
 
+69. [pancakeSort](https://leetcode-cn.com/problems/pancake-sorting/)  
+  烧饼排序，找到前 n 个烧饼中最大的那个，将其反转到第一个，然后整个反转，  
+  那么最大的那个就到了位置 n，完成了一个烧饼的排序，然后递归的排序 n - 1 个烧饼即可。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
