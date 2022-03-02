@@ -830,5 +830,23 @@ this is leetcode exercise.
 74. [isPowerOfThree](https://leetcode-cn.com/problems/power-of-three/)  
   这种题目不用位操作也行，不过效率更低一点。  
 
+75. [multiply](https://leetcode-cn.com/problems/multiply-strings/)  
+  这题可以用作大数乘法，即按照手算的方式做乘法。  
+  这里有一点需要特别注意，`num1[i] * num2[j]` 相乘结果是在 `res[i + j]`  
+  和 `res[i + j + 1]` 中，然后需要加上上一次的结果，再将个位和十位分别  
+  存放在 `res[i + j]` 和 `res[i + j + 1]`。  
+  ```c
+  for (int i = size1 - 1; i >= 0; i--) {
+      for (int j = size2 - 1; j >= 0; j--) {
+        mul = (num1[i] - '0') * (num2[j] - '0');
+        p1 = i + j;
+        p2 = i + j + 1;
+        sum = mul + tmp[p2];
+        tmp[p1] += sum / 10;
+        tmp[p2] = sum % 10;
+      }
+  }
+  ```
+  
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
