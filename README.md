@@ -791,5 +791,34 @@ this is leetcode exercise.
     }
   ```
 
+71. [hammingWeight](https://leetcode-cn.com/problems/number-of-1-bits/)  
+  这题是位操作的题，记录几个有趣的位操作：  
+  1. 利用或操作 | 和空格将英文字符转换为小写  
+  ```
+  ('a' | ' ') = 'a'
+  ('A' | ' ') = 'a'
+  ```
+  2. 利用与操作 & 和下划线将英文字符转换为大写  
+  ```
+  ('b' & '_') = 'B'
+  ('B' & '_') = 'B'
+  ```
+  3. 利用异或操作 ^ 和空格进行英文字符大小写互换  
+  ```
+  ('d' ^ ' ') = 'D'
+  ('D' ^ ' ') = 'd'
+  ```
+  4. 不用临时变量交换两个数  
+  ```
+  int a = 1, b = 2;
+  a ^= b;
+  b ^= a;
+  a ^= b;
+  ```
+  5. 消除数字 n 的二进制表示中的最后一个 1  
+  ```
+  n &= (n - 1);
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
