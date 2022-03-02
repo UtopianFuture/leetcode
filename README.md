@@ -773,5 +773,23 @@ this is leetcode exercise.
   烧饼排序，找到前 n 个烧饼中最大的那个，将其反转到第一个，然后整个反转，  
   那么最大的那个就到了位置 n，完成了一个烧饼的排序，然后递归的排序 n - 1 个烧饼即可。  
 
+70. [shuffle](https://leetcode-cn.com/problems/shuffle-an-array/)  
+  洗牌算法，核心思想就是产生 n! 中可能。  
+  ```c
+    for (int i = 0; i < size; i++) {
+      r = rand() % (size - i) + i;
+      swap(num[i], num[r]);
+    }
+  ```
+  然后 c++ 写法要主要类的初始化，  
+  ```c
+    this->size = (int)nums.size();
+    this->num = nums;
+    this->tmp.resize(size); // this is important
+    for (int i = 0; i < size; i++) {
+      this->tmp[i] = nums[i];
+    }
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
