@@ -848,5 +848,26 @@ this is leetcode exercise.
   }
   ```
   
+76. [addTwoNumbers](https://leetcode-cn.com/problems/add-two-numbers/)  
+  思路比较简单，就是正常的加法，然后进位就行，但是要处理最高位不能为 0 的情况，  
+  需要加一个判定条件：
+  ```c
+  if (next1 != NULL || next2 != NULL || sum / 10 != 0) {
+     ListNode *tmp = new ListNode;
+     p->next = tmp;
+     p = tmp;
+     p->val = sum / 10;
+  }
+  ```
+  还需要处理的一个情况就是 `l1` 和 `l2` 长度可能不相等，所以也要加个防溢出的操作，  
+  ```c
+    if (pl1 != NULL) {
+      pl1 = pl1->next;
+    }
+    if (pl2 != NULL) {
+      pl2 = pl2->next;
+    }
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
