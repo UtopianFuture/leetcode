@@ -916,5 +916,9 @@ this is leetcode exercise.
   满足子数组大小至少为 2。 
   这里还需要注意 unordered_map 的使用方法，像数组一样使用就行。  
 
+83. [maxEnvelopes](https://leetcode-cn.com/problems/russian-doll-envelopes/)  
+  有趣，官方答案超时。这题和 ![LengthOfLIS](5. [lengthOfLIS](https://leetcode-cn.com/problems/longest-increasing-subsequence/))  
+  一样，时间复杂度同样是 n^2。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
