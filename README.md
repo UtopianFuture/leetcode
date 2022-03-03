@@ -906,5 +906,15 @@ this is leetcode exercise.
   那么我们需要计算在前面已经计算的子串中是否有满足条件的，如果有，那么直接加上  
   该前缀和出现的次数即可。  
 
+82. [checkSubarraySum](https://leetcode-cn.com/problems/continuous-subarray-sum/)  
+  这题和上一题有点不同，需要满足子数组元素总和为 k 的倍数，如果还是像上题那样  
+  将所有的前缀和保存下来，那么只能一个个遍历看是否满足。这里有一个性质，  
+  当 `sum[j] - sum[i] == nk` 时，`sum[j]` 和 `sum[i]` 除以 k 的余数相等。  
+  所以存储余数和产生该余数的位置，然后就和上一题一样了。同时由于还需要满足  
+  子数组大小至少为 2 ，所以除非 map 中不存在该余数，否则不要更新 map，  
+  不然会导致 `5 0 0 0 0` 判断错误的情况，因为余数一直为 2，每次都更新就不能  
+  满足子数组大小至少为 2。 
+  这里还需要注意 unordered_map 的使用方法，像数组一样使用就行。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
