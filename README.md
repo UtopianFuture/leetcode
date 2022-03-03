@@ -898,5 +898,13 @@ this is leetcode exercise.
   思路类似，将两个 list 合成一个，然后计算重叠区域，只不过这次需要记录的是  
   `list[j][0]` 和 `list[j][1] < max ? list[j][1] : max`  
 
+81. [subarraySum](https://leetcode-cn.com/problems/subarray-sum-equals-k/)  
+  这题需要用到前缀和，即保存 `nums[0 ~ i)` 的和 `sum[i]` ，然后 `nums[i ~ j]` 的和  
+  就等于 `sum[j + 1] - sum[i]` 。但这题还需要在前缀和的基础上优化。  
+  计算任意一个子串是否满足和为 k 即计算 `sum[j + 1] - sum[i] == k` 是否成立，  
+  我们可以将这个式子转化为  `sum[i] == sum[j + 1] - k` 是否成立，
+  那么我们需要计算在前面已经计算的子串中是否有满足条件的，如果有，那么直接加上  
+  该前缀和出现的次数即可。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
