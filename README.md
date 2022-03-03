@@ -869,5 +869,23 @@ this is leetcode exercise.
     }
   ```
 
+77. [merge](https://leetcode-cn.com/problems/merge-intervals/)  
+  这题解法不难，但是细节调整花了很久。  
+  首先需要将数组按照首区间左端点从小到大排列，那么二维数组第一个区间的左端点  
+  就是整个区间最小的点。然后遍历后面的区间，如果左端点小于该区间的右端点，  
+  那么说明这两个区间相互重叠，将目前的右端点调整为两个区间的最大值，继续遍历。  
+  ```c
+  for (int i = 0; i < (int)intervals.size();) {
+      max = intervals[i][1];
+      int j = i + 1;
+      while (j < (int)intervals.size() && intervals[j][0] <= max) {
+        max = max > intervals[j][1] ? max : intervals[j][1];
+        j++;
+      }
+      res.push_back({intervals[i][0], max});
+      i = j;
+    }
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
