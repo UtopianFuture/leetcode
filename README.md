@@ -34,8 +34,8 @@ this is leetcode exercise.
   思路和 `coinchange` 一样，即：LIS 等于前面的比自己小的元素中的 LIS 加1。  
 
 6. [minDistance](https://leetcode-cn.com/problems/edit-distance/)  
-  还是动态规划，思路是最短距离等于上 word1[size1] ~ word2[size2 - 1] 的最短距离加1。  
-  但这题的 dp 是二维数组，dp[i][j] 表示 word1[i] 到 word2[j] 的最短距离。  
+  还是动态规划，思路是最短距离等于上 `word1[size1] ~ word2[size2 - 1]` 的最短距离加1。  
+  但这题的 dp 是二维数组，`dp[i][j]` 表示 `word1[i]` 到 `word2[j]` 的最短距离。  
   然后关于增，删和替换操作体现在 dp 上就是:  
     ```c
       x h o r s e
@@ -950,6 +950,9 @@ this is leetcode exercise.
 
 87. [swapPairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)  
   这题和上题一样，都是反转链表。  
+
+88. [canWinNim](https://leetcode-cn.com/problems/nim-game/)  
+  额，解法很简单，谁在取石头的时候四头数是 4 的倍数就输了。  
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
