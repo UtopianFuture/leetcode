@@ -928,7 +928,7 @@ this is leetcode exercise.
   从这两题可以看出来，只要是需要暴力遍历连续整数的题目都可以使用二分法。  
 
 86. [reverseKGroup](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)  
-  这题关键点有两个，一是怎样反转 l[a, b) 之间的节点，这里用 `reverse` 函数来做，  
+  这题关键点有两个，一是怎样反转 `l[a, b)` 之间的节点，这里用 `reverse` 函数来做，  
   ```c
   ListNode *reverse(ListNode *a, ListNode *b) {
     ListNode *pre, *cur, *next;
@@ -947,6 +947,9 @@ this is leetcode exercise.
   反转方法结合[这张图](https://github.com/labuladong/fucking-algorithm/blob/master/pictures/kgroup/8.gif)更好记。  
   另一个是如何递归反转，这个思想不难，就是反转第 k 个节点之后的节点。但是要理清楚  
   反转后的节点是如何链接起来的。  
+
+87. [swapPairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)  
+  这题和上题一样，都是反转链表。  
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
