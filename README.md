@@ -981,5 +981,9 @@ this is leetcode exercise.
 92. [isValid](https://leetcode-cn.com/problems/valid-parentheses/)  
   使用 stack 即可，是匹配的就 `pop`，不是的就 `push`，最后看 stack 是否为空。  
 
+93. [generateParenthesis](https://leetcode-cn.com/problems/generate-parentheses/)  
+  这题使用之前学过的回溯法加上上一题的 `isValid`。  
+  回溯法能够生成所有可能的情况，再用 `isValid` 一一判断。 
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
