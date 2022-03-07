@@ -962,5 +962,21 @@ this is leetcode exercise.
 
 90. [isSubsequence](https://leetcode-cn.com/problems/is-subsequence/)  
   
+91. [isPalindrome](https://leetcode-cn.com/problems/palindrome-linked-list/)  
+  关于单链表的实用技巧：
+  （1）通过「双指针技巧」中的快慢指针来找到链表的中点：
+  ```c
+  ListNode slow, fast;
+  slow = fast = head;
+  while (fast != null && fast.next != null) {
+    slow = slow.next; // middle node
+    fast = fast.next.next;
+  }
+  if(fast != NULL){
+    slow = slow.next; // lenght of link is odd
+  }
+  ```
+  这题使用快慢指针找到中间节点后将后半部分反转，再比较即可。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
