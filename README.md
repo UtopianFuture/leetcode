@@ -991,5 +991,10 @@ this is leetcode exercise.
 95. [removeDuplicates_ii](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)  
   和上一题一样，只是改成了每个元素最多出现两次。  
 
+96. [countPrimes](https://leetcode-cn.com/problems/count-primes/)  
+  这题用 `tmp = sqrt(n)` 解还是超时，学会了一种新的方法，排除法。  
+  从 2 开始，如果 i 是前面的数的倍数，那么 i 肯定不是素数。从 2 遍历到 `sqrt(n)`，  
+  将所有的非素数排除，再计算即可。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
