@@ -999,5 +999,11 @@ this is leetcode exercise.
 97. [isUgly](https://leetcode-cn.com/problems/ugly-number/)  
   这题要读懂题目，是只包含质因数 2, 3, 5 的整数。  
 
+98. [nthUglyNumber](https://leetcode-cn.com/problems/ugly-number-ii/)  
+  不能直接用上一题的方法，时间复杂度太高，这里使用动态规划法。  
+  第 i 个 uglynumber 等于 `min(2 * dp[p2], 3 * dp[3], 5 * dp[5])` ，然后不断调整指针即可。  
+  这里有一点需要注意，当 `2 * dp[p2] == 3 * dp[p3]` 时，`p2` 和 `p3` 都需要调整，  
+  如果只调整了一个指针，那么下一次计算最小值还是 `2 * dp[p2]` 或 `3 * dp[p3]`。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
