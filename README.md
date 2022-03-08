@@ -1012,5 +1012,10 @@ this is leetcode exercise.
 100. [maxArea](https://leetcode-cn.com/problems/container-with-most-water/)  
   想出来了是用双指针法，但是维护指针的方法错了，应该移动值较小的那个指针。  
 
+101. [trap](https://leetcode-cn.com/problems/trapping-rain-water/)  
+  还是使用双值阵法，不过更难想到。首先明确一个事情，还是要移动值较小的那个指针，  
+  第 i 个柱子能够接的水量等于 `leftmax - height[left]` 或 `rightmax - height[right]`，  
+  其他的也没啥高深的知识，能想到就做的出来。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
