@@ -1005,5 +1005,9 @@ this is leetcode exercise.
   这里有一点需要注意，当 `2 * dp[p2] == 3 * dp[p3]` 时，`p2` 和 `p3` 都需要调整，  
   如果只调整了一个指针，那么下一次计算最小值还是 `2 * dp[p2]` 或 `3 * dp[p3]`。  
 
+99. [nthSuperUglyNumber](https://leetcode-cn.com/problems/super-ugly-number/)  
+  这题只是上一题的变形，将几个质因子换成一组质因子即可。不过如果没有上一题  
+  直接写这题肯定写不出来。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
