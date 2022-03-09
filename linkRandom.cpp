@@ -8,13 +8,13 @@ struct ListNode {
   struct ListNode *next;
 };
 
-class Solution {
+class Solution1 {
 private:
   int n;
   ListNode *head;
 
 public:
-  Solution(ListNode *head) {
+  Solution1(ListNode *head) {
     this->n = 0;
     this->head = head;
     ListNode *p = head;
@@ -32,6 +32,37 @@ public:
       r--;
     }
     return p->val;
+  }
+};
+
+class Solution2 {
+private:
+  int n;
+  ListNode *head;
+
+public:
+  Solution2(ListNode *head) {
+    this->n = 0;
+    this->head = head;
+    ListNode *p = head;
+    while (p != NULL) {
+      (this->n)++;
+      p = p->next;
+    }
+  }
+
+  int getRandom() {
+    ListNode *p = head;
+    int res;
+    int count = 0;
+    while (p != NULL) {
+      count++;
+      if (rand() % count == 0) {
+        res = p->val;
+      }
+      p = p->next;
+    }
+    return res;
   }
 };
 
@@ -84,18 +115,18 @@ int main(int argc, char *argv[]) {
   }
   p->next = NULL;
 
-  Solution *obj = solutionCreate(head);
-  int param_1 = solutionGetRandom(obj);
-  cout << param_1 << " ";
-  param_1 = solutionGetRandom(obj);
-  cout << param_1 << " ";
-  param_1 = solutionGetRandom(obj);
-  cout << param_1 << " ";
-  param_1 = solutionGetRandom(obj);
-  cout << param_1 << " ";
-  param_1 = solutionGetRandom(obj);
-  cout << param_1 << " ";
-  solutionFree(obj);
+  //   Solution *obj = solutionCreate(head);
+  //   int param_1 = solutionGetRandom(obj);
+  //   cout << param_1 << " ";
+  //   param_1 = solutionGetRandom(obj);
+  //   cout << param_1 << " ";
+  //   param_1 = solutionGetRandom(obj);
+  //   cout << param_1 << " ";
+  //   param_1 = solutionGetRandom(obj);
+  //   cout << param_1 << " ";
+  //   param_1 = solutionGetRandom(obj);
+  //   cout << param_1 << " ";
+  //   solutionFree(obj);
 
   return 0;
 }
