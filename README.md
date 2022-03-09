@@ -1034,5 +1034,10 @@ this is leetcode exercise.
   原来随机数也有技巧：当遇到第 i 个元素时，应该有 1/i 的概率选择该元素，  
   1 - 1/i 的概率保持原有的选择。
 
+105. [findDisappearedNumbers](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/)  
+  一般的思路是设置一个 hash 表，记录所有出现过的元素，但这样空间复杂度是 O(n)。  
+  这里将索引为 `nums[i] - 1` 的元素加 n，如果某个值没有出现，那么以该值作为索引的 
+  元素值就会小于等于 n，这样就能在原地找出没有出现的元素。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
