@@ -7,7 +7,7 @@ CPP_SRC_FILES += $(wildcard *.cpp)
 OBJ_FILES := $(patsubst %.c, %, ${C_SRC_FILES})
 OBJ_FILES_CPP := $(patsubst %.cpp, %, ${CPP_SRC_FILES})
 
-.PHONY: c cpp clean
+.PHONY: all c cpp clean
 
 % : %.c
 	cc $(CFLAGS) $^ -o $@ 
@@ -18,6 +18,8 @@ OBJ_FILES_CPP := $(patsubst %.cpp, %, ${CPP_SRC_FILES})
 c : ${OBJ_FILES}
 
 cpp : ${OBJ_FILES_CPP}
+
+all: c cpp
 
 clean :
 	rm -f $(OBJ_FILES) $(OBJ_FILES_CPP)
