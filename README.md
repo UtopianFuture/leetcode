@@ -1039,5 +1039,8 @@ this is leetcode exercise.
   这里将索引为 `nums[i] - 1` 的元素加 n，如果某个值没有出现，那么以该值作为索引的 
   元素值就会小于等于 n，这样就能在原地找出没有出现的元素。  
 
+106. [findDuplicates](https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/)  
+  和上一题类似，只需要将判断条件改成 `nums[(nums[i] - 1) % n] > 2 * n`。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
