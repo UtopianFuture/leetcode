@@ -1042,5 +1042,10 @@ this is leetcode exercise.
 106. [findDuplicates](https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/)  
   和上一题类似，只需要将判断条件改成 `nums[(nums[i] - 1) % n] > 2 * n`。  
 
+107. [findErrorNums](https://leetcode-cn.com/problems/set-mismatch/)  
+  同样的思路，最重要的还是如果某个数字重复出现，那么以它为索引的元素在  
+  加上 n 之后必定大于 2n，而如果某个数没有出现，那么以它为索引的元素在  
+  遍历结束后必定小于 n。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
