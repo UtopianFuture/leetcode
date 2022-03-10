@@ -1047,5 +1047,9 @@ this is leetcode exercise.
   加上 n 之后必定大于 2n，而如果某个数没有出现，那么以它为索引的元素在  
   遍历结束后必定小于 n。  
 
+108. [pickIndex](https://leetcode-cn.com/problems/random-pick-with-weight/)  
+  这题思路很简单，计算前缀和 `pre[i]` 和所有权重的和 `sum` ，产生一个在 `[1 ~ sum]` 的随机数，  
+  这个随机数落在哪个前缀和内结果就是这个数。当然这个确定的过程可以用二分法做。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
