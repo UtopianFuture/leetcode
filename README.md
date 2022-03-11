@@ -1093,5 +1093,8 @@ this is leetcode exercise.
   ```
   而求长度最大值则是在递归的过程中不断用子树的长度和当前最大长度比较，确定最大值。  
 
+119. [invertTree](https://leetcode-cn.com/problems/invert-binary-tree/)  
+  相当于后序遍历的变形。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
