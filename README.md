@@ -1062,5 +1062,10 @@ this is leetcode exercise.
 111. [levelOrder](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)  
   同样的层序遍历，按层加入 vector 即可。   
 
+112. [isBalanced](https://leetcode-cn.com/problems/balanced-binary-tree/)  
+  递归的判断子树是否平衡。如果左右子树的高度差大于 1，那么返回 -1，  
+  如果左右子树不平衡，那么该子树也不平衡，返回 -1，否则返回在左右子树的高度上  
+  加 1 再返回。
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
