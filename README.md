@@ -1085,5 +1085,13 @@ this is leetcode exercise.
 117. [zigzagLevelOrder](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)  
    在层序遍历的时候计算层数，根据层数确定入队的顺序。  
 
+118. [diameterOfBinaryTree](https://leetcode-cn.com/problems/diameter-of-binary-tree/)  
+  二叉树递归的返回值应该是要求什么返回什么，比如这题要求的是树的最大高度，  
+  所以返回最大高度，  
+  ```c
+  return max(leftheight, rightheight) + 1;
+  ```
+  而求长度最大值则是在递归的过程中不断用子树的长度和当前最大长度比较，确定最大值。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
