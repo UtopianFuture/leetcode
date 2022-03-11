@@ -1067,5 +1067,8 @@ this is leetcode exercise.
   如果左右子树不平衡，那么该子树也不平衡，返回 -1，否则返回在左右子树的高度上  
   加 1 再返回。
 
+113. [maxDepthOfNTree](https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree/)  
+  还是层序遍历，只是修改一下加入队列的方式即可。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
