@@ -1051,5 +1051,10 @@ this is leetcode exercise.
   这题思路很简单，计算前缀和 `pre[i]` 和所有权重的和 `sum` ，产生一个在 `[1 ~ sum]` 的随机数，  
   这个随机数落在哪个前缀和内结果就是这个数。当然这个确定的过程可以用二分法做。  
 
+109. [minDepth](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/)  
+  基本的层序遍历（BFS）。  
+  这里是求最小深度，那么就每次遍历完所有的队列节点再进入下一层，如果遇到叶子节点就返回。  
+  要求最大深度的话那就就要队列为空时，即所有的节点都遍历完了再返回。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
