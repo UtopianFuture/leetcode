@@ -1096,5 +1096,11 @@ this is leetcode exercise.
 119. [invertTree](https://leetcode-cn.com/problems/invert-binary-tree/)  
   相当于后序遍历的变形。  
 
+120. [flatten](https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/)  
+  在前序遍历的时候如果将右子树不为空，那么将右子树入栈，然后将左子树调整到  
+  右子树的位置，将左子树指针设为空指针。然后递归的遍历右子树（原左子树），  
+  如果右子树为空（所有的左子树都遍历完了），那么递归的遍历所有入栈的原来的  
+  右子树。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
