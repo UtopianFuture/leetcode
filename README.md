@@ -1111,5 +1111,12 @@ this is leetcode exercise.
 123. [rightSideView](https://leetcode-cn.com/problems/binary-tree-right-side-view/)   
   继续划水，层序遍历。  
 
+124. [constructMaximumBinaryTree](https://leetcode-cn.com/problems/maximum-binary-tree/)  
+  按照题目意思写，  
+  （1）创建一个根节点，其值为 nums 中的最大值。  
+  （2）递归地在最大值 左边 的 子数组前缀上 构建左子树。  
+  （3）递归地在最大值 右边 的 子数组后缀上 构建右子树。  
+  这里要注意如果最大的元素就是在最左边或最右边，那么就不要构建左/右子树。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
