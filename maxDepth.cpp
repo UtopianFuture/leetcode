@@ -21,7 +21,7 @@ public:
     }
     queue<TreeNode *> q;
     q.push(root);
-    int depth = 1;
+    int depth = 0;
     TreeNode *p;
     int n;
     while (!q.empty()) {

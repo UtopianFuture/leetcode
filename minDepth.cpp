@@ -21,7 +21,7 @@ public:
     }
     queue<TreeNode *> q;
     q.push(root);
-    int depth = 1;
+    int depth = 0;
     TreeNode *p;
     int n;
     while (!q.empty()) {
@@ -30,7 +30,7 @@ public:
         p = q.front();
         q.pop();
         if (p->left == NULL && p->right == NULL) {
-          return depth;
+          return depth + 1;
         }
         if (p->left != NULL) {
           q.push(p->left);
