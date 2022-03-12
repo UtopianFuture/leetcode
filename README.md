@@ -1122,5 +1122,13 @@ this is leetcode exercise.
   关键点就是后序遍历的最后一个元素是根节点，根据这个根节点在中序遍历中找到  
   左右子树，然后递归的构建即可。这里要注意左右子树的索引。  
 
+126. [serializeDeserialize](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/)   
+  开始想用求出该二叉树的中序和后序遍历的结果存储在同一个字符串作为序列化结果，  
+  然后用根据中序和后续遍历求二叉树的方法来进行反序列化，但是无法解决有节点  
+  元素相同的情况。  
+  其实解法很简单，序列化就是前序遍历，将空指针用 `#` 代替，反序列化也是前序遍历，  
+  遇到 `#` 返回空指针。然后为了应对负数的情况，将每个节点的值转化成 string 类型后  
+  用 `,` 隔开。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
