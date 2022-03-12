@@ -1118,5 +1118,9 @@ this is leetcode exercise.
   （3）递归地在最大值 右边 的 子数组后缀上 构建右子树。  
   这里要注意如果最大的元素就是在最左边或最右边，那么就不要构建左/右子树。  
 
+125. [buildTree_ii](https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)  
+  关键点就是后序遍历的最后一个元素是根节点，根据这个根节点在中序遍历中找到  
+  左右子树，然后递归的构建即可。这里要注意左右子树的索引。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
