@@ -1144,5 +1144,16 @@ this is leetcode exercise.
 130. [searchBST](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/)  
   简单的二叉树搜索。  
 
+131. [numTrees](https://leetcode-cn.com/problems/unique-binary-search-trees/)  
+  这题需要数学分析一下，题目要求计算长度为 n 的序列能够构成不同二叉搜索树的个数，  
+  我们定义两个函数：
+  （1）G(n): 长度为 n 的序列能够构成不同的二叉搜索树的个数。  
+  （2）F(n, i): 以 i 为根节点，长度为 n 的序列能够构成不同的二叉搜索树的个数。
+  那么  
+  `G(n) = sum(F(n, i))(1 <= i <= n)`  
+  `F(n, i) = G(i - 1) * G(n - i)`  
+  所以  
+  `G(n) = sum(G(i - 1) * G(n - i))(1 <= i <= n)`  
+  
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
