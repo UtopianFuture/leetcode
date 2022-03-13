@@ -1176,5 +1176,8 @@ this is leetcode exercise.
   然后根据父节点的记录遍历 q 的所有父节点，将遍历过的节点也记录下来，之后再遍历  
   p 所有的父节点，在遍历过程中，如果该节点已经被遍历过了，那么该节点就是 LCA。  
 
+134. [countNodes](https://leetcode-cn.com/problems/count-complete-tree-nodes/)  
+  层序遍历一下计数即可。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
