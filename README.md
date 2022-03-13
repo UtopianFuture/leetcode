@@ -1155,5 +1155,9 @@ this is leetcode exercise.
   所以  
   `G(n) = sum(G(i - 1) * G(n - i))(1 <= i <= n)`  
   
+132. [maxSumBST](https://leetcode-cn.com/problems/maximum-sum-bst-in-binary-tree/)(not pass)  
+  我觉得这道题的关键是判断每棵树是否是二叉搜索树，如果是的话就将这棵树加入到  
+  队列中，然后再从对立的所有二叉搜索树中找到最大的那颗，但是我不会。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
