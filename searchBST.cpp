@@ -57,22 +57,19 @@ public:
 };
 
 class Solution {
-private:
-  vector<int> in;
-
 public:
-  void inorder(TreeNode *root) {
+  TreeNode *searchBST(TreeNode *root, int val) {
     if (root == NULL) {
-      return;
+      return NULL;
     }
-    inorder(root->left);
-    in.push_back(root->val);
-    inorder(root->right);
-  }
-
-  int kthSmallest(TreeNode *root, int k) {
-    inorder(root);
-    return in[k - 1];
+    if (root->val == val) {
+      return root;
+    }
+    if (root->val < val) {
+      return searchBST(root->right, val);
+    } else {
+      return searchBST(root->left, val);
+    }
   }
 };
 
@@ -94,16 +91,16 @@ int main(int argc, char *argv[]) {
     postorder.push_back(tmp);
   }
 
-  int k;
-  cin >> k;
+  int val;
+  cin >> val;
 
   Build *b = new Build;
   TreeNode *root = b->buildTree(inorder, postorder);
   // s->test(root);
 
   Solution *s = new Solution;
-  int res = s->kthSmallest(root, k);
-  cout << res << "\n";
+  TreeNode *res = s->searchBST(root, val);
+  b->test(res);
 
   return 0;
 }
