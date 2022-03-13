@@ -1134,5 +1134,8 @@ this is leetcode exercise.
   学到了，通过前序遍历序列化二叉树时，如果不用全局 str 变量，而是每个子树创建一个 str，  
   那么就可以记录每个子树的前序序列化。这时再使用 map，就可以找到重复的子树。  
 
+128. [kthSmallest](https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst/)  
+  二叉搜索树的中序遍历就是所有元素从大到小排列的。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
