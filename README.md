@@ -1159,5 +1159,22 @@ this is leetcode exercise.
   我觉得这道题的关键是判断每棵树是否是二叉搜索树，如果是的话就将这棵树加入到  
   队列中，然后再从对立的所有二叉搜索树中找到最大的那颗，但是我不会。  
 
+133. [lowestCommonAncestor](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)  
+  首先找到所有节点的父节点，记录再一个 map 中，  
+  ```c
+  void getFather(TreeNode *root) {
+    if (root->left != NULL) {
+      father[root->left->val] = root;
+      getFather(root->left);
+    }
+    if (root->right != NULL) {
+      father[root->right->val] = root;
+      getFather(root->right);
+    }
+  }
+  ```
+  然后根据父节点的记录遍历 q 的所有父节点，将遍历过的节点也记录下来，之后再遍历  
+  p 所有的父节点，在遍历过程中，如果该节点已经被遍历过了，那么该节点就是 LCA。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
