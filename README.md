@@ -1179,5 +1179,9 @@ this is leetcode exercise.
 134. [countNodes](https://leetcode-cn.com/problems/count-complete-tree-nodes/)  
   层序遍历一下计数即可。  
 
+135. [allPathsSourceTarget](https://leetcode-cn.com/problems/all-paths-from-source-to-target/)  
+  这题使用回溯法(DFS)遍历所有的路径，从第一个节点开始，遍历每个节点相连的节点，  
+  如果该节点是末端节点，那么这条路径就是一个符合条件的路径。  
+  
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
