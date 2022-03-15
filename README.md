@@ -1183,5 +1183,32 @@ this is leetcode exercise.
   这题使用回溯法(DFS)遍历所有的路径，从第一个节点开始，遍历每个节点相连的节点，  
   如果该节点是末端节点，那么这条路径就是一个符合条件的路径。  
   
+136. [canFinish](https://leetcode-cn.com/problems/course-schedule/)  
+  开始想的是建立一个哈希表，记录哪些节点已经完成了，如果某个节点所有的需求都已经  
+  完成了，那么这个节点也可以完成。之后遍历哈希表，如果有节点没有完成，那么返回 false。  
+  这是其实是求是否存在一个拓扑排序，可以采用 dfs 来求。我们将每个节点的状态分为三种：  
+  （1）未搜索：还没有搜索到这个节点；  
+  （2）搜索中：已经搜索过这个节点，但还没有回溯到该节点，其还有相邻的节点没有入栈；  
+  （3）已完成：已经搜索并完成该节点，可以入栈。  
+  那么使用这三种状态，我们可以设计出求拓扑排序的算法，  
+  首先建立每个节点的出度，  
+  ```c
+  for (int i = 0; i < (int)prerequisites.size(); i++) {
+    edges[prerequisites[i][1]].push_back(prerequisites[i][0]);
+  }
+  ```
+  遍历该节点的相邻节点即遍历所有的出度。  
+  然后遍历每个节点，如果该节点的状态是“未搜索”的话，  
+  ```c
+  for (int i = 0; i < numCourses && valid; ++i) {
+    if (!visited[i]) {
+      dfs(i);
+    }
+  }
+  ```
+  搜索该节点的所有相邻节点，如果该相邻节点的状态是未搜索，那么对其进行 dfs 递归，  
+  如果该节点的状态是“搜索中”，那么不存在拓扑排序，返回 false，在所有的相邻节点  
+  遍历完后，该节点的状态变为“已完成”。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
