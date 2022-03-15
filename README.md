@@ -1210,5 +1210,8 @@ this is leetcode exercise.
   如果该节点的状态是“搜索中”，那么不存在拓扑排序，返回 false，在所有的相邻节点  
   遍历完后，该节点的状态变为“已完成”。  
 
+137. [findOrder](https://leetcode-cn.com/problems/course-schedule-ii/)  
+  和上题一样的拓扑排序，只需要额外创建一个数组，用于保存序列。  
+  
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
