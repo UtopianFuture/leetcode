@@ -1291,5 +1291,14 @@ this is leetcode exercise.
   （3）使用 `priority_queue` 按照该节点到 start 的距离保存所有的 State 对象；  
   具体实现看代码更清晰。  
   
+142. [maxProbability](https://leetcode-cn.com/problems/path-with-maximum-probability/)  
+  和上一题类似，不过这里建立邻接表时要建立双向的，不然会导致有些情况返回 0。  
+  还有就是不需要求所有的路径的可能性，只要求 start -> end 的就可以的了，其他的都一样。  
+  ```c
+    if (curStateId == end) {
+      return {1, curStateProbability};
+    }
+  ```
+  
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
