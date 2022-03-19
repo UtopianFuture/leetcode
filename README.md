@@ -1281,5 +1281,15 @@ this is leetcode exercise.
          [](Edge a, Edge b) -> int { return a.len < b.len; });
   ```
 
+141. [networkDelayTime](https://leetcode-cn.com/problems/network-delay-time/)  
+  dijkstra 算法，以前觉得这算法挺复杂的，现在写一遍也没有那么难啊，  
+  就是复杂一点的 bfs，但同样有几点需要注意：  
+  （1）需要根据题目条件建立图，一般是使用邻接表表示，需要注意节点的索引  
+  是从 0 开始还是从 1 开始；  
+  （2）需要使用 State 类保存节点索引和与 start 节点之间的距离作为辅助，  
+  每个节点都有一个 State 对象与之对应。  
+  （3）使用 `priority_queue` 按照该节点到 start 的距离保存所有的 State 对象；  
+  具体实现看代码更清晰。  
+  
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
