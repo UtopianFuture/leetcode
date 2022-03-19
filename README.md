@@ -1213,5 +1213,51 @@ this is leetcode exercise.
 137. [findOrder](https://leetcode-cn.com/problems/course-schedule-ii/)  
   和上题一样的拓扑排序，只需要额外创建一个数组，用于保存序列。  
   
+138. [isBipartite](https://leetcode-cn.com/problems/is-graph-bipartite/)  
+  这里使用染色法，算法流程如下：
+  （1）选定任意节点将其染成红色，遍历与该节点相邻的节点；  
+  ```c
+    color[0] = 1;
+    for (int i = 0; i < n && flag; i++) {
+      dfs(i, 1, graph);
+    }
+  ```
+  （2）如果该节点是红色，且相邻节点也被染色了，但是颜色和该节点相同，那么返回 false，  
+  如果相邻节点没有被染色那么将相邻节点染成黄色；如果该节点是黄色，操作类似；  
+  ```c
+    if (color[n] == 1) {
+      if (color[graph[n][i]] != 0) {
+        if (color[graph[n][i]] == color[n]) {
+          flag = false;
+          return;
+        }
+        continue;
+      } else {
+        color[graph[n][i]] = 2;
+      }
+    } else if (color[n] == 2) {
+      if (color[graph[n][i]] != 0) {
+        if (color[graph[n][i]] == color[n]) {
+          flag = false;
+          return;
+        }
+        continue;
+      } else {
+        color[graph[n][i]] = 1;
+      }
+    }
+  ```
+  （3）如果该节点没有被染色，那么将其染成与父节点不同的颜色。  
+  ```c
+    if (color[n] == 0) {
+      if (n_color == 1) {
+        color[n] = 2;
+      } else {
+        color[n] = 1;
+      }
+    }
+  ```
+  `dfs(n, n_color, graph)` 中的 `n_color` 就表示父节点的颜色。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
