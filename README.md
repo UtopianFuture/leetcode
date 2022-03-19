@@ -1269,5 +1269,17 @@ this is leetcode exercise.
     } 
   ```
 
+140. [minCostConnectPoints](https://leetcode-cn.com/problems/min-cost-to-connect-all-points/)  
+  这题使用 Kruskal 算法，算法的思路很简单，将所有的边按照长度排序，然后  
+  遍历所有的边。如果加入这条边能够连通两个连通子图，那么这条边就是最短路径中的  
+  一条边，直到所有的节点都加入最短路径中，结束遍历。  
+  这里判断某条边能够连通两个连通子图使用的是 UnionFind 算法。  
+  还有一点需要注意，`vector` 的排序方法，  
+  ```c
+    // sort by length
+    sort(edges.begin(), edges.end(),
+         [](Edge a, Edge b) -> int { return a.len < b.len; });
+  ```
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
