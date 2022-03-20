@@ -1300,5 +1300,30 @@ this is leetcode exercise.
     }
   ```
   
+143. [implementTrie](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)  
+  Trie，前缀树或字典树，可以理解为多叉树，每个叉即表示字典中的一个元素，  
+  然后每个节点包含一个指示该节点是否为字符串结尾的标识符。  
+  ```c
+  vector<Trie *> children;
+  bool isEnd;
+  ```
+  由于 `word` 和 `prefix` 只由小写字母组成，所以初始化为 26 叉树，即有26 个子节点。  
+  ```c
+  Trie() : children(26), isEnd(false) {}
+  ```
+  - 插入操作
+  在插入字符时，如果当前的树中没有该字符对应的节点，那么创建一个节点，  
+  ```c
+  if (node->children[word[i]] == NULL) {
+    node->children[word[i]] = new Trie();
+  }
+  ```
+  当处理到最后一个字符时，需要将当前节点标记为字符串的结尾。  
+  - 查找前缀
+  从字典树的根节点开始查找，  
+  如果某个字符在树中不存在，说明该前缀不存在，返回 NULL；  
+  若搜索到了前缀的末尾，说明该前缀存在，若前缀末尾对应的节点 isEnd 为真，  
+  说明存在该字符串。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
