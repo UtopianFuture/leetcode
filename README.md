@@ -1337,5 +1337,8 @@ this is leetcode exercise.
   当前元素的值出栈，从而找到第一个比当前元素大的值，然后将当前元素入栈。  
   这里由于要求第几天会遇到比当前温度高的温度，所以多存储一个天数信息。  
 
+146. [nextGreaterElements](https://leetcode-cn.com/problems/next-greater-element-ii/)  
+  还是用单调栈，但是因为可以循环遍历，所以遍历两次。
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
