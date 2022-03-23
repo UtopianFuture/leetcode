@@ -1343,5 +1343,8 @@ this is leetcode exercise.
 147. [numArraySumRange](https://leetcode-cn.com/problems/range-sum-query-immutable/)  
   简单的前缀和应用。  
 
+148. [numMatrix](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/)  
+  和上一题类似，可以理解为多个数组的和。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
