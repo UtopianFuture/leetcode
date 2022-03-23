@@ -1358,5 +1358,8 @@ this is leetcode exercise.
   减去乘客数量，而不是等到下一个站点再减，即我们需要在 `nums[i ~ j - 1]` 加上某个定值，  
   那么需要将 `cha[i]` 加上该值，将 `cha[j]` 减去该值。  
 
+151. [rotate](https://leetcode-cn.com/problems/rotate-image/)  
+  不需要去硬算，将数组沿“左上-右下”对角线翻转，然后反转每个一维数组即可。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
