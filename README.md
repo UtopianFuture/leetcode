@@ -1346,5 +1346,17 @@ this is leetcode exercise.
 148. [numMatrix](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/)  
   和上一题类似，可以理解为多个数组的和。  
 
+149. [corpFlightBookings](https://leetcode-cn.com/problems/corporate-flight-bookings/)  
+  这题用到了差分数组。  
+  数组 `nums=[1,2,2,4]` 的差分数组为 `cha=[1,1,0,2]`，即 `cha[j]=nums[j]-nums[j-1]`  
+  而对差分数组求前缀和即可得到原数组。  
+  如果我们要将 `nums[i ~j]` 加上某个定值，那么需要将 `cha[i]` 加上该值，  
+  将 `cha[j + 1]` 减去该值。  
+
+150. [carPooling](https://leetcode-cn.com/problems/car-pooling/)  
+  同样是差分数组，但是有些差别。乘客上先下后上，那么在乘客下车的那个站点就需要  
+  减去乘客数量，而不是等到下一个站点再减，即我们需要在 `nums[i ~ j - 1]` 加上某个定值，  
+  那么需要将 `cha[i]` 加上该值，将 `cha[j]` 减去该值。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
