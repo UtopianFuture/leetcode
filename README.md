@@ -1368,5 +1368,10 @@ this is leetcode exercise.
 153. [generateMatrix](https://leetcode-cn.com/problems/spiral-matrix-ii/)  
   还上题类似，不过是反着来的。  
 
+154. [advantageCount](https://leetcode-cn.com/problems/advantage-shuffle/)  
+  田忌赛马问题。原理就是将齐王的马按从大到小的顺序排列，同时记录位置信息，同时  
+  将田忌的马从小到大排列，如果田忌最快的马比的过齐王最快的马，那就比，如果比不过，  
+  那就派最慢的马去比。  
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
