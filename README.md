@@ -1346,7 +1346,12 @@ This is leetcode exercise.
 
 156. [removeDuplicateLetters](https://leetcode-cn.com/problems/remove-duplicate-letters/)
 
+     这题的关键是从字符串 s 中删除一个字符使得 s 的字典序最小。
 
+     这要用到“关键字符”解法：如果 `s[i] > s[i+1]`，那么删除 `s[i]`，剩下的字符串就是字典序最小。但是这里又要求所有的字符必须只出现一次，所有要有一个数组记录该字符是否出现过，一个数组记录该字符出现的次数。然后对“关键字符”解法作出如下两点改动：
+
+     - 如果 `s[i]` 出现过多次，那么将 `s[i]` 删除；
+     - 如果 `s[i]` 只出现过 1 次，那么该字符不用删除。
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
