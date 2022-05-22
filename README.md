@@ -4,7 +4,7 @@ This is leetcode exercise.
     这题动态规划解法和递归解法的区别是消除重复子问题。
 
 2. [coinChange](https://leetcode-cn.com/problems/coin-change/)
-    最重要的是理解 'dp'，'dp' 是一个数组，长度为 amount + 1(0 ~ amount)，每个元素表示该 amount 最少的分配方式，除 dp[0] = 0 外，其他的元素都初始化为 amount + 1，即默认是没有正确的分配方式。另一个关键是理解 amount 的最少分配方式是 amount - coins[i] 的最少分配方式加 1。
+    最重要的是理解 `dp`，`dp` 是一个数组，长度为 amount + 1(0 ~ amount)，每个元素表示该 amount 最少的分配方式，除 dp[0] = 0 外，其他的元素都初始化为 amount + 1，即默认是没有正确的分配方式。另一个关键是理解 amount 的最少分配方式是 amount - coins[i] 的最少分配方式加 1。
 
     ```c
     dp[i] = (dp[i] < (dp[i - coins[j]] + 1)) ? dp[i] : (dp[i - coins[j]] + 1);
@@ -1352,6 +1352,10 @@ This is leetcode exercise.
 
      - 如果 `s[i]` 出现过多次，那么将 `s[i]` 删除；
      - 如果 `s[i]` 只出现过 1 次，那么该字符不用删除。
+
+157. [exchange](https://leetcode.cn/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
+
+     简单。
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
