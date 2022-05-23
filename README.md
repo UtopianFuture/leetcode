@@ -1369,5 +1369,39 @@ This is leetcode exercise.
 
      简单。
 
+161. [isSubStructure](https://leetcode.cn/problems/shu-de-zi-jie-gou-lcof/)
+
+     如何判断 B 是否是 A 的子结构？
+
+     - 判断 B 是否是 A 的子结构 。`recur(A, B)`
+     - 判断 B 是否是 A 左子树的子结构。`isSubStructure(A->left, B)`
+     - 判断 B 是否是 A 右子树的子结构。`isSubStructure(A->right, B)`
+
+     终止条件：
+
+     ```c
+     if (!B || !A) {
+     	return false;
+     }
+     ```
+
+     ```c
+     bool recur(TreeNode *a, TreeNode *b) {
+         if (!b) { // 如果 b 为 null，说明前面匹配
+           return true;
+         }
+         if (!a) { // 如果 a 为 null，说明 a 无法匹配
+           return false;
+         }
+         if (a->val != b->val) { // 没有匹配
+           return false;
+         }
+         // a->val == b->val，递归检查左右子树
+         return recur(a->left, b->left) && recur(a->right, b->right);
+       }
+     ```
+
+     对递归的思想还是不熟悉啊。
+
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
