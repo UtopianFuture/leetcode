@@ -1430,6 +1430,14 @@ This is leetcode exercise.
 
      复习一下层序遍历。
 
+167. [verifyPostorder](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
+
+     二叉搜索树的后序遍历的最后一个值就是根节点，而左子树的值都小于根节点，右子树的值都小于根节点，所以可以这样设置递归：
+
+     - 从头遍历，找到第一个大于根节点的值，索引为 m；
+     - 继续遍历，确定右子树的值是否都大于根节点，即 `p == end`；
+     - 递归遍历左子树 `postorder(start, m - 1)`，右子树 `postorder(m, end - 1)`；
+
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
