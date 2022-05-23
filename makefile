@@ -4,15 +4,15 @@ C_SRC_FILES = $(ENV_SRC_FILES)
 C_SRC_FILES += $(wildcard *.c)
 CPP_SRC_FILES = $(ENV_SRC_FILES)
 CPP_SRC_FILES += $(wildcard *.cpp)
-OBJ_FILES := $(patsubst %.c, %, ${C_SRC_FILES})
-OBJ_FILES_CPP := $(patsubst %.cpp, %, ${CPP_SRC_FILES})
+OBJ_FILES := $(patsubst %.c, object/%, ${C_SRC_FILES})
+OBJ_FILES_CPP := $(patsubst %.cpp, object/%, ${CPP_SRC_FILES})
 
 .PHONY: all c cpp clean
 
-% : %.c
-	cc $(CFLAGS) $^ -o $@ 
+object/% : %.c
+	cc $(CFLAGS) $^ -o $@
 
-% : %.cpp
+object/% : %.cpp
 	g++ $(CFLAGS) $^ -o $@
 
 c : ${OBJ_FILES}
