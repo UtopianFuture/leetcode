@@ -1438,6 +1438,48 @@ This is leetcode exercise.
      - 继续遍历，确定右子树的值是否都大于根节点，即 `p == end`；
      - 递归遍历左子树 `postorder(start, m - 1)`，右子树 `postorder(m, end - 1)`；
 
+168. [pathSum](https://leetcode.cn/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)
+
+     这题我习惯用层序遍历。但是需要加一个队列，用来存储到当前节点为止的路径总和，这个队列的操作和记录节点的队列一样。然后用一个 `unordered_map` 存储节点的父节点，当 `val == target` 时逆向遍历该节点的父节点，将它们加入到 `res` 中。
+
+     ```c
+       vector<vector<int>> pathSum(TreeNode *root, int target) {
+         if (!root) {
+           return res;
+         }
+
+         parent[root] = NULL;
+         queue<TreeNode *> q_node;
+         queue<int> q_val;
+         q_node.push(root);
+         q_val.push(0); // 用来记录到当前节点为止的路径总和
+         TreeNode *tmp;
+         while (!q_node.empty()) {
+           tmp = q_node.front();
+           int val = tmp->val + q_val.front(); // 这里画个图，结合节点出入队列情况很好理解
+           q_node.pop();
+           q_val.pop();
+           if (tmp->left == NULL && tmp->right == NULL) {
+             if (val == target) {
+               getPath(tmp);
+             }
+           } else {
+             if (tmp->left) {
+               parent[tmp->left] = tmp;
+               q_node.push(tmp->left);
+               q_val.push(val);
+             }
+             if (tmp->right) {
+               parent[tmp->right] = tmp;
+               q_node.push(tmp->right);
+               q_val.push(val);
+             }
+           }
+         }
+         return res;
+       }
+     ```
+
 
 ### reference
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
