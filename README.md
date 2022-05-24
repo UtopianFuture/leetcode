@@ -1540,6 +1540,32 @@ This is leetcode exercise.
 
      这个图很形象，但是和我写的代码不完全相同。`max_q` 是大顶堆，用于更小的那部分数据，`min_q` 是小顶堆，用于保存更大的那部分数据。而当向堆中插入数据时，为了保证左边的数据始终小于右边的数据和右边的数据始终大于左边的数据，所以不能直接往左右两个堆中插入数据，而是先向 `max_q` 插入，这时 `max_q` 栈顶保存就是该部分最大的那个值，将栈顶元素再插入 `min_q`。往右边插也是这样的。
 
+174. [countDigitOne](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)
+
+     题目看起来简单，但每想对思路很难做出来。[这篇](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/)题解写的很清楚。这里的笔记是我自己对题解的理解。
+
+     将 `n` 分成 `high`, `cur`, `low`，
+
+     - `cur = 0`
+
+       `cur` 位上出现 1 的次数取决于 `high`，`res = high * digit`
+
+     ![](https://pic.leetcode-cn.com/78e60b6c2ada7434ba69643047758e113fa732815f7c53791271c5e0f123687c-Picture1.png)
+
+     - `cur = 1`
+
+       `cur` 位上出现 1 的次数取决于 `high` 和 `low`，`res = high * digit + low + 1`
+
+     ![](https://pic.leetcode-cn.com/58c7e6472155b49923b48daac10bd438b68e9504690cf45d5e739f3a8cb9cee1-Picture2.png)
+
+     - `cur = 2 ~ 9`
+
+       `cur` 位上出现 1 的次数取决于 `high`，`res = (high + 1) * digit`
+
+     ![](https://pic.leetcode-cn.com/0e51d37b434ef0ad93882cdcb832f867e18b872833c0c360ad4580eb9ed4aeda-Picture3.png)
+
+     这些情况结合
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
