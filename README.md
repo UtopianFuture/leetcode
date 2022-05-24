@@ -1600,6 +1600,21 @@ This is leetcode exercise.
 
      需要记住这种 `compare` 的写法。
 
+177. [translateNum](https://leetcode.cn/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)
+
+     这题和 3. climbStairs 做法一样，使用动态规划，因为可以选择是一个字符还是两个字符组合，但是两个字符组成的数字不能超过 25，所以要添加一个判断条件，
+
+     ```c
+     	for (int i = 2; i < size; i++) {
+           s2 = stoi(s.substr(i - 1, 2));
+           if (s2 > 25 || stoi(s.substr(i - 1, 1)) == 0) {
+             dp[i] = dp[i - 1];
+           } else {
+             dp[i] = dp[i - 1] + dp[i - 2];
+           }
+         }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
