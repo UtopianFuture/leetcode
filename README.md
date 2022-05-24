@@ -1564,7 +1564,27 @@ This is leetcode exercise.
 
      ![](https://pic.leetcode-cn.com/0e51d37b434ef0ad93882cdcb832f867e18b872833c0c360ad4580eb9ed4aeda-Picture3.png)
 
-     这些情况结合
+175. [findNthDigit](https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
+
+     这题不难。
+
+     按照数字的位数计算 `n` 对应的是哪个数字，例如如果 `10 <= n < 190`，那么 `n` 对应的一定是两位数，减去个位数占的位数，就可以得出 `n` 对应的是哪个两位数，再计算是该两位数的哪一位。
+
+     ```c
+     	if (n < 10) { // 0 ~ 9
+           res = n;
+         } else if (n < 190) { // 10 ~ 99
+           n -= 10;
+           num = 10 + n / 2;
+           digit = n % 2;
+           digit = 1 - digit;
+           while (digit >= 0) {
+             res = num % 10;
+             num /= 10;
+             digit--;
+           }
+        }
+     ```
 
 ### reference
 
