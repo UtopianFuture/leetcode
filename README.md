@@ -1525,6 +1525,21 @@ This is leetcode exercise.
      sort(arr.begin(), arr.end(), less<int>());
      ```
 
+173. [findMedian](https://leetcode.cn/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/)
+
+     这题要用到两个 `priority_queue`，
+
+     ```c
+     // store the less numbers, the top is the largest in this region.
+     priority_queue<int, vector<int>, less<int>> max_q;
+     // store the greater numbers, the top is the smallest in this region.
+     priority_queue<int, vector<int>, greater<int>> min_q;
+     ```
+
+     ![](https://pic.leetcode-cn.com/25837f1b195e56de20587a4ed97d9571463aa611789e768914638902add351f4-Picture1.png)
+
+     这个图很形象，但是和我写的代码不完全相同。`max_q` 是大顶堆，用于更小的那部分数据，`min_q` 是小顶堆，用于保存更大的那部分数据。而当向堆中插入数据时，为了保证左边的数据始终小于右边的数据和右边的数据始终大于左边的数据，所以不能直接往左右两个堆中插入数据，而是先向 `max_q` 插入，这时 `max_q` 栈顶保存就是该部分最大的那个值，将栈顶元素再插入 `min_q`。往右边插也是这样的。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
