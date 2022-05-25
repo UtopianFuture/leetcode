@@ -1418,7 +1418,7 @@ This is leetcode exercise.
 
      我们可以实现这样一个递归函数，通过**「同步移动」两个指针**的方法来遍历这棵树，pp 指针和 qq 指针一开始都指向这棵树的根，随后 **pp 右移时，qq 左移，pp 左移时，qq 右移**。每次检查当前 pp 和 qq 节点的值是否相等，如果相等再判断左右子树是否对称。
 
-164. [MinStack](https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/)
+164. [minStack](https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/)
 
      这题用到了辅助栈，`min_stack` 中保存的是 `stack` 中从栈底到当前元素的最小值。
 
@@ -1482,7 +1482,7 @@ This is leetcode exercise.
 
 169. [copyRandomList](https://leetcode.cn/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
 
-     虽然都是用了 `unordered_map`，但是题解的方法却是比我简单。
+     虽然都是用了 `unordered_map`，但是题解的方法确实比我简单。
 
      ```c
      public:
@@ -1668,6 +1668,10 @@ This is leetcode exercise.
 184. [findContinuousSequence](https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
 
      复习一下双指针。检查 `nums[left, right]` 中元素和是否等于 `target`。如果大了，`left++`，同时临时数组的 `left` 也要删除；如果小了，`right++`。
+
+185. [maxQueue](https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/)
+
+     我还想用 164. minStack 一样的方法，设个辅助队列来求，没想到直接暴力法就可以。
 
 ### reference
 
