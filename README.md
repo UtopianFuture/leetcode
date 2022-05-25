@@ -230,6 +230,7 @@ This is leetcode exercise.
     ```
     但是 k 是无限的，`[k]` 和 `[k - 1]` 一样，可以约掉，
     得到如下状态转移方程，
+
     ```c
     dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
     dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])
@@ -241,6 +242,7 @@ This is leetcode exercise.
     ```
     再将 `dp[i][0]` 化简为 `dp_0`，这里有一点需要注意，`dp[i][0]` 表示的是上一天的利润，
     换成 `dp_0` 后
+
     ```c
     dp_0 = max(dp_0, dp_1 + prices[i]);
     dp_1 = max(dp_1, dp_0 - prices[i]);
@@ -256,14 +258,7 @@ This is leetcode exercise.
       dp_1[i][0] = -prices[i];
     }
     ```
-    因为 i 是从 0 开始的，所有要初始化 `i - 1 == -1` 的情况，
-    ```c
-    if (i - 1 == -1) {
-      dp_0[i][k] = 0;
-      dp_1[i][k] = -prices[i];
-      continue;
-    }
-    ```
+    dp base 都是第 0 天的时候手中有股票 `dp_0` 初始化为 0，手中没有股票 `dp_1` 初始化为 `-prices[0]`。
 
 20. [maxProfit_iv](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)
     `k = integer`，但是如果 `k > days / 2` 的就和 `k = inf` 一样的，
@@ -284,6 +279,7 @@ This is leetcode exercise.
 
 22. [maxProfit_fee](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
     这题还是 18 题的变种，只需要在收入上减去 fee 即可。
+
     ```c
     dp_0 = dp_0 > dp_1 + prices[i] - fee ? dp_0 : dp_1 + prices[i] - fee;
     ```
