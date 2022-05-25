@@ -1673,6 +1673,10 @@ This is leetcode exercise.
 
      我还想用 164. minStack 一样的方法，设个辅助队列来求，没想到直接暴力法就可以。
 
+186. [isStraight](https://leetcode.cn/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
+
+     比较简单，找到所有的 0，然后计算 0 的数量够不够“填洞”。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
