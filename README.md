@@ -1635,6 +1635,32 @@ This is leetcode exercise.
 
      简单，中序遍历即可。
 
+182. [singleNumbers](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
+
+     真是妙蛙种子吃着妙脆角妙进了米奇妙妙屋，妙到家了。
+
+     这题用到“异或”操作，两个相同的数“异或”结果为 0，不同的数“异或”结果为两数之和。对 `nums` 中所有的数进行“异或”操作，因为只有两个数不同，所有最后的结果就是这两数之和。
+
+     我们对这个结果进行分析，将这个结果转化为二进制数，如果二进制中的位为 “1”，说明两个不同的数这一位不同，我们就选择这个不同的位，将 `nums` 中所有的数字分成两组，那么相同的数字必定被分到同一组，因为相同的数字二进制表示中所有的位都相同，而目标两个不同的数字必定被分到不同的组，再对这两个组进行“异或”操作，那么就可以得到目标结果。
+
+     ```c
+     	for (int i = 0; i < n; i++) {
+           tmp ^= nums[i];
+         }
+         int div = 1;
+         while ((div & tmp) == 0) {
+           div <<= 1;
+         }
+
+         for (int i = 0; i < n; i++) {
+           if ((nums[i] & div) == 0) {
+             res[0] ^= nums[i];
+           } else {
+             res[1] ^= nums[i];
+           }
+         }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
