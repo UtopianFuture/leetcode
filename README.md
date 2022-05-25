@@ -1665,6 +1665,10 @@ This is leetcode exercise.
 
      好吧，这题不用那么复杂的算法，直接 `unordered_map` 即可。
 
+184. [findContinuousSequence](https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
+
+     复习一下双指针。检查 `nums[left, right]` 中元素和是否等于 `target`。如果大了，`left++`，同时临时数组的 `left` 也要删除；如果小了，`right++`。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
