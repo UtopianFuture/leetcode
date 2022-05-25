@@ -171,7 +171,8 @@ This is leetcode exercise.
 
 17. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
     股票问题：
-    这种问题有 3 个状态，天数，允许交易的最大次数和当前是否持有股票。利用三维 dp 数组可以表示所以的状态：
+    这种问题有 3 个状态，天数，允许交易的最大次数和当前是否持有股票。利用三维 dp 数组可以表示所有的状态：
+
     ```c
     dp[i][k][0 or 1]
     0 <= i <= n - 1, 1 <= k <= K
@@ -192,8 +193,33 @@ This is leetcode exercise.
     dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
     ```
 
+    最后的代码是这样的，
+
+    ```c
+      int maxProfit(vector<int> &prices) {
+        int n = (int)prices.size();
+        if (n == 0) {
+          return 0;
+        }
+        vector<int> dp_0(n, 0);
+        vector<int> dp_1(n, 0);
+        // dp base
+        dp_0[0] = 0;          // the first day don't have stock, so the profit is 0.
+        dp_1[0] = -prices[0]; // the first day should not have any stock, so the
+                              // profit is -prices[0].
+        for (int i = 1; i < n; i++) {
+          dp_0[i] = max(dp_0[i - 1], dp_1[i - 1] + prices[i]);
+          // 这里不用 dp_0[i - 1] - prices[i] 是因为 k = 1
+          // 而 k = 0 是 base case，所以 dp[i-1][0][0] = 0。
+          dp_1[i] = max(dp_1[i - 1], -prices[i]);
+        }
+        return dp_0[n - 1];
+      }
+    ```
+
 18. [maxProfit_ii](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
     dp base 还是和上题一样
+
     ```c
     int dp_0 = 0, dp_1 = 0x80000001;
     ```
@@ -1690,6 +1716,20 @@ This is leetcode exercise.
          return res;
        }
      ```
+
+188. [sumNums](https://leetcode.cn/problems/qiu-12n-lcof/)
+
+     这题主要的限制是不能使用乘除法、for、while、if、else、switch、case 等关键字及条件判断语句（A?B:C）。所以使用递归的方式来计算和，但是递归要有一个终止条件，一般是用 `if()` 来判断，但是题目要求不能使用，所以这里使用了位运算符的短路性质。
+
+     ```c
+       int sumNums(int n) {
+         bool x = (n > 1 && sumNums(n - 1));
+         res += n;
+         return res;
+       }
+     ```
+
+     如果 `n <= 1` 的话后面就不会执行了。
 
 ### reference
 
