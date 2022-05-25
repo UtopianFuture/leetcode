@@ -1627,6 +1627,10 @@ This is leetcode exercise.
 
      简单，用 `unordered_map` 和 `vector` 都可以。
 
+180. [getIntersectionNode](https://leetcode.cn/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)
+
+     简单。用一个哈希表 `unordered_map` 存储 A 链表，然后遍历 B 链表，看 `unordered_map` 中是否存在即可。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
