@@ -1797,6 +1797,65 @@ This is leetcode exercise.
        }
      ```
 
+195. [threeSum](.)
+
+     唉，我想到的回溯法其实是暴力排序，
+
+     ```c
+       void backtrace(vector<int> nums, vector<int> tmp, int first, int len) {
+         if ((int)tmp.size() == 3) {
+           if (tmp[0] + tmp[1] + tmp[2] == 0) {
+             res.push_back(tmp);
+           }
+           return;
+         }
+
+         for (int i = first; i < len; i++) {
+           tmp.push_back(nums[i]);
+           backtrace(nums, tmp, i + 1, len);
+           tmp.pop_back();
+         }
+       }
+     ```
+
+     其实可以用简单的双指针，
+
+     ```c
+       vector<vector<int>> threeSum(vector<int> &nums) {
+         vector<vector<int>> res;
+         int n = (int)nums.size();
+         if (n < 3)
+           return res;
+         sort(nums.begin(), nums.end()); // 先排序，方便之后跳过重复的元素
+         for (int i = 0; i < n; i++) {
+           if (nums[i] > 0) // 如果 nums[i] > 0, nums[left] + nums[right] + nums[i] 肯定大于 0
+             return res;
+           if (i > 0 && nums[i] == nums[i - 1]) { // 跳过重复的元素
+             continue;
+           }
+
+           int left = i + 1, right = n - 1; // left, right 在 nums[i, n - 1] 中遍历
+           while (left < right) {
+             int sum = nums[left] + nums[right] + nums[i];
+             if (sum > 0) {
+               right--;
+             } else if (sum < 0) {
+               left++;
+             } else {
+               res.push_back({nums[left], nums[right], nums[i]});
+               while (right > left && nums[right] == nums[right - 1]) // 去除重复的元素
+                 right--;
+               while (right > left && nums[left] == nums[left + 1])
+                 left++;
+               left++;
+               right--;
+             }
+           }
+         }
+         return res;
+       }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
