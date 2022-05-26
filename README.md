@@ -1742,7 +1742,9 @@ This is leetcode exercise.
 
      ![](https://pic.leetcode-cn.com/1624619180-vpyyqh-Picture1.png)
 
+191. [strToInt](https://leetcode.cn/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)
 
+     题目不难，但是要多测几次，以判断各种情况。
 
 ### reference
 
