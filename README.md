@@ -1143,7 +1143,7 @@ This is leetcode exercise.
 
 133. [lowestCommonAncestor](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 
-     首先找到所有节点的父节点，记录再一个 map 中，
+     首先找到所有节点的父节点，记录在一个 map 中，
 
      ```c
      void getFather(TreeNode *root) {
@@ -1745,6 +1745,35 @@ This is leetcode exercise.
 191. [strToInt](https://leetcode.cn/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)
 
      题目不难，但是要多测几次，以判断各种情况。
+
+192. [addBinary](https://leetcode.cn/problems/JFETK5/)
+
+     题目不难，分类处理即可。
+
+     ```c
+     	while (--na >= 0) {
+           if (a[na] == '0' && b[na] == '0' && carry == '0') {
+             res.insert(res.begin(), '0');
+             carry = '0';
+           } else if ((a[na] == '0' && b[na] == '0' && carry == '1') ||
+                      (a[na] == '0' && b[na] == '1' && carry == '0') ||
+                      (a[na] == '1' && b[na] == '0' && carry == '0')) {
+             res.insert(res.begin(), '1');
+             carry = '0';
+           } else if ((a[na] == '0' && b[na] == '1' && carry == '1') ||
+                      (a[na] == '1' && b[na] == '0' && carry == '1') ||
+                      (a[na] == '1' && b[na] == '1' && carry == '0')) {
+             res.insert(res.begin(), '0');
+             carry = '1';
+           } else if ((a[na] == '1' && b[na] == '1' && carry == '1')) {
+             res.insert(res.begin(), '1');
+             carry = '1';
+           }
+         }
+         if (carry == '1') {
+           res.insert(res.begin(), carry);
+         }
+     ```
 
 ### reference
 

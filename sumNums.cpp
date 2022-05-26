@@ -8,7 +8,7 @@ class Solution {
 
 public:
   int sumNums(int n) {
-    bool x = (n > 1 && sumNums(n - 1));
+    // bool x = (n > 1 && sumNums(n - 1));
     res += n;
     return res;
   }
