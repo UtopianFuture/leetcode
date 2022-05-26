@@ -1860,6 +1860,40 @@ This is leetcode exercise.
 
      典型的双指针。
 
+197. [numSubarrayProductLessThanK](https://leetcode.cn/problems/ZVAVXX/)
+
+     还是用双指针，
+
+     ```c
+         while (right < n) {
+           product *= nums[right];
+           while (left <= right && product >= k) {
+             product /= nums[left];
+             left++;
+           }
+           res += right - left + 1; // 这个地方需要理解
+           right++;
+         }
+     ```
+
+     以 `[10,5,2,6]` 分析，
+
+     - 当 `left = 0`, `right = 0` 时
+
+       `res += 1`，即 `10`
+
+     - 当 `left = 0`, `right = 1` 时
+
+       `res += 2`，即 `5`, `10, 5`
+
+     - 当 `left = 1`, `right = 2` 时
+
+       `res += 2`，即 `5, 2`, `2`
+
+     - 当 `left = 1`, `right = 3` 时
+
+       `res += 3`，即 `2,6`, `6`, `5,2,6`
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
