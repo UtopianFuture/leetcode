@@ -1785,6 +1785,18 @@ This is leetcode exercise.
      }
      ```
 
+194. [maxProduct_ii](https://leetcode.cn/problems/aseY1I/)
+
+     位运算的妙用啊！用一个 `int` 类型的二进制位的每一位表示某个字母是否出现，如 `0x111` 表示该字符串为 `abc`，然后对每个字符串的 `mask` 进行“与”操作，结果为 0 说明没有重复的字母出现。
+
+     ```c
+       for (int i = 0; i < n; i++) {
+           for (int j = 0; j < (int)words[i].size(); j++) {
+             mask[i] |= 1 << (words[i][j] - 'a'); // 该字母是否出现
+           }
+       }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
