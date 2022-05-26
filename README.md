@@ -263,6 +263,7 @@ This is leetcode exercise.
 20. [maxProfit_iv](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)
     `k = integer`，但是如果 `k > days / 2` 的就和 `k = inf` 一样的，
     所以在上一题的基础加上加一个限制条件即可
+
     ```c
     if (k > pricesSize / 2) {
       return maxProfit_inf(prices, pricesSize);
@@ -1726,6 +1727,14 @@ This is leetcode exercise.
      ```
 
      如果 `n <= 1` 的话后面就不会执行了。
+
+189. [add](https://leetcode.cn/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/)
+
+     这是让我们理解计算机是怎样做加法的，我们看这张图更加清楚。
+
+     ![](https://pic.leetcode-cn.com/56d56524d8d2b1318f78e209fffe0e266f97631178f6bfd627db85fcd2503205-Picture1.png)
+
+     这里需要注意负数不能直接移位，需要转换为无符号整型。
 
 ### reference
 
