@@ -1970,6 +1970,54 @@ This is leetcode exercise.
 
      这题用栈确实更简单，然后不断将结果插入到链表头。
 
+205. [reorderList](https://leetcode.cn/problems/LGjMqU/)
+
+     先利用快慢指针找到中间节点，然后断开成俩部分，后半段完成翻转，然后与前半段进行合并。
+
+     ```c
+       void reorderList(ListNode *head) {
+         if (!head || !head->next) {
+           return;
+         }
+         ListNode *one = head;
+         ListNode *two = head->next;
+         // find middle node
+         while (two && two->next) {
+           two = two->next->next;
+           one = one->next;
+         }
+
+         // reverse the latter part
+         ListNode *prev = NULL;
+         ListNode *cur = one->next;
+         ListNode *next;
+         // disconnect front part and latter part
+         one->next = NULL;
+         while (cur) {
+           next = cur->next;
+           cur->next = prev;
+           prev = cur;
+           cur = next;
+         }
+
+         // merge two list
+         ListNode *first = head;
+         ListNode *second = prev;
+         ListNode *first_next;
+         ListNode *second_next;
+         while (first && second) {
+           first_next = first->next;
+           second_next = second->next;
+           first->next = second;
+           second->next = first_next;
+           first = first_next;
+           second = second_next;
+         }
+       }
+     ```
+
+     关于链表的一些编程习惯要改，以上面的为准。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
