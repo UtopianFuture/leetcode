@@ -1921,6 +1921,28 @@ This is leetcode exercise.
 
      同时我们需要设置 `m[0] = -1`，即初始化前缀和为 0 的子数组索引为 -1。我们以 `[0,1,0]` 为例，当索引值为 1 时，`count = 0`，`i - m[count] = 2`，子数组为 `[0,1]`。
 
+200. [sumRegion](https://leetcode.cn/problems/O4NDxx/)
+
+     还是使用前缀和，这里看图就明白了。
+
+     ![sumRegion](/home/guanshun/gitlab/UFuture.github.io/image/sumRegion.png)
+
+     ```c
+           for (int i = 0; i < n; i++) {
+             for (int j = 0; j < m; j++) {
+               sum[i + 1][j + 1] =
+                   sum[i + 1][j] + sum[i][j + 1] - sum[i][j] + matrix[i][j];
+             }
+           }
+     ```
+
+     ```c
+       int sumRegion(int row1, int col1, int row2, int col2) {
+         return sum[row2 + 1][col2 + 1] - sum[row2 + 1][col1] - sum[row1][col2 + 1] +
+                sum[row1][col1];
+       }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
