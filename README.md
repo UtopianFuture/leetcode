@@ -1962,6 +1962,10 @@ This is leetcode exercise.
 
      也就是说如果 `s[left] == s[right]`，那么 `dp[left] [right] = dp[left + 1] [right - 1]`，这个很好理解；如果 `right - left < 2`，如 `aa` 也是回文。
 
+203. [removeNthFromEnd](https://leetcode.cn/problems/SLwz0R/)
+
+     这题要求遍历一次删除倒数第 n 个节点，可以使用双指针，`first` 向前遍历 n 个节点后 `second` 开始遍历，这样 `first` 遍历完后 `second` 指向的就是倒数第 n 个节点。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
