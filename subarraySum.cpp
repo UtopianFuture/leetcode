@@ -15,7 +15,8 @@ public:
     times[0] = 1;
     for (int i = 0; i < size; i++) {
       sum_i += nums[i];
-      // k = sum_j - sum_i
+      // we need find sum nums[j, i] equals k,
+      // k = sum_i - sum_j
       sum_j = sum_i - k;
       // if sum_j has existed
       if (times[sum_j] != 0) {

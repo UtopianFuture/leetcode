@@ -1894,6 +1894,33 @@ This is leetcode exercise.
 
        `res += 3`，即 `2,6`, `6`, `5,2,6`
 
+198. [pivotIndex](https://leetcode.cn/problems/tvdfij/)
+
+     简单题，用位运算加快速度。
+
+199. [findMaxLength](https://leetcode.cn/problems/A1NYOS/)
+
+     这题使用前缀和。将 0 转换成 -1，那么题目就可以转换成“和为 0 的最长连续子数组“，我们使用哈希表 `m` 存储数组到当前索引时“前缀和”和“索引”之间的映射，一个 `count` 表示数组当前索引下的前缀和，如果 `m[count] != 0`  说明该前缀和已经出现过，那么 `i - m[count]` 就是一个和为 0 的连续子数组。
+
+     ```c
+         for (int i = 0; i < n; i++) {
+           if (nums[i]) {
+             count++;
+           } else {
+             count--;
+           }
+           if (m.count(count)) {
+             res = max(res, i - m[count]);
+           } else {
+             // if m.count(count) != 0,
+             // m[count] is smallest, so we don't need update it.
+             m[count] = i;
+           }
+         }
+     ```
+
+     同时我们需要设置 `m[0] = -1`，即初始化前缀和为 0 的子数组索引为 -1。我们以 `[0,1,0]` 为例，当索引值为 1 时，`count = 0`，`i - m[count] = 2`，子数组为 `[0,1]`。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
