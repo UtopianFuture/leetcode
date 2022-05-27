@@ -14,7 +14,7 @@ public:
     while (right < (int)s.size()) {
       tmp = s[right];
       while (has[tmp] != 0) {
-        has[s[left]] = 0;
+        has[s[left]]--;
         left++;
       }
       has[tmp]++;
