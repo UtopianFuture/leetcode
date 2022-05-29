@@ -2032,6 +2032,10 @@ This is leetcode exercise.
 
      我们将排序后的字符串作为 `key`，将 `strs[i]` 作为值存入 `unordered_map<string, vector<string>> m;` 即可。
 
+209. [findMinDifference](https://leetcode.cn/problems/569nqc/)
+
+     比较简单。将时间转化为 `int` 类型，然后再比较，注意最后一个时间和第一个时间的比较。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
