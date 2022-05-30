@@ -2120,6 +2120,29 @@ This is leetcode exercise.
 
      层序遍历的应用，简单。
 
+217. [pruneTree](https://leetcode.cn/problems/pOCWxh/)
+
+     二叉树的递归。这种题目遇到很多次了，但对递归的思想始终不清楚。这题能很好的解释。
+
+     其实二叉树的递归无非是前序、中序和后序，需要知道递归返回的条件和不同序列对应的操作。这里判断节点本身的值是否为 1 和左右子树中是否含有值为 1 的节点。所以需要的操作很简单，
+
+     ```c
+       bool isContain(TreeNode *root) {
+         if (!root) {
+           return false;
+         }
+         bool left = isContain(root->left);
+         bool right = isContain(root->right);
+         if (!left) {
+           root->left = NULL;
+         }
+         if (!right) {
+           root->right = NULL;
+         }
+         return (root->val == 1) || left || right; // 判断本身和左右子树
+       }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
