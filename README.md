@@ -2064,6 +2064,14 @@ This is leetcode exercise.
 
      整个逆波兰表达式遍历完毕之后，栈内只有一个元素，该元素即为逆波兰表达式的值。
 
+211. [calculate](https://leetcode.cn/problems/basic-calculator/)
+
+     总体的流程就是上面的，但是最后一个例子超时了，思路是正确的。
+
+212. [asteroidCollision](https://leetcode.cn/problems/XagZNi/)
+
+     需要注意删除爆炸小行星后的索引值。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
