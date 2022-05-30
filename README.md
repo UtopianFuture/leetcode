@@ -987,7 +987,7 @@ This is leetcode exercise.
 
 101. [trap](https://leetcode-cn.com/problems/trapping-rain-water/)
 
-     还是使用双值阵法，不过更难想到。首先明确一个事情，还是要移动值较小的那个指针，第 i 个柱子能够接的水量等于 `leftmax - height[left]` 或 `rightmax - height[right]`，其他的也没啥高深的知识，能想到就做的出来。
+     还是使用双指针法，不过更难想到。首先明确一个事情，还是要移动值较小的那个指针，第 i 个柱子能够接的水量等于 `leftmax - height[left]` 或 `rightmax - height[right]`，其他的也没啥高深的知识，能想到就做的出来。
 
 102. [productExceptSelf](https://leetcode-cn.com/problems/product-of-array-except-self/)
 
@@ -2071,6 +2071,10 @@ This is leetcode exercise.
 212. [asteroidCollision](https://leetcode.cn/problems/XagZNi/)
 
      需要注意删除爆炸小行星后的索引值。
+
+213. [movingAverage](https://leetcode.cn/problems/qIsx9U/)
+
+     简单。
 
 ### reference
 
