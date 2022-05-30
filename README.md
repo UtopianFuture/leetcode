@@ -2076,6 +2076,44 @@ This is leetcode exercise.
 
      简单。
 
+214. [CBTInserter](https://leetcode.cn/problems/NaqhDT/)
+
+     层序遍历的应用。额外使用一个队列 `queue<TreeNode *> ql;` 用来记录从第一个左/右子树为空的节点—— `location` 之后的所有节点。
+
+     ```c
+     	  // reocrd nodes after the first suitable node
+           if (!p->left || !p->right) {
+             ql.push(p);
+           }
+     ```
+
+     而第一个左/右子树为空的节点就是可以插入的节点，在插入新节点后，需要更新 `location`，
+
+     ```c
+       int insert(int v) {
+         TreeNode *p = location;
+         if (!p->left) {
+           p->left = new TreeNode(v, NULL, NULL);
+           ql.push(p->left);
+           // update location
+           location = p;
+           return p->val;
+         } else if (!p->right) {
+           p->right = new TreeNode(v, NULL, NULL);
+           ql.push(p->right);
+           // we need pop the top node, because it already has left child and right
+           // child.
+           ql.pop();
+           location = ql.front();
+           return p->val;
+         } else {
+           return -1;
+         }
+       }
+     ```
+
+
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
