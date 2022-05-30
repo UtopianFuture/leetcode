@@ -2143,6 +2143,14 @@ This is leetcode exercise.
        }
      ```
 
+218. [sumNumbers](https://leetcode.cn/problems/3Etpl5/)
+
+     经典的二叉树递归。在左右子树遍历完后要将加入 `string order;` 中的值去除。
+
+219. [pathSum_ii](https://leetcode.cn/problems/6eUYwP/)
+
+     和 168. pathSum 有点类似，不过不是计算整条路径的和，而是计算任意一条路径，那么我们在遍历每个节点时都计算该节点到根节点的子路径和，这里通过一个 `unordered_map<TreeNode *, TreeNode *> parent;` 记录某个节点的父节点。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
