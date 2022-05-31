@@ -2186,6 +2186,28 @@ This is leetcode exercise.
 
      在单次插入的操作中，我们首先将 val 加入到优先队列中。如果此时优先队列的大小大于 k，我们需要将优先队列的队头元素弹出，以保证优先队列的大小为 k。
 
+224. [topKFrequent](https://leetcode.cn/problems/g5c51o/)
+
+     经典的优先级队列的应用，
+
+     ```c
+     	struct compare {
+           bool operator()(pair<int, int> &a, pair<int, int> &b) {
+             return a.second > b.second; // the less element is in top
+           }
+         };
+
+         priority_queue<pair<int, int>, vector<pair<int, int>>, compare> pq;
+         for (auto m : map) {
+           pq.push(m);
+           if ((int)pq.size() > k) {
+             pq.pop();
+           }
+         }
+     ```
+
+     这题要多复习几遍。关于优先级队列的介绍可以看[这里](https://leetcode.cn/problems/top-k-frequent-elements/solution/c-xiao-bai-you-hao-you-xian-dui-lie-de-j-53ay/)。
+
 
 ### reference
 
