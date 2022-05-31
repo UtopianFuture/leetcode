@@ -2208,6 +2208,23 @@ This is leetcode exercise.
 
      这题要多复习几遍。关于优先级队列的介绍可以看[这里](https://leetcode.cn/problems/top-k-frequent-elements/solution/c-xiao-bai-you-hao-you-xian-dui-lie-de-j-53ay/)。
 
+225. [kSmallestPairs](https://leetcode.cn/problems/qn8gGX/)
+
+     还是优先级队列，不过这题的使用方法我不懂。
+
+     ```c
+         auto compare = [&nums1, &nums2](const pair<int, int> &a,
+                                         const pair<int, int> &b) {
+           return nums1[a.first] + nums2[a.second] >
+                  nums1[b.first] + nums2[b.second];
+         };
+
+         priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(compare)>
+             pq(compare);
+     ```
+
+     然后关于这题的解法也有些需要注意的。前 k 对最小的数对，我们先在优先级队列中放入 [0,0]、[1, 0]、[2, 0]、…… ，这里 [0,0] 表示数对 `nums1[0], nums2[0]`，即让 nums2 的索引全部从 0 开始，每次弹出 nums1[index1] + nums2[index2] 较小者。弹出之后，再把 index2 后移一位继续添加到优先级队列中，依次往复，最终弹出 k 次就是我们的结果。更加详细的解释可以看[这里](https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/solution/tong-ge-lai-shua-ti-la-you-xian-ji-dui-l-fw7y/)。
+
 
 ### reference
 
