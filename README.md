@@ -2256,6 +2256,10 @@
        }
      ```
 
+227. [isCousins](https://leetcode.cn/problems/cousins-in-binary-tree/)
+
+     我还是喜欢用层序遍历来求树的高度。
+
 
 ### reference
 
