@@ -2290,7 +2290,9 @@
 
      我还是喜欢用层序遍历来求树的高度。
 
+228. [findSecondMinimumValue](https://leetcode.cn/problems/second-minimum-node-in-a-binary-tree/)
 
+     比较简单，用堆来动态存储前 n 小（大）的值。
 
 ### reference
 
