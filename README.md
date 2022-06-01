@@ -1155,6 +1155,26 @@
 
      另外，这题存在重叠子问题，可以通过备忘录的方式消除冗余计算。
 
+132. [generateTrees](https://leetcode.cn/problems/unique-binary-search-trees-ii/)
+
+     和上一题类似，不过我还是不能独立做出来。这里分解成的子问题是生成左右子树的序列。
+
+     ```c
+     	for (int i = left; i <= right; i++) {
+           vector<TreeNode *> lchild = generate(left, i - 1);
+           vector<TreeNode *> rchild = generate(i + 1, right);
+
+           for (auto l : lchild) {
+             for (auto r : rchild) {
+               TreeNode *root = new TreeNode(i, l, r);
+               res.push_back(root);
+             }
+           }
+         }
+     ```
+
+     不得不说，这种分解思想是有效的，还需要多加练习。
+
 132. [maxSumBST](https://leetcode-cn.com/problems/maximum-sum-bst-in-binary-tree/)(not pass)
 
      我觉得这道题的关键是判断每棵树是否是二叉搜索树，如果是的话就将这棵树加入到队列中，然后再从对立的所有二叉搜索树中找到最大的那颗，但是我不会。
