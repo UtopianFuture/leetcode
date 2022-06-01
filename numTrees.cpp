@@ -3,7 +3,7 @@
 using namespace std;
 #define REOPEN_READ freopen("/home/guanshun/GDB/cpp/input.txt", "r", stdin);
 
-class Solution {
+class Solution1 {
 public:
   int numTrees(int n) {
     vector<int> G(n + 1, 0);
@@ -14,6 +14,36 @@ public:
       }
     }
     return G[n];
+  }
+};
+
+class Solution {
+private:
+  vector<vector<int>> dp;
+
+public:
+  int calculate(int left, int right) {
+    if (left >= right) {
+      return 1;
+    }
+
+    if (dp[left][right] != 0) {
+      return dp[left][right];
+    }
+
+    int res = 0;
+    for (int i = left; i <= right; i++) {
+      int lchild = calculate(left, i - 1);
+      int rchild = calculate(i + 1, right);
+      res += lchild * rchild;
+    }
+    dp[left][right] = res;
+    return res;
+  }
+
+  int numTrees(int n) {
+    dp.resize(n + 1, vector<int>(n + 1, 0));
+    return calculate(1, n);
   }
 };
 
