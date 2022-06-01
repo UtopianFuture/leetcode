@@ -1,5 +1,17 @@
 ## leetcode
-This is leetcode exercise.
+
+### 重要思想
+
+- 二叉树解题的思维模式分两类：
+
+  - **是否可以通过遍历一遍二叉树得到答案**？如果可以，用一个 `traverse` 函数配合外部变量来实现，这叫「遍历」的思维模式。
+
+  - **是否可以定义一个递归函数，通过子问题（子树）的答案推导出原问题的答案**？如果可以，写出这个递归函数的定义，并充分利用这个函数的返回值，这叫「分解问题」的思维模式。
+
+- 二叉树的所有问题，就是让你在前中后序位置注入巧妙的代码逻辑，去达到自己的目的，你只需要单独思考每一个节点应该做什么，其他的不用你管，抛给二叉树遍历框架，递归会在所有节点上做相同的操作。
+
+### 题目
+
 1. [fib](https://leetcode-cn.com/problems/fibonacci-number/)
     这题动态规划解法和递归解法的区别是消除重复子问题。
 
@@ -1925,7 +1937,7 @@ This is leetcode exercise.
 
      还是使用前缀和，这里看图就明白了。
 
-     ![sumRegion](/home/guanshun/gitlab/UFuture.github.io/image/sumRegion.png)
+     ![sumRegion.png](https://github.com/UtopianFuture/UtopianFuture.github.io/blob/master/image/sumRegion.png?raw=true)
 
      ```c
            for (int i = 0; i < n; i++) {
@@ -2224,6 +2236,25 @@ This is leetcode exercise.
      ```
 
      然后关于这题的解法也有些需要注意的。前 k 对最小的数对，我们先在优先级队列中放入 [0,0]、[1, 0]、[2, 0]、…… ，这里 [0,0] 表示数对 `nums1[0], nums2[0]`，即让 nums2 的索引全部从 0 开始，每次弹出 nums1[index1] + nums2[index2] 较小者。弹出之后，再把 index2 后移一位继续添加到优先级队列中，依次往复，最终弹出 k 次就是我们的结果。更加详细的解释可以看[这里](https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/solution/tong-ge-lai-shua-ti-la-you-xian-ji-dui-l-fw7y/)。
+
+226. [isSubtree](https://leetcode.cn/problems/subtree-of-another-tree/)
+
+     前序遍历的应用，每个节点都通过 `isSame` 判断一下以该节点为根节点的树是否和 `subRoot` 一样，
+
+     ```c
+       bool isSame(TreeNode *a, TreeNode *b) {
+         if (a == NULL && b == NULL) {
+           return true;
+         }
+         if (a == NULL || b == NULL) {
+           return false;
+         }
+         if (a->val != b->val) {
+           return false;
+         }
+         return isSame(a->left, b->left) && isSame(a->right, b->right);
+       }
+     ```
 
 
 ### reference
