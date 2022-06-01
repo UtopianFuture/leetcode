@@ -1175,6 +1175,10 @@
 
      不得不说，这种分解思想是有效的，还需要多加练习。
 
+133. [findTarget](https://leetcode.cn/problems/two-sum-iv-input-is-a-bst/)
+
+     这题比较简单，用 `unordered_map` 即可。
+
 132. [maxSumBST](https://leetcode-cn.com/problems/maximum-sum-bst-in-binary-tree/)(not pass)
 
      我觉得这道题的关键是判断每棵树是否是二叉搜索树，如果是的话就将这棵树加入到队列中，然后再从对立的所有二叉搜索树中找到最大的那颗，但是我不会。
@@ -2286,7 +2290,6 @@
 
      我还是喜欢用层序遍历来求树的高度。
 
-228. [generateTrees](.)
 
 
 ### reference
