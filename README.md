@@ -2346,6 +2346,43 @@
 
      和 168. sumNumbers 一样，不过要修改一下计算和的函数。
 
+234. [verticalTraversal](https://leetcode.cn/problems/vertical-order-traversal-of-a-binary-tree/)
+
+     前序遍历的应用，需要记录节点的坐标，所以用的结构体比较复杂，
+
+     ```c
+     unordered_map<int, vector<vector<int>>> m;
+     m[column].push_back({row, root->val});
+     ```
+
+     之后就是将数据按照题目要求的方式排列，
+
+     ```c
+     	vector<vector<int>> tmpvv;
+         for (int i = start; i <= end; i++) {
+           tmpvv = m.find(i)->second;
+           sort(tmpvv.begin(), tmpvv.end(), cmp);
+           vector<int> tmpv;
+           for (auto v : tmpvv) {
+             tmpv.push_back(v[1]);
+           }
+           res.push_back(tmpv);
+         }
+     ```
+
+     这里因为要求“按列索引每一列上的所有结点，形成一个按出现位置从上到下排序的有序列表。如果同行同列上有多个结点，则按结点的值从小到大进行排序，”所以还写了个 `cmp` 函数，
+
+     ```c
+     static bool cmp(vector<int> a, vector<int> b) {
+         if (a[0] == b[0]) {
+           return a[1] < b[1];
+         }
+         return a[0] < b[0];
+       }
+     ```
+
+     没什么特别的，就是要加个 `static`。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
