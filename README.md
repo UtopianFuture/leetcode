@@ -2342,6 +2342,10 @@
 
      这题做法很巧妙，将以 `root` 为根节点的二叉树转化为以 `target` 为根节点的多叉树，只要加上一个 `parent` 信息就行，然后再用多叉树的层序遍历即可。注意要加上一个 `visited`，因为需要遍历 `parent` 会导致重复遍历。
 
+233. [sumRootToLeaf](https://leetcode.cn/problems/sum-of-root-to-leaf-binary-numbers/)
+
+     和 168. sumNumbers 一样，不过要修改一下计算和的函数。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
