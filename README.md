@@ -2315,6 +2315,21 @@
 
      比较简单，用堆来动态存储前 n 小（大）的值。
 
+229. [pathInZigZagTree](https://leetcode.cn/problems/path-in-zigzag-labelled-binary-tree/)
+
+     这题主要是数学公式。正常的完全二叉树中第 n 个节点的父节点是 n/2，而这里需要做个转换。
+
+     ```c
+     	while (label >= 1) {
+           res.insert(res.begin(), label);
+           label /= 2;
+
+           int depth = (int)(log(label) / log(2));
+           // label - pow(2, depth) 求出该节点是该层的第几个
+           label = pow(2, depth + 1) - 1 - (label - pow(2, depth));
+         }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
