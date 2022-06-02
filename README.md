@@ -495,8 +495,8 @@
 36. [deleteNode](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
     删除节点分 3 种情况：
   - 叶子节点，直接删除；
-  - 有右子树，使用后继节点替代，然后在右子树中删除该后继节点；
-  - 没有右子树，但有左子树，使用前驱节点替代，然后在左子树中删除该前驱节点；
+  - 有右子树，使用后继节点（中序遍历的后一个节点）替代，然后**在右子树中删除该后继节点**；
+  - 没有右子树，但有左子树，使用前驱节点（中序遍历的前一个节点）替代，然后**在左子树中删除该前驱节点**；
 
 37. [insertIntoBST](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
     还是二叉搜索树，找到对应的空节点，将其链接到父节点即可。
