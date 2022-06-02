@@ -2338,6 +2338,10 @@
 
      还需加强。
 
+232. [distanceK](https://leetcode.cn/problems/all-nodes-distance-k-in-binary-tree/)
+
+     这题做法很巧妙，将以 `root` 为根节点的二叉树转化为以 `target` 为根节点的多叉树，只要加上一个 `parent` 信息就行，然后再用多叉树的层序遍历即可。注意要加上一个 `visited`，因为需要遍历 `parent` 会导致重复遍历。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
