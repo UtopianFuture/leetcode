@@ -2385,7 +2385,34 @@
 
 235. [trimBST](https://leetcode.cn/problems/trim-a-binary-search-tree/)
 
-     ​     说实话，不理解。
+     说实话，不理解。
+
+236. [consecutiveNumbersSum](https://leetcode.cn/problems/consecutive-numbers-sum/)
+
+     我的方法能写出来，但是超时了。
+
+237. [numDecodings](https://leetcode.cn/problems/decode-ways/)
+
+     和 177. translateNum 类似，不过这里不能有前缀 0，所以需要考虑的情况多一些，
+
+     ```c
+     	for (int i = 2; i < n; i++) {
+           if (s[i] == '0') {
+             if (s[i - 1] == '0') {
+               return 0;
+             }
+             if (stoi(s.substr(i - 1, 2)) > 26) {
+               return 0;
+             }
+             dp[i - 1] = dp[i - 2];
+             dp[i] = dp[i - 1];
+           } else if (stoi(s.substr(i - 1, 2)) > 26 || s[i - 1] == '0') {
+             dp[i] = dp[i - 1];
+           } else {
+             dp[i] = dp[i - 1] + dp[i - 2];
+           }
+         }
+     ```
 
 ### reference
 
