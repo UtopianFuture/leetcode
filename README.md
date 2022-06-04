@@ -2440,6 +2440,38 @@
          }
      ```
 
+242. [generate](https://leetcode.cn/problems/pascals-triangle/)
+
+     比较简单。
+
+243. [getRow](https://leetcode.cn/problems/pascals-triangle-ii/)
+
+     和上题一样。
+
+244. [uniquePathsWithObstacles](https://leetcode.cn/problems/unique-paths-ii/)
+
+     和 238. uniquePaths 类似，不过要加上一些判断条件，如果该节点是障碍节点，那么路径数为 0，然后每次递增时都要判断左边的节点和上面的节点是否为障碍节点。
+
+     ```c
+         for (int i = 1; i < m; i++) {
+           for (int j = 1; j < n; j++) {
+             if (obstacleGrid[i][j]) {
+               dp[i][j] = 0;
+               continue;
+             }
+             if (obstacleGrid[i][j - 1] && obstacleGrid[i - 1][j] == 0) {
+               dp[i][j] = dp[i - 1][j];
+             } else if (obstacleGrid[i - 1][j] && obstacleGrid[i][j - 1] == 0) {
+               dp[i][j] = dp[i][j - 1];
+             } else if (obstacleGrid[i - 1][j] == 0 && obstacleGrid[i][j - 1] == 0) {
+               dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+             } else {
+               dp[i][j] = 0;
+             }
+           }
+         }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
