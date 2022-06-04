@@ -2426,6 +2426,20 @@
 
      这题不要用动态规划，直接遍历一遍就行，将能够够得着的值置为’1‘，然后检查最后一个的元素的值是否为’1‘。
 
+241. [jump](https://leetcode.cn/problems/jump-game-ii/)
+
+     这题跟前面的 2. coinChange 和 3. climbStairs 有相似之处，但又不完全一样。它需要动态的判断能够跳到哪里，比如第 1 次最远能跳 2 步，那就检查这 2 步哪一步能跳的距离最远，
+
+     ```c
+     	for (int i = 0; i < n - 1; i++) {
+           fast = max(fast, nums[i] + i);
+           if (end == i) { // 2 步结束，更新下一步能跳的最远距离
+             res++;
+             end = fast;
+           }
+         }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
