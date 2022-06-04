@@ -2472,6 +2472,25 @@
          }
      ```
 
+245. [wordBreak](https://leetcode.cn/problems/word-break/)
+
+     状态转移方程：
+
+     *dp*[*i*]=*dp*[*j*] && *check*(*s*[*j*..*i*−1])
+
+     *check*(*s*[*j*..*i*−1]) 表示 *s[j..i-1]* 是否在 word 中，
+
+     ```c
+     	for (int i = 1; i <= m; i++) {
+           for (int j = 0; j < i; j++) {
+             if (dp[j] && map[s.substr(j, i - j)] == 1) {
+               dp[i] = 1;
+               break;
+             }
+           }
+         }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
