@@ -2491,6 +2491,46 @@
          }
      ```
 
+246. [longestValidParentheses](https://leetcode.cn/problems/longest-valid-parentheses/)
+
+     用这种方式判断括号串是否合法，
+
+     ```c
+     	for (int i = 0; i < n; i++) {
+           if (s[i] == '(') {
+             stk.push(i);
+           } else {
+             if (!stk.empty()) {
+               tmp = stk.top();
+               stk.pop();
+               len = i - tmp + 1;
+             } else {
+               // 没有匹配的‘)’，直接跳过或出错
+             }
+           }
+         }
+     ```
+
+     然后用 `dp[i]` 表示到 `s[i - 1]` 为止有效括号的长度，所以最后的算法是这样的，
+
+     ```c
+         for (int i = 0; i < n; i++) {
+           if (s[i] == '(') {
+             stk.push(i);
+             dp[i + 1] = 0;
+           } else {
+             if (!stk.empty()) {
+               tmp = stk.top();
+               stk.pop();
+               len = i - tmp + 1 + dp[tmp];
+               dp[i + 1] = len;
+             } else {
+               dp[i + 1] = 0;
+             }
+           }
+         }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
