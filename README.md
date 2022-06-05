@@ -2597,7 +2597,21 @@
      - 当 `i = 0` 时，那么无法选择任何数字，`dp[0][j] = 0`；
      - 当 `j = 0` 时，那么 `dp[0][0] = 1`；
 
+249. [maximalSquare](https://leetcode.cn/problems/maximal-square/)
 
+     简单的动态规划，
+
+     首先确定状态转移方程：`dp[i][j]` 表示 `matrix[i][j]` 最大的正方形面积
+
+     - `matrix[i][j] = '1'`: `dp[i][j] = (min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1) ^ 2`；
+     - `matrix[i][j] = '1'`: `dp[i][j] = 0`；
+
+     dp base：
+
+     - `dp[0][i] = matrix[0][i] - '0';`
+     - `dp[i][0] = matrix[i][0] - '0';`
+
+     最后返回最大值。
 
 ### reference
 
