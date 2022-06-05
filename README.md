@@ -2531,6 +2531,53 @@
          }
      ```
 
+247. [canPartition](https://leetcode.cn/problems/partition-equal-subset-sum/)
+
+     md，差点得了图灵奖，
+
+     > 本题是经典的「[NP 完全问题](https://leetcode.cn/link/?target=https%3A%2F%2Fbaike.baidu.com%2Fitem%2FNP完全问题)」，也就是说，如果你发现了该问题的一个[多项式算法](https://leetcode.cn/link/?target=https%3A%2F%2Fbaike.baidu.com%2Fitem%2F多项式算法)，那么恭喜你证明出了 P=NP，可以期待一下图灵奖了。
+
+     所以双指针解不出来。
+
+     还是用动态规划，不过我想不出来。
+
+     首先确定状态转移方程：`dp[i][j]` 表示在 `nums[0..i]` 中是否能够选取几个数字（包括 0 个），使得其和为 `j`，那么就有两种情况：
+
+     - `j < nums[i]`，那么 `nums[i]` 就不能加入讨论，所以 `dp[i][j] = dp[i - 1][j];`
+     - `j >= nums[i]`，那么 `nums[i]` 能够加入讨论，`dp[i][j] = dp[i - 1][j] | dp[i - 1][j - nums[i]];`
+
+     然后确定 dp base：
+
+     - 当 `j = 0` 时，那么所有的 `nums[0..i]` 都能找出一个情况（选择 0 个数字）使得其和为 0，所以 `dp[i][0] = true`；
+     - 当 `i = 0` 时，那么 `dp[0][nums[i]] = true`；
+
+     ```c
+         // dp[i][j] present if there is a solution that choose some numbers
+         // (include 0 number) from nums[0, i] and the sum is equal j.
+         vector<vector<bool>> dp(n, vector<bool>(sum + 1, false));
+         for (int i = 0; i < n; i++) {
+           dp[i][0] = true; // we can choose 0 number and the sum is always 0.
+         }
+         dp[0][nums[0]] = true; // we can only choose nums[0].
+
+         for (int i = 1; i < n; i++) {
+           for (int j = 1; j <= sum; j++) {
+             if (j < nums[i]) {
+               // nums[i] should not add, because nums[i] is larger than sum(j),
+               // so dp[i][j] must be false if nums[i] add.
+               dp[i][j] = dp[i - 1][j];
+             } else {
+               // nums[i] is smaller than sum(j), so if we add nums[i], dp[i][j]
+               // equals dp[i -1][j - nums[i]], if we don't add, dp[i][j] equals
+               // dp[i- 1][j].
+               dp[i][j] = dp[i - 1][j] | dp[i - 1][j - nums[i]];
+             }
+           }
+         }
+     ```
+
+     这道题还要多做几次。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
