@@ -2548,21 +2548,22 @@
 
      然后确定 dp base：
 
-     - 当 `j = 0` 时，那么所有的 `nums[0..i]` 都能找出一个情况（选择 0 个数字）使得其和为 0，所以 `dp[i][0] = true`；
-     - 当 `i = 0` 时，那么 `dp[0][nums[i]] = true`；
+     - 当 `i = 0` 时，那么无法选择任何数字，`dp[0][j] = 0`；
+     - 当 `j = 0` 时，那么 `dp[0][0] = 1`；
 
      ```c
          // dp[i][j] present if there is a solution that choose some numbers
          // (include 0 number) from nums[0, i] and the sum is equal j.
-         vector<vector<bool>> dp(n, vector<bool>(sum + 1, false));
-         for (int i = 0; i < n; i++) {
-           dp[i][0] = true; // we can choose 0 number and the sum is always 0.
-         }
-         dp[0][nums[0]] = true; // we can only choose nums[0].
+         vector<vector<bool>> dp(n + 1, vector<bool>(sum + 1, false));
+         // for (int i = 0; i <= n; i++) {
+         // dp[i][0] = true; // we can choose 0 number and the sum is always 0.
+         // }
+         // dp[0][nums[0]] = true; // we can only choose nums[0].
+         dp[0][0] = true;
 
-         for (int i = 1; i < n; i++) {
+         for (int i = 1; i <= n; i++) {
            for (int j = 1; j <= sum; j++) {
-             if (j < nums[i]) {
+             if (j < nums[i - 1]) {
                // nums[i] should not add, because nums[i] is larger than sum(j),
                // so dp[i][j] must be false if nums[i] add.
                dp[i][j] = dp[i - 1][j];
@@ -2570,13 +2571,33 @@
                // nums[i] is smaller than sum(j), so if we add nums[i], dp[i][j]
                // equals dp[i -1][j - nums[i]], if we don't add, dp[i][j] equals
                // dp[i- 1][j].
-               dp[i][j] = dp[i - 1][j] | dp[i - 1][j - nums[i]];
+               dp[i][j] = dp[i - 1][j] | dp[i - 1][j - nums[i - 1]];
              }
            }
          }
      ```
 
      这道题还要多做几次。
+
+248. [findTargetSumWays](https://leetcode.cn/problems/target-sum/)
+
+     这题和上题类似，我们先转化一下，向数组中的每个整数前添加 `'+'` 或 `'-'` ，然后串联起所有整数，使得构造的表达式和为 target，我们假设添加 `-` 的数字的和为 neg，则
+
+     `sum - neg - neg = target` -> `neg = (sum - target) / 2`
+
+     也就是说要求数组中和为 `neg` 的子数组，那么就和上题类似。
+
+     确定状态转移方程：`dp[i][j]` 表示在 `nums[0..i]` 中选取几个数字（包括 0 个），使得其和为 `j` 的情况数，那么就有两种情况：
+
+     - `j < nums[i]`，那么 `nums[i]` 就不能加入讨论，所以 `dp[i][j] = dp[i - 1][j];`
+     - `j >= nums[i]`，那么 `nums[i]` 能够加入讨论，`dp[i][j] = dp[i - 1][j] + dp[i - 1][j - nums[i]];`
+
+     然后确定 dp base：
+
+     - 当 `i = 0` 时，那么无法选择任何数字，`dp[0][j] = 0`；
+     - 当 `j = 0` 时，那么 `dp[0][0] = 1`；
+
+
 
 ### reference
 
