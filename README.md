@@ -2611,11 +2611,38 @@
      - `dp[0][i] = matrix[0][i] - '0';`
      - `dp[i][0] = matrix[i][0] - '0';`
 
+     ```c
+         for (int i = start; i < end; i++) {
+           tmp.push_back(candidates[i]);
+           sum += candidates[i];
+           backtrace(tmp, sum, i, end); // 可以重复使用，从本身开始递归
+           sum -= candidates[i];
+           tmp.pop_back();
+         }
+     ```
+
      最后返回最大值。
 
 250. [combinationSum](https://leetcode.cn/problems/combination-sum/)
 
      回溯法，对于细节的调试还需要更加熟练，才能快速写出来。
+
+251. [combinationSum_ii](https://leetcode.cn/problems/combination-sum-ii/)
+
+     上一题一样，只不过每个数字只能使用一次，所以
+
+     ```c
+     	for (int i = start; i < end; i++) {
+           if (i > start && candidates[i] == candidates[i - 1]) {
+             continue; // 为了去除重复情况，加上一个判断
+           }
+           sum += candidates[i];
+           tmp.push_back(candidates[i]);
+           backtrace(tmp, sum, i + 1, end); // 从 i + 1 开始递归
+           tmp.pop_back();
+           sum -= candidates[i];
+         }
+     ```
 
 ### reference
 
