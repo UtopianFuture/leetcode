@@ -2644,6 +2644,63 @@
          }
      ```
 
+252. [combinationSum_iii](https://leetcode.cn/problems/combination-sum-iii/)
+
+     简单的回溯法，和前面两题类似。
+
+253. [solveSudoku](https://leetcode.cn/problems/sudoku-solver/)
+
+     就是穷举，判断 1 ~ 9 是否合适，合适就判断下一个。
+
+     ```c
+       bool backtrace(vector<vector<char>> &board, int i, int j) {
+         int m = 9, n = 9;
+         if (j == n) { // the last column
+           return backtrace(board, i + 1, 0);
+         }
+         if (i == m) {
+           // this is a solution
+           return true;
+         }
+
+         if (board[i][j] != '.') {
+           // this space has number
+           return backtrace(board, i, j + 1);
+         }
+
+         for (char ch = '1'; ch <= '9'; ch++) {
+           // check every number
+           if (!isVaild(board, i, j, ch)) {
+             continue;
+           }
+           board[i][j] = ch;
+           // 合适，判断下一个，如果下一个返回 false，遍历下一个字符看是否合适
+           if (backtrace(board, i, j + 1)) {
+             return true;
+           }
+           board[i][j] = '.';
+         }
+         return false;
+       }
+     ```
+
+     ```c
+       bool isVaild(vector<vector<char>> &board, int r, int c, char ch) {
+         for (int i = 0; i < 9; i++) {
+           if (board[r][i] == ch) {
+             return false;
+           }
+           if (board[i][c] == ch) {
+             return false;
+           }
+           if (board[(r / 3) * 3 + i / 3][(c / 3) * 3 + i % 3] == ch) {
+             return false;
+           }
+         }
+         return true;
+       }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
