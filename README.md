@@ -2776,6 +2776,48 @@
 
      再结合 BFS 的框架就行了。
 
+257. [openLock](https://leetcode.cn/problems/open-the-lock/)
+
+     好吧，这题虽说也是直接遍历，但是我写不出来。关键还是理解 BFS，这里需要注意一个状态转动一次能够到达的状态，
+
+     ```c
+             for (int j = 0; j < 4; j++) {
+               string tmp1 = up(str, j);
+               if (visited[tmp1] != 1) {
+                 q.push(tmp1);
+                 visited[tmp1] = 1;
+               }
+
+               string tmp2 = down(str, j);
+               if (visited[tmp2] != 1) {
+                 q.push(tmp2);
+                 visited[tmp2] = 1;
+               }
+             }
+     ```
+
+     ```c
+       string up(string str, int location) {
+         if (str[location] == '9') {
+           str[location] = '0';
+         } else {
+           str[location] = str[location] + 1;
+         }
+         return str;
+       }
+
+       string down(string str, int location) {
+         if (str[location] == '0') {
+           str[location] = '9';
+         } else {
+           str[location] = str[location] - 1;
+         }
+         return str;
+       }
+     ```
+
+     即 4 个转盘都可以转动一次。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
