@@ -657,7 +657,7 @@
     这题思路是这样的，找到第一个升序的 `a[i - 1]` 和 `a[i]`，因为都是降序没有下一个更大的序列，然后再从后往前遍历，找到尽可能小的比 `a[i - 1]` 大的 `a[j]`，交换 `a[i - 1]`, `a[j]`，将 `a[i - 1]` 后面的数按升序重排。因为 `a[i ~ n]` 为降序，所以直接用 reverse 交换顺序即可。
 
 51. [subsets](https://leetcode-cn.com/problems/subsets/)
-    这题还是使用回溯法，但是遍历方法有所不同。首先是结束条件，子集需要将所有的路径添加进取，而排列只要 `n = nums.size()` 时才添加。然后是回溯状态的变化，
+    这题还是使用回溯法，但是遍历方法有所不同。首先是结束条件，子集需要将所有的路径添加进去，而排列只要 `n = nums.size()` 时才添加。然后是回溯状态的变化，
 
     ```c
     backtrace(trace, nums, i + 1);
@@ -2700,6 +2700,44 @@
          return true;
        }
      ```
+
+254. [canPartitionKSubsets](https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/)
+
+     这题的做法就是暴力遍历，增加一个 used 变量利用位操作记录对应的数字是否使用。
+
+     ```c
+       bool backtrace(int k, int bucket, int target) {
+         if (k == 0) {
+           return true;
+         }
+         if (bucket == target) {
+           return backtrace(k - 1, 0, target);
+         }
+
+         for (int i = 0; i < (int)nums.size(); i++) {
+           if (used & (1 << i)) { // this number has been used
+             continue;
+           }
+           if (bucket + nums[i] > target) {
+             continue;
+           }
+           bucket += nums[i];
+           used |= (1 << i);
+           if (backtrace(k, bucket, target)) {
+             return true;
+           }
+           used ^= (1 << i);
+           bucket -= nums[i];
+         }
+         return false;
+       }
+     ```
+
+     不过暴力法我也不熟练啊。
+
+255. [wordBreak_ii](https://leetcode.cn/problems/word-break-ii/)
+
+     直接回溯，比较简单。
 
 ### reference
 

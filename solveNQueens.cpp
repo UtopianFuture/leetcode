@@ -4,73 +4,54 @@ using namespace std;
 #define REOPEN_READ freopen("/home/guanshun/GDB/cpp/input.txt", "r", stdin);
 
 class Solution {
-public:
-  bool isConflict(vector<string> row, int nrow, int col, int n) {
-    for (int i = 0; i < n; i++) {
-      // check is this column has conflict
-      if (row[i][col] == 'Q') {
-        return false;
-      }
-      // check is this row has conflict
-      if (row[nrow][i] == 'Q') {
-        return false;
-      }
-    }
-    // check 45 degree has conflict
-    for (int i = nrow - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-      if (row[i][j] == 'Q') {
-        return false;
-      }
-    }
-    // check 135 degree has conflict
-    for (int i = nrow - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
-      if (row[i][j] == 'Q') {
-        return false;
-      }
-    }
-    // check 225 degree has conflict
-    for (int i = nrow + 1, j = col - 1; i < n && j >= 0; i++, j--) {
-      if (row[i][j] == 'Q') {
-        return false;
-      }
-    }
-    // check 315 degree has conflict
-    for (int i = nrow + 1, j = col + 1; i < n && j < n; i++, j++) {
-      if (row[i][j] == 'Q') {
-        return false;
-      }
-    }
+private:
+  vector<vector<string>> res;
 
+public:
+  bool isConflict(vector<string> tmp, int row, int col, int n) {
+    for (int i = 0; i < row; i++) {
+      if (tmp[i][col] == 'Q') {
+        return false;
+      }
+    }
+    for (int i = 0; i < col; i++) {
+      if (tmp[row][i] == 'Q') {
+        return false;
+      }
+    }
+    for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+      if (tmp[i][j] == 'Q') {
+        return false;
+      }
+    }
+    for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+      if (tmp[i][j] == 'Q') {
+        return false;
+      }
+    }
     return true;
   }
 
-  void backtrace(vector<vector<string>> &board, vector<string> &row, int nrow,
-                 int n) {
-    // already arrive the last row
-    if (nrow == n) {
-      board.emplace_back(row);
+  void backtrace(vector<string> tmp, int row, int n) {
+    if (row == n) {
+      res.push_back(tmp);
       return;
     }
 
-    string tmp = ".";
-    for (int col = 0; col < n; col++) {
-      // check conflict if row[nrow][col] = Q
-      if (!isConflict(row, nrow, col, n)) {
+    for (int i = 0; i < n; i++) {
+      if (!isConflict(tmp, row, i, n)) {
         continue;
       }
-      // if don't have conflict
-      row[nrow][col] = 'Q';
-      backtrace(board, row, nrow + 1, n);
-      // this column has tried, recover to '.'
-      row[nrow][col] = '.';
+      tmp[row][i] = 'Q';
+      backtrace(tmp, row + 1, n);
+      tmp[row][i] = '.';
     }
   }
 
   vector<vector<string>> solveNQueens(int n) {
-    vector<string> row(n, string(n, '.'));
-    vector<vector<string>> board;
-    backtrace(board, row, 0, n);
-    return board;
+    vector<string> tmp(n, string(n, '.'));
+    backtrace(tmp, 0, n);
+    return res;
   }
 };
 
