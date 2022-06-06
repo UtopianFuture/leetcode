@@ -2818,6 +2818,24 @@
 
      即 4 个转盘都可以转动一次。
 
+258. [isInterleave](https://leetcode.cn/problems/interleaving-string/?show=1)
+
+     还是暴力解，但我就是写不出来的。
+
+     `dp[i][j]` 表示 `s1[0..i]` 和 `s2[0..j]` 能否构成 s3，然后 `s[i]`, `s[j]` 都有可能符合，所以将它们都加进去，
+
+     ```c
+         int res = 0;
+         if (l1 < (int)s1.size() && s1[l1] == s3[l1 + l2]) {
+           res = check(s1, l1 + 1, s2, l2, s3);
+         }
+         if (l2 < (int)s2.size() && s2[l2] == s3[l1 + l2]) {
+           res = res || check(s1, l1, s2, l2 + 1, s3);
+         }
+     ```
+
+     就是这点想不出来。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
