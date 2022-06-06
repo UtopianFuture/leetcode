@@ -2739,6 +2739,43 @@
 
      直接回溯，比较简单。
 
+256. [slidingPuzzle](https://leetcode.cn/problems/sliding-puzzle/?show=1)
+
+     这题确实很难，巧妙的使用 BFS。首先要将 `vector<vector<int>> board` 转化成 `string`，便于时用哈希表记录该种情况是否出现过。
+
+     ```c
+         string init;
+         for (int i = 0; i < 2; i++) {
+           for (int j = 0; j < 3; j++) {
+             init.push_back(board[i][j] + '0');
+           }
+         }
+     ```
+
+     然后记录某个块的所有相邻块，这些都是可以交换的，
+
+     ```c
+         vector<vector<int>> neighbor = {{1, 3}, {0, 2, 4}, {1, 5},
+                                         {0, 4}, {1, 3, 5}, {2, 4}};
+     ```
+
+     所谓 BFS 就是找到 ’0‘ 即空白的块，然后和相邻块交换，将交换后得到的序列如栈，如果哈希表中该序列没有出现，
+
+     ```c
+             int location = tmp.first.find('0');
+             for (int j = 0; j < (int)neighbor[location].size(); j++) {
+               swap(tmp.first[location], tmp.first[neighbor[location][j]]);
+               string str = tmp.first;
+               if (map[tmp.first] != 1) {
+                 q.push({str, res + 1});
+                 map[str] = 1;
+               }
+               swap(tmp.first[location], tmp.first[neighbor[location][j]]);
+             }
+     ```
+
+     再结合 BFS 的框架就行了。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
