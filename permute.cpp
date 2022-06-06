@@ -4,24 +4,27 @@ using namespace std;
 #define REOPEN_READ freopen("/home/guanshun/GDB/cpp/input.txt", "r", stdin);
 
 class Solution {
+private:
+  vector<int> nums;
+
 public:
-  void backtrace(vector<vector<int>> &res, vector<int> &nums, int first,
-                 int len) {
-    if (first == len) {
+  void backtrace(vector<vector<int>> &res, int start, int end) {
+    if (start == end) {
       res.emplace_back(nums);
       return;
     }
 
-    for (int i = first; i < len; i++) {
-      swap(nums[i], nums[first]);
-      backtrace(res, nums, first + 1, len);
-      swap(nums[i], nums[first]);
+    for (int i = start; i < end; i++) {
+      swap(nums[i], nums[start]);
+      backtrace(res, start + 1, end);
+      swap(nums[i], nums[start]);
     }
   }
 
   vector<vector<int>> permute(vector<int> &nums) {
+    this->nums = nums;
     vector<vector<int>> res;
-    backtrace(res, nums, 0, nums.size());
+    backtrace(res, 0, nums.size());
     return res;
   }
 };
