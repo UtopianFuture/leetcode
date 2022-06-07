@@ -2836,6 +2836,38 @@
 
      就是这点想不出来。
 
+259. [sortedListToBST](https://leetcode.cn/problems/convert-sorted-list-to-binary-search-tree/?show=1)
+
+     哈哈，终于会用递归了，找到中间节点，然后递归建立左右子树，
+
+     ```c
+         if (!head) {
+           return NULL;
+         }
+         if (!head->next) {
+           return new TreeNode(head->val);
+         }
+
+         ListNode *one = head;
+         ListNode *two = head;
+         ListNode *pre;
+         while (two && two->next) {
+           pre = one;
+           one = one->next;
+           two = two->next;
+           if (two) {
+             two = two->next;
+           }
+         }
+
+         ListNode *right = one->next;
+         pre->next = NULL;
+         TreeNode *root = new TreeNode(one->val);
+         root->left = construct(head);
+         root->right = construct(right);
+         return root;
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
