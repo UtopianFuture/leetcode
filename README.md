@@ -315,9 +315,16 @@
     dp[1] = nums[1];
     dp[2] = nums[2] + dp[0];
     ```
+
   - 状态转移方程
     ```c
     dp[i] = max(dp[i - 2], dp[i - 3]) + nums[i]
+    ```
+
+    但其实这个状态转移方程更容易理解，
+
+    ```c
+    dp[i] = max(dp[i - 2] + nums[i], dp[i - 1]);
     ```
 24. [rob_ii](https://leetcode-cn.com/problems/house-robber-ii/)
     首尾是连接的，那么就分两种情况考虑，
