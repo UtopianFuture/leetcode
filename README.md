@@ -376,6 +376,35 @@
         (right.do_rob > right.dont_rob ? right.do_rob : right.dont_rob);
     ```
 
+    这题根据二叉树的分解问题的思路可以写出更好理解的代码，
+
+    ```c
+    private:
+      unordered_map<TreeNode *, int> visited;
+
+    public:
+      int rob(TreeNode *root) {
+        if (!root) {
+          return 0;
+        }
+
+        if (visited[root]) {
+          return visited[root];
+        }
+
+        int isrob = // 抢这个节点
+            root->val +
+            (root->left != NULL ? rob(root->left->left) + rob(root->left->right)
+                                : 0) +
+            (root->right != NULL ? rob(root->right->left) + rob(root->right->right)
+                                 : 0);
+        int notrob = rob(root->left) + rob(root->right); // 不抢这个节点
+        int res = max(isrob, notrob);
+        visited[root] = res;
+        return res;
+      }
+    ```
+
 26. [isMatch_regular](https://leetcode-cn.com/problems/regular-expression-matching/)
     这题开始想错了方向，想着直接使用 kmp 字符匹配，然后对 '.', '*' 进行特殊处理即可，例如：
 
