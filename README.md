@@ -746,6 +746,69 @@
 57. [twoSum](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/)
     开始想用回溯法，因为就是求两个数的和，跟 [combine](53. [combine](https://leetcode-cn.com/problems/combinations/)) 一样。但是会超时。还是需要使用双指针法，只要数组有序，就应该想到双指针技巧。
 
+57. [threeSum](.)
+
+    唉，我想到的回溯法其实是暴力排序，
+
+    ```c
+      void backtrace(vector<int> nums, vector<int> tmp, int first, int len) {
+        if ((int)tmp.size() == 3) {
+          if (tmp[0] + tmp[1] + tmp[2] == 0) {
+            res.push_back(tmp);
+          }
+          return;
+        }
+
+        for (int i = first; i < len; i++) {
+          tmp.push_back(nums[i]);
+          backtrace(nums, tmp, i + 1, len);
+          tmp.pop_back();
+        }
+      }
+    ```
+
+    其实可以用简单的双指针，
+
+    ```c
+      vector<vector<int>> threeSum(vector<int> &nums) {
+        vector<vector<int>> res;
+        int n = (int)nums.size();
+        if (n < 3)
+          return res;
+        sort(nums.begin(), nums.end()); // 先排序，方便之后跳过重复的元素
+        for (int i = 0; i < n; i++) {
+          if (nums[i] > 0) // 如果 nums[i] > 0, nums[left] + nums[right] + nums[i] 肯定大于 0
+            return res;
+          if (i > 0 && nums[i] == nums[i - 1]) { // 跳过重复的元素
+            continue;
+          }
+
+          int left = i + 1, right = n - 1; // left, right 在 nums[i, n - 1] 中遍历
+          while (left < right) {
+            int sum = nums[left] + nums[right] + nums[i];
+            if (sum > 0) {
+              right--;
+            } else if (sum < 0) {
+              left++;
+            } else {
+              res.push_back({nums[left], nums[right], nums[i]});
+              while (right > left && nums[right] == nums[right - 1]) // 去除重复的元素
+                right--;
+              while (right > left && nums[left] == nums[left + 1])
+                left++;
+              left++;
+              right--;
+            }
+          }
+        }
+        return res;
+      }
+    ```
+
+57. [fourSum](https://leetcode.cn/problems/4sum/)
+
+    好吧，没什么技术含量，就是硬算，用双指针比 O(n^4) 好一点，就是细节很难调。
+
 58. [findDuplicate](https://leetcode-cn.com/problems/find-the-duplicate-number/)
     这题确实想不到，在数组中使用双指针。因为有两个重复的数，那么有一个元素一定有两个入口，和判断链表是否有环一样的。找到有两个入口的点后再用链表中找环入口的方法即可找到对应的元素。
 
@@ -1936,66 +1999,7 @@
        }
      ```
 
-195. [threeSum](.)
-
-     唉，我想到的回溯法其实是暴力排序，
-
-     ```c
-       void backtrace(vector<int> nums, vector<int> tmp, int first, int len) {
-         if ((int)tmp.size() == 3) {
-           if (tmp[0] + tmp[1] + tmp[2] == 0) {
-             res.push_back(tmp);
-           }
-           return;
-         }
-
-         for (int i = first; i < len; i++) {
-           tmp.push_back(nums[i]);
-           backtrace(nums, tmp, i + 1, len);
-           tmp.pop_back();
-         }
-       }
-     ```
-
-     其实可以用简单的双指针，
-
-     ```c
-       vector<vector<int>> threeSum(vector<int> &nums) {
-         vector<vector<int>> res;
-         int n = (int)nums.size();
-         if (n < 3)
-           return res;
-         sort(nums.begin(), nums.end()); // 先排序，方便之后跳过重复的元素
-         for (int i = 0; i < n; i++) {
-           if (nums[i] > 0) // 如果 nums[i] > 0, nums[left] + nums[right] + nums[i] 肯定大于 0
-             return res;
-           if (i > 0 && nums[i] == nums[i - 1]) { // 跳过重复的元素
-             continue;
-           }
-
-           int left = i + 1, right = n - 1; // left, right 在 nums[i, n - 1] 中遍历
-           while (left < right) {
-             int sum = nums[left] + nums[right] + nums[i];
-             if (sum > 0) {
-               right--;
-             } else if (sum < 0) {
-               left++;
-             } else {
-               res.push_back({nums[left], nums[right], nums[i]});
-               while (right > left && nums[right] == nums[right - 1]) // 去除重复的元素
-                 right--;
-               while (right > left && nums[left] == nums[left + 1])
-                 left++;
-               left++;
-               right--;
-             }
-           }
-         }
-         return res;
-       }
-     ```
-
-196. [minSubArrayLen](https://leetcode.cn/problems/2VG8Kg/)
+195. [minSubArrayLen](https://leetcode.cn/problems/2VG8Kg/)
 
      典型的双指针。
 
