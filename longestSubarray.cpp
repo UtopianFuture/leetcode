@@ -16,14 +16,11 @@ public:
   }
 
   int longestSubarray(vector<int> &nums, int limit) {
-    int min = INT_MAX;
-    int max = INT_MIN;
     int res = 0;
     int n = (int)nums.size();
     int left = 0, right = 0;
-    int tmp, abs;
+    int abs;
     while (right < n) {
-      tmp = nums[right];
       abs = absolute(nums, left, right);
       if (abs <= limit) {
         res = res > (right - left + 1) ? res : (right - left + 1);
