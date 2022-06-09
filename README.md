@@ -730,6 +730,46 @@
 62. [checkInclusion](https://leetcode-cn.com/problems/permutation-in-string/)
     和上一题一样，只是修改一下返回值。
 
+62. [longestSubarray](https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/?show=1)
+
+    这题开始的做法是使用滑动窗口，但是要不断寻找窗口内的最大最小值，最后一个测试案例会超时，所有使用双端队列维护最大最小值，
+
+    ```c
+        deque<int> maxq, minq;
+        int res = 0;
+        int n = (int)nums.size();
+        int left = 0, right = 0;
+        int tmp;
+        while (right < n) {
+          tmp = nums[right];
+          while (!maxq.empty() && maxq.back() < tmp) {
+            maxq.pop_back(); // 确定到目前为止的最大值
+          }
+          while (!minq.empty() && minq.back() > tmp) {
+            minq.pop_back(); // 确定到目前位值的最小值
+          }
+
+          maxq.push_back(tmp);
+          minq.push_back(tmp);
+
+          while (!maxq.empty() && !minq.empty() &&
+                 maxq.front() - minq.front() > limit) {
+            if (maxq.front() == nums[left]) {
+              maxq.pop_front(); // nums[left] 就是最大值，所以要出栈
+            }
+            if (minq.front() == nums[left]) {
+              minq.pop_front(); // nums[left] 就是最小值，所以要出栈
+            }
+            left++;
+          }
+          res = max(res, right - left + 1);
+          right++;
+        }
+        return res;
+    ```
+
+    本来想用 `queue<int>` 的，但是不能从后端出栈，所以出错了。
+
 63. [floodFill](https://leetcode-cn.com/problems/flood-fill/)
     这题需要遍历二维矩阵，使用多叉树的遍历，
 
@@ -2897,6 +2937,10 @@
      这样，我们假设 `n = 125`，来算一算 `125!` 的结果末尾有几个 0：
 
      首先，125 / 5 = 25，这一步就是计算有多少个像 5，15，20，25 这些 5 的倍数，它们一定可以提供一个因子 5。但是，这些足够吗？刚才说了，像 25，50，75 这些 25 的倍数，可以提供两个因子 5，那么我们再计算出 `125!` 中有 125 / 25 = 5 个 25 的倍数，它们每人可以额外再提供一个因子 5。够了吗？我们发现 125 = 5 x 5 x 5，像 125，250 这些 125 的倍数，可以提供 3 个因子 5，那么我们还得再计算出 `125!` 中有 125 / 125 = 1 个 125 的倍数，它还可以额外再提供一个因子 5。这下应该够了，`125!` 最多可以分解出 25 + 5 + 1 = 31 个因子 5，也就是说阶乘结果的末尾有 31 个 0。
+
+262. [preimageSizeFZF](https://leetcode.cn/problems/preimage-size-of-factorial-zeroes-function/)
+
+     对每个数用上一题的方法计算出其最后有几个 0，然后用二分法确定上下界。
 
 ### reference
 
