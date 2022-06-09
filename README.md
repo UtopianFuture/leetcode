@@ -2982,6 +2982,10 @@
 
      对每个数用上一题的方法计算出其最后有几个 0，然后用二分法确定上下界。
 
+262. [moveZeroes](https://leetcode.cn/problems/move-zeroes/)
+
+     这题只需要移动 0，所以使用 `right` 指针维护每一个非 0 的元素，用 `left` 维护去除 0 后的数组索引。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
