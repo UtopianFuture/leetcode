@@ -82,15 +82,16 @@
     ![](https://github.com/UtopianFuture/leetcode/blob/main/image/superEggDrop_2.jpg?raw=true)
 
 9. [longestPalindromeSubseq](https://leetcode-cn.com/problems/longest-palindromic-subsequence)
-    这题的思路是这样的：dp[i][j] 表示 s[i ~ j] 子序列的最长回文子序列，对于任一个子序列的 s[i], s[j] 都有两种情况：
+    这题的思路是这样的：`dp[i][j]` 表示 `s[i ~ j]` 子序列的最长回文子序列，对于任一个子序列的 `s[i]`, `s[j]` 都有两种情况：
 
-  - s[i] = s[j]
-    那么 s[i] s[j] 就可以加入到最长回文子序列中
+  - `s[i] = s[j]`
+    那么 `s[i]`, `s[j]` 就可以加入到最长回文子序列中
+
     ```c
     dp[i][j] = dp[i + 1][j - 1] + 2;
     ```
-  - s[i] != s[j]
-  - 那 s[i], s[j] 就不能作为最长回文子序列首尾
+  - `s[i] != s[j]`
+  - 那 `s[i]`, `s[j]` 就不能作为最长回文子序列首尾
       ```c
       dp[i][j] = dp[i + 1][j] > dp[i][j - 1] ? dp[i + 1][j] : dp[i][j - 1];
       ```
@@ -1116,6 +1117,8 @@
 
 94. [removeDuplicates](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
     简单。
+
+    用双指针更简单。
 
 95. [removeDuplicates_ii](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
     和上一题一样，只是改成了每个元素最多出现两次。

@@ -3,7 +3,7 @@
 using namespace std;
 #define REOPEN_READ freopen("/home/guanshun/GDB/cpp/input.txt", "r", stdin);
 
-class Solution {
+class Solution1 {
 public:
   int removeDuplicates(vector<int> &nums) {
     int max = 0x7fffffff;
@@ -28,6 +28,21 @@ public:
   }
 };
 
+class Solution2 {
+public:
+  int removeDuplicates(vector<int> &nums) {
+    int n = (int)nums.size();
+    int left = 0, right = 0;
+    while (right < n) {
+      if (nums[right] != nums[left]) {
+        left++;
+      }
+      right++;
+    }
+    return left + 1;
+  }
+};
+
 int main(int argc, char *argv[]) {
   REOPEN_READ;
   int n;
@@ -39,7 +54,7 @@ int main(int argc, char *argv[]) {
     nums.push_back(tmp);
   }
 
-  Solution *s = new (Solution);
+  Solution2 *s = new Solution2;
   cout << s->removeDuplicates(nums) << "\n";
 
   return 0;
