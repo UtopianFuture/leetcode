@@ -2093,6 +2093,10 @@
        }
      ```
 
+201. [getProduct](https://leetcode.cn/problems/product-of-the-last-k-numbers/?show=1)
+
+     比较简单，还是使用前缀和，但是要注意如果有一个数为 0，那么所有的前缀和都要为 0。
+
 201. [validPalindrome](https://leetcode.cn/problems/RQku0D/)
 
      简单。在遇到不同的字符时分成 `s[left + 1, right]` 和 `s[left, right + 1]` 判断。
