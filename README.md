@@ -90,8 +90,10 @@
     ```c
     dp[i][j] = dp[i + 1][j - 1] + 2;
     ```
+
   - `s[i] != s[j]`
-  - 那 `s[i]`, `s[j]` 就不能作为最长回文子序列首尾
+
+      那 `s[i]`, `s[j]` 就不能作为最长回文子序列首尾
       ```c
       dp[i][j] = dp[i + 1][j] > dp[i][j - 1] ? dp[i + 1][j] : dp[i][j - 1];
       ```
@@ -170,7 +172,7 @@
     （1）dp 数组表示 `s[i] ~ s[j]` 是否是回文串；
     （1）如果该子串 `s[i] != s[j]`， 那么这个子串肯定不是回文；
     （2）如果 `s[i] == s[j]`，那么该子串是否是回文跟 `s[i + 1] ~ s[j - 1]` 相同。
-    这题和[最长回文子序列](#9. [longestPalindromeSubseq](https://leetcode-cn.com/problems/longest-palindromic-subsequence))需要分清楚，一个是子序列，可以不连续，dp 数组表示的是 `s[i ~ j]` 子串中的最长回文子序列长度，而这题 dp 数组表示的 `s[i ~ j]` 是否是回文子串。动态转移方程是是类似的。
+    这题和 9. 最长回文子序列 需要分清楚，一个是子序列，可以不连续，dp 数组表示的是 `s[i ~ j]` 子串中的最长回文子序列长度，而这题 dp 数组表示的 `s[i ~ j]` 是否是回文子串。动态转移方程是是类似的。
 
     ```c
         char *res = malloc((max + 1) * sizeof(char));
@@ -181,6 +183,8 @@
     ```
 
     还有一点需要注意，由于使用了 `-fsanitize=address` 来进行边界检查，所以在创建 `char *` 时要这样，即数组大小比需要的大 1，然后最后一个 byte 设为 0。
+
+    原来这题是逐个遍历长度，而不是用一般的遍历 i, j 的方法。
 
 17. [maxProfit](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
     股票问题：
