@@ -1548,6 +1548,20 @@
 
      这题用 dp 能够通过部分案例，但是复杂度太高，难的算法先不学了吧通过部分案例应该也能的部分分。
 
+150. [maxSubarraySumCircular](https://leetcode.cn/problems/maximum-sum-circular-subarray/)
+
+     这题的做法很巧妙，
+
+     ```c
+         for (int i = 1; i < n; i++) {
+           sum += nums[i];
+           dp = nums[i] + max(dp, 0);
+           _max = max(dp, _max);
+         }
+     ```
+
+     要求值最大的子数组，按我的想法是要遍历两次的，找到所有的 `sum[i..j]`，不过这里 `dp = nums[i] + max(dp, 0);` 就可以找到最大值，因为如果前一个子数组和是负数，那么就没有必要加上。
+
 149. [corpFlightBookings](https://leetcode-cn.com/problems/corporate-flight-bookings/)
 
      这题用到了差分数组。数组 `nums=[1,2,2,4]` 的差分数组为 `cha=[1,1,0,2]`，即 `cha[j]=nums[j]-nums[j-1]`而对差分数组求前缀和即可得到原数组。如果我们要将 `nums[i ~j]` 加上某个定值，那么需要将 `cha[i]` 加上该值，将 `cha[j + 1]` 减去该值。
@@ -2093,9 +2107,13 @@
        }
      ```
 
-201. [getProduct](https://leetcode.cn/problems/product-of-the-last-k-numbers/?show=1)
+202. [getProduct](https://leetcode.cn/problems/product-of-the-last-k-numbers/?show=1)
 
      比较简单，还是使用前缀和，但是要注意如果有一个数为 0，那么所有的前缀和都要为 0。
+
+203. [maxSubarraySumCircular](https://leetcode.cn/problems/maximum-sum-circular-subarray/?show=1)
+
+
 
 201. [validPalindrome](https://leetcode.cn/problems/RQku0D/)
 
