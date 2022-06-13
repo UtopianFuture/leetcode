@@ -5,44 +5,38 @@ using namespace std;
 
 class Solution {
 public:
-  int upper(vector<int> &nums, int location) {
-    int i = location - 1;
-    for (i = location - 1; i >= 0; i--) {
-      if (nums[i] != nums[location]) {
-        break;
-      }
+  int lower_bound(vector<int> nums, int mid) {
+    int res = mid - 1;
+    while (res >= 0 && nums[res] == nums[mid]) {
+      res--;
     }
-    return i + 1;
+    return res + 1;
   }
 
-  int lower(vector<int> &nums, int location) {
-    int i = location + 1;
-    for (i = location + 1; i < (int)nums.size(); i++) {
-      if (nums[i] != nums[location]) {
-        break;
-      }
+  int upper_bound(vector<int> nums, int mid) {
+    int res = mid + 1;
+    while (res < (int)nums.size() && nums[res] == nums[mid]) {
+      res++;
     }
-    return i - 1;
+    return res - 1;
   }
 
   vector<int> searchRange(vector<int> &nums, int target) {
-    vector<int> res = {-1, -1};
-    int size = (int)nums.size();
-    int low, high, mid;
-    low = 0;
-    high = size - 1;
-    while (low <= high) {
-      mid = (low + high) / 2;
-      if (nums[mid] == target) {
-        res[0] = upper(nums, mid);
-        res[1] = lower(nums, mid);
-        return res;
-      } else if (nums[mid] > target) {
-        high = mid - 1;
-        continue;
+    vector<int> res{-1, -1};
+    if ((int)nums.size() == 0) {
+      return res;
+    }
+    int left = 0, right = (int)nums.size();
+    int mid;
+    while (left <= right) {
+      mid = (left + right) / 2;
+      if (nums[mid] > target) {
+        right = mid - 1;
       } else if (nums[mid] < target) {
-        low = mid + 1;
-        continue;
+        left = mid + 1;
+      } else {
+        res = {lower_bound(nums, mid), upper_bound(nums, mid)};
+        break;
       }
     }
     return res;
