@@ -890,6 +890,12 @@
 
     同时考虑返回条件，即该元素的颜色和 origincolor 不一样，或者超出数组范围。
 
+    同时为了在遍历邻居是不会重复遍历原来的节点，需要暂时将原来的节点的值设为非法值，
+
+    ```c
+    image[row][col] = -1; // [row, col] should not be check from it's neighbors
+    ```
+
 64. [islandPerimeter](https://leetcode-cn.com/problems/island-perimeter/)
     这题使用和上一题一样的模板，但是需要找到一块陆地作为搜索起点，同时需要避免重复遍历，将遍历过的元素置为 2。
 

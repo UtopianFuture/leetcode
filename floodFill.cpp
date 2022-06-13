@@ -18,7 +18,7 @@ public:
     if (image[row][col] != origincolor) {
       return;
     }
-    image[row][col] = -1;
+    image[row][col] = -1; // [row, col] should not be check from it's neighbors
     DFS(image, row + 1, col, origincolor, newColor);
     DFS(image, row, col + 1, origincolor, newColor);
     DFS(image, row - 1, col, origincolor, newColor);
