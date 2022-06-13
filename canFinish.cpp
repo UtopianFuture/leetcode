@@ -80,6 +80,45 @@ public:
   }
 };
 
+class Solution2 {
+private:
+  vector<vector<int>> edge;
+  vector<int> visited;
+  bool res = true;
+
+public:
+  void dfs(int n) {
+    visited[n] = 1;
+    for (int i = 0; i < (int)edge[n].size(); i++) {
+      if (visited[edge[n][i]] == 0) {
+        dfs(edge[n][i]);
+        if (!res) {
+          return;
+        }
+      } else if (visited[edge[n][i]] == 1) {
+        res = false;
+        return;
+      }
+    }
+    visited[n] = 2;
+  }
+
+  bool canFinish(int numCourses, vector<vector<int>> &prerequisites) {
+    edge.resize(numCourses);
+    visited.resize(numCourses, 0);
+    for (int i = 0; i < (int)prerequisites.size(); i++) {
+      edge[prerequisites[i][1]].push_back(prerequisites[i][0]);
+    }
+
+    for (int i = 0; i < numCourses && res; i++) {
+      if (visited[i] == 0) {
+        dfs(i);
+      }
+    }
+    return res;
+  }
+};
+
 int main(int argc, char *argv[]) {
   vector<vector<int>> prerequisites = {{2, 1}, {1, 0}};
   int numCourses = 3;
