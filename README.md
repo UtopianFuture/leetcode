@@ -1580,7 +1580,7 @@
 
 149. [corpFlightBookings](https://leetcode-cn.com/problems/corporate-flight-bookings/)
 
-     这题用到了差分数组。数组 `nums=[1,2,2,4]` 的差分数组为 `cha=[1,1,0,2]`，即 `cha[j]=nums[j]-nums[j-1]`而对差分数组求前缀和即可得到原数组。如果我们要将 `nums[i ~j]` 加上某个定值，那么需要将 `cha[i]` 加上该值，将 `cha[j + 1]` 减去该值。
+     这题用到了差分数组。数组 `nums=[1,2,2,4]` 的差分数组为 `cha=[1,1,0,2]`，即 `cha[j] = nums[j] - nums[j - 1]` 而对差分数组求前缀和即可得到原数组。**如果我们要将 `nums[i ~ j]` 加上某个定值，那么需要将 `cha[i]` 加上该值，将 `cha[j + 1]` 减去该值**。这题就是不断对数组区间求差分数组，一个预定记录就是对区间的操作。
 
 150. [carPooling](https://leetcode-cn.com/problems/car-pooling/)
 
