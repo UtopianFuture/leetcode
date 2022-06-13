@@ -911,7 +911,7 @@
     同上。
 
 67. [solve](https://leetcode-cn.com/problems/surrounded-regions/)
-    依旧用 FloodFill 算法，先遍历四周的元素，将所有不符合条件的元素替换成‘2’，然后遍历整个矩阵，将所有符合条件的元素进行转换，通过将‘2’替换回来。
+    任何边界上的 'O' 都不会被填充为 'X'，所以我们可以遍历所有在边界上的 'O'，将其转换为 ‘2’，然后使用 FloodFill 算法，遍历四周的元素，将所有不符合条件的元素替换成‘2’，这样所有与边界 ‘0’ 相连的节点都会被转化为 ‘2’，而不相连的则还是 ‘O‘，然后遍历整个矩阵，将所有 ‘O’ 转换为 'X'，将 ‘2’ 转换为 ‘O’。
 
 68. [equationsPossible](https://leetcode-cn.com/problems/satisfiability-of-equality-equations/)
     这题很抽象，不太懂。首先使用的是 UnionFind 算法，这个算法需要实现 3 个 API，
