@@ -6,25 +6,24 @@ using namespace std;
 class Solution {
 public:
   string removeDuplicateLetters(string s) {
-    vector<int> vis(26), num(26);
-    for (char ch : s) {
-      num[ch - 'a']++;
+    vector<int> visited(26), num(26);
+    for (auto c : s) {
+      num[c - 'a']++;
     }
 
     string res;
-    for (char c : s) {
-      // c is't exist before
-      if (vis[c - 'a'] == 0) {
+    for (auto c : s) {
+      if (visited[c - 'a'] != 1) {
         while (!res.empty() && res.back() > c) {
-          if (num[res.back() - 'a'] > 0) {
-            vis[res.back() - 'a'] = 0;
+          if (num[c - 'a'] > 0) {
+            visited[res.back() - 'a'] = 0;
             res.pop_back();
           } else {
             break;
           }
         }
-        vis[c - 'a'] = 1;
         res.push_back(c);
+        visited[c - 'a'] = 1;
       }
       num[c - 'a']--;
     }
@@ -34,16 +33,10 @@ public:
 
 int main(int argc, char *argv[]) {
   REOPEN_READ;
-  int n;
-  cin >> n;
   string s;
-  char tmp;
-  for (int i = 0; i < n; i++) {
-    cin >> tmp;
-    s.push_back(tmp);
-  }
+  cin >> s;
 
-  Solution *r = new (Solution);
+  Solution *r = new Solution;
   cout << r->removeDuplicateLetters(s) << "\n";
 
   return 0;

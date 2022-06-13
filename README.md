@@ -1606,14 +1606,18 @@
 
      用 vector 保存数据，用 unordered_map 保存数据的索引，以此达到在 O(1) 空间复杂度内用 O(1) 时间复杂度访问元素。要实现在 O(1) 时间复杂度内增删元素也很简单，将需要删除的元素 swap 到 vector 尾部再删除即可，这时要更新索引。
 
-156. [removeDuplicateLetters](https://leetcode-cn.com/problems/remove-duplicate-letters/)
+159. [removeDuplicateLetters](https://leetcode-cn.com/problems/remove-duplicate-letters/)
 
      这题的关键是从字符串 s 中删除一个字符使得 s 的字典序最小。
 
-     这要用到“关键字符”解法：如果 `s[i] > s[i+1]`，那么删除 `s[i]`，剩下的字符串就是字典序最小。但是这里又要求所有的字符必须只出现一次，所有要有一个数组记录该字符是否出现过，一个数组记录该字符出现的次数。然后对“关键字符”解法作出如下两点改动：
+     这要用到“关键字符”解法：如果 `s[i] > s[i+1]`，那么删除 `s[i]`，剩下的字符串就是字典序最小。但是这里又要求所有的字符必须只出现一次，所有要有一个数组记录该字符是否出现过，一个数组记录该字符出现的次数。同时这题还需要使用单调栈。
 
-     - 如果 `s[i]` 出现过多次，那么将 `s[i]` 删除；
-     - 如果 `s[i]` 只出现过 1 次，那么该字符不用删除。
+     先从前向后扫描所有的字符，如果该字符没有访问过，那么对其进行分析，
+
+     - 如果它小于单调栈的栈顶元素，且栈顶元素出现过多次，那么不断将栈顶元素出栈，直到栈顶元素小于该元素；
+     - 同时如果栈顶元素只出现 1 次，那么栈顶元素不用出栈；
+
+     否则直接加入单调栈。
 
 157. [exchange](https://leetcode.cn/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
 
