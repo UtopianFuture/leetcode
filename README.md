@@ -1416,7 +1416,7 @@
 
 137. [findOrder](https://leetcode-cn.com/problems/course-schedule-ii/)
 
-     和上题一样的拓扑排序，只需要额外创建一个数组，用于保存序列。
+     和上题一样的拓扑排序，只需要额外创建一个数组，用于保存序列，当该节点的状态为“已完成”时就可以将其加入到路径中。
 
 138. [isBipartite](https://leetcode-cn.com/problems/is-graph-bipartite/)
 
