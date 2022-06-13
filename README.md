@@ -1162,9 +1162,13 @@
 
      就是正常的用 `rand()` 求随机数。
 
-104. [randomIndex](https://leetcode-cn.com/problems/random-pick-index/)
+107. [randomIndex](https://leetcode-cn.com/problems/random-pick-index/)
 
      原来随机数也有技巧：当遇到第 i 个元素时，应该有 1/i 的概率选择该元素，1 - 1/i 的概率保持原有的选择。
+
+108. [randomPickWithBlacklist](https://leetcode.cn/problems/random-pick-with-blacklist/)
+
+     这题很巧妙，如果遍历 `[0 ~ n -1]` 会超时，所以把所有小于 `this->size = n - (int)blacklist.size();` 且在黑名单中的数一一映射到大于等于 `this->size = n - (int)blacklist.size();` 且出现在白名单中的数。这样一来，如果随机生成的整数出现在黑名单中，我们就返回它唯一对应的那个出现在白名单中的数即可。
 
 105. [findDisappearedNumbers](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/)
 
