@@ -739,6 +739,10 @@
     }
     ```
 
+54. [search](https://leetcode.cn/problems/binary-search/)
+
+    复习一下二分查找。
+
 54. [searchRange](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
     用二分查找，比较简单。
 
