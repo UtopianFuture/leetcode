@@ -910,6 +910,8 @@
 66. [numIslands](https://leetcode-cn.com/problems/number-of-islands/submissions/)
     同上。
 
+    这里可以不用像上面那样，因为 `grid[i][j] == '1'` 说明这肯定是一块陆地，直接 `num++` 就行。
+
 67. [solve](https://leetcode-cn.com/problems/surrounded-regions/)
     任何边界上的 'O' 都不会被填充为 'X'，所以我们可以遍历所有在边界上的 'O'，将其转换为 ‘2’，然后使用 FloodFill 算法，遍历四周的元素，将所有不符合条件的元素替换成‘2’，这样所有与边界 ‘0’ 相连的节点都会被转化为 ‘2’，而不相连的则还是 ‘O‘，然后遍历整个矩阵，将所有 ‘O’ 转换为 'X'，将 ‘2’ 转换为 ‘O’。
 

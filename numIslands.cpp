@@ -10,18 +10,20 @@ public:
            col < (int)grid[0].size();
   }
 
-  int DFS(vector<vector<char>> &grid, int row, int col) {
+  void DFS(vector<vector<char>> &grid, int row, int col) {
     if (!inArea(grid, row, col)) {
-      return 0;
+      return;
     }
     if (grid[row][col] == '0' || grid[row][col] == '2') {
-      return 0;
+      return;
     }
 
     // this element has visited
     grid[row][col] = '2';
-    return 1 + DFS(grid, row + 1, col) + DFS(grid, row, col + 1) +
-           DFS(grid, row - 1, col) + DFS(grid, row, col - 1);
+    DFS(grid, row + 1, col);
+    DFS(grid, row, col + 1);
+    DFS(grid, row - 1, col);
+    DFS(grid, row, col - 1);
   }
 
   int numIslands(vector<vector<char>> &grid) {
@@ -29,9 +31,8 @@ public:
     for (int i = 0; i < (int)grid.size(); i++) {
       for (int j = 0; j < (int)grid[i].size(); j++) {
         if (grid[i][j] == '1') {
-          if (DFS(grid, i, j)) {
-            num++;
-          }
+          DFS(grid, i, j);
+          num++;
         }
       }
     }
