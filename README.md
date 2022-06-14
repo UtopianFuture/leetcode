@@ -923,6 +923,37 @@
     - connected：两个节点所在的树是否是连接的。而将 UnionFind 算法应用到这题是这样的：
       首先将所有等式两端的值代表的节点通过 `union` 建立连接，然后遍历所有不等式，如果不等式两端的值已经连接了，那么该等式组就不成立。
 
+68. [validateBinaryTreeNodes](https://leetcode.cn/problems/validate-binary-tree-nodes/?show=1)
+
+    还是使用 UnionFind 算法，其判断是否成环的方式是在连通前检查两个节点是否是连接的，如果是，那么就会成环，
+
+    ```c
+            if (uf->connected(i, leftChild[i])) {
+              return false;
+            }
+            uf->_union(i, leftChild[i]);
+    ```
+
+    然后还要检查所有节点的入度，正常情况下只有一个根节点（入度为 0），然后剩余的节点入度都为 1，
+
+    ```c
+        int root = -1;
+        for (int i = 0; i < n; i++) {
+          if (degree[i] == 0) {
+            if (root != -1) {
+              return false; // only one root
+            }
+            root = i;
+          } else if (degree[i] != 1) {
+            return false; // no node has more than one indegree
+          }
+        }
+
+        if (root == -1) {
+          return false;
+        }
+    ```
+
 69. [pancakeSort](https://leetcode-cn.com/problems/pancake-sorting/)
     烧饼排序，找到前 n 个烧饼中最大的那个，将其反转到第一个，然后整个反转，那么最大的那个就到了位置 n，完成了一个烧饼的排序，然后递归的排序 n - 1 个烧饼即可。
 
