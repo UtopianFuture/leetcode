@@ -1576,19 +1576,23 @@
      Trie() : children(26), isEnd(false) {}
      ```
 
-  - 插入操作
-    在插入字符时，如果当前的树中没有该字符对应的节点，那么创建一个节点，
+     - 插入操作
+       在插入字符时，如果当前的树中没有该字符对应的节点，那么创建一个节点，
 
-    ```c
-    if (node->children[word[i]] == NULL) {
-      node->children[word[i]] = new Trie();
-    }
-    ```
+       ```c
+       if (node->children[word[i]] == NULL) {
+         node->children[word[i]] = new Trie();
+       }
+       ```
 
-    当处理到最后一个字符时，需要将当前节点标记为字符串的结尾。
+       当处理到最后一个字符时，需要将当前节点标记为字符串的结尾。
 
-  - 查找前缀
-    从字典树的根节点开始查找，如果某个字符在树中不存在，说明该前缀不存在，返回 NULL；若搜索到了前缀的末尾，说明该前缀存在，若前缀末尾对应的节点 isEnd 为真，说明存在该字符串。
+     - 查找前缀
+       从字典树的根节点开始查找，如果某个字符在树中不存在，说明该前缀不存在，返回 NULL；若搜索到了前缀的末尾，说明该前缀存在，若前缀末尾对应的节点 isEnd 为真，说明存在该字符串。
+
+144. [WordDictionary](https://leetcode.cn/problems/design-add-and-search-words-data-structure/)
+
+     和上面一样，但是要考虑 '.' 的情况，因为 '.' 能适配任何单词，所以使用 dfs 遍历每一个 children，只要有一个匹配就返回 true。
 
 144. [replaceWords](https://leetcode-cn.com/problems/replace-words/)
 

@@ -9,7 +9,10 @@ private:
   bool isEnd;
 
 public:
-  WordDictionary() : children(26), isEnd(false) {}
+  WordDictionary() {
+    this->children.resize(26);
+    this->isEnd = false;
+  }
 
   void addWord(string word) {
     WordDictionary *node = this;
