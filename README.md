@@ -1563,7 +1563,7 @@
 
 143. [implementTrie](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
 
-     Trie，前缀树或字典树，可以理解为多叉树，每个叉即表示字典中的一个元素，然后每个节点包含一个指示该节点是否为字符串结尾的标识符。
+     Trie，前缀树或字典树，可以**理解为多叉树**，每个叉即表示字典中的一个元素，然后每个节点包含一个指示该节点是否为字符串结尾的标识符。
 
      ```c
      vector<Trie *> children;

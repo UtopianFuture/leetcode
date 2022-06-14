@@ -13,6 +13,13 @@ private:
   vector<Trie *> children;
   bool isEnd;
 
+public:
+  // constructor of this class
+  Trie() {
+    this->children.resize(26);
+    this->isEnd = false;
+  }
+
   Trie *searchPrefix(string prefix) {
     Trie *node = this;
     for (int i = 0; i < (int)prefix.length(); i++) {
@@ -25,14 +32,10 @@ private:
     return node;
   }
 
-public:
-  // constructor of this class
-  Trie() : children(26), isEnd(false) {}
-
   void insert(string word) {
     // Trie is a class not a struct,
     // this is different from my used coding habits.
-    Trie *node = this;
+    Trie *node = new Trie;
     for (int i = 0; i < (int)word.length(); i++) {
       word[i] -= 'a';
       if (node->children[word[i]] == NULL) {
