@@ -5,42 +5,39 @@ using namespace std;
 
 class UnionFind {
 private:
-  int count; // union number
-  int *parent;
+  vector<int> parent;
+  int count;
 
 public:
   void UF(int n) {
-    this->count = n;
-    parent = new int[n];
+    this->parent.resize(n);
     for (int i = 0; i < n; i++) {
       parent[i] = i;
     }
+    this->count = n;
   }
 
-  // union to node
-  void _union(int p, int q) {
-    int rootp = find(p);
-    int rootq = find(q);
-    if (rootp == rootq) {
+  void _union(int n, int m) {
+    int rootn = find(n);
+    int rootm = find(m);
+    if (rootn == rootm) {
       return;
     }
-    parent[rootp] = rootq;
+    parent[rootm] = rootn;
     count--;
   }
 
-  // if two node is connected
-  bool connected(int p, int q) {
-    int rootp = find(p);
-    int rootq = find(q);
-    return rootp == rootq;
-  }
-
   int find(int x) {
-    while (parent[x] != x) {
-      // parent[x] = parent[parent[x]]; // optimize tree
+    while (x != parent[x]) {
       x = parent[x];
     }
     return x;
+  }
+
+  bool connected(int n, int m) {
+    int rootn = find(n);
+    int rootm = find(m);
+    return rootn == rootm;
   }
 
   int _count() { return count; }
@@ -49,22 +46,18 @@ public:
 class Solution {
 public:
   bool equationsPossible(vector<string> &equations) {
-    UnionFind *uf = new (UnionFind);
+    UnionFind *uf = new UnionFind;
     uf->UF(26);
-    int p, q;
-    for (int i = 0; i < (int)equations.size(); i++) {
+    int n = (int)equations.size();
+    for (int i = 0; i < n; i++) {
       if (equations[i][1] == '=') {
-        p = equations[i][0] - 'a';
-        q = equations[i][3] - 'a';
-        uf->_union(p, q);
+        uf->_union(equations[i][0] - 'a', equations[i][3] - 'a');
       }
     }
 
-    for (int i = 0; i < (int)equations.size(); i++) {
+    for (int i = 0; i < n; i++) {
       if (equations[i][1] == '!') {
-        p = equations[i][0] - 'a';
-        q = equations[i][3] - 'a';
-        if (uf->connected(p, q)) {
+        if (uf->connected(equations[i][0] - 'a', equations[i][3] - 'a')) {
           return false;
         }
       }
