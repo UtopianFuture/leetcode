@@ -1523,15 +1523,11 @@
        }
      ```
 
-140. [minCostConnectPoints](https://leetcode-cn.com/problems/min-cost-to-connect-all-points/)
+149. [minCostConnectPoints](https://leetcode-cn.com/problems/min-cost-to-connect-all-points/)
 
-     这题使用 Kruskal 算法，算法的思路很简单，将所有的边按照长度排序，然后遍历所有的边。如果加入这条边能够连通两个连通子图，那么这条边就是最短路径中的一条边，直到所有的节点都加入最短路径中，结束遍历。这里判断某条边能够连通两个连通子图使用的是 UnionFind 算法。还有一点需要注意，`vector` 的排序方法，
+     这题使用 Kruskal 算法，算法的思路很简单，**将所有的边按照长度排序，然后遍历所有的边**。如果加入这条边能够连通两个连通子图，那么这条边就是最短路径中的一条边，直到所有的节点都加入最短路径中，结束遍历。这里**判断某条边能够连通两个连通子图使用的是 UnionFind 算法**。
 
-     ```c
-       // sort by length
-       sort(edges.begin(), edges.end(),
-            [](Edge a, Edge b) -> int { return a.len < b.len; });
-     ```
+     用 `priority_queue` 小顶堆保存边更高效。
 
 141. [networkDelayTime](https://leetcode-cn.com/problems/network-delay-time/)
 

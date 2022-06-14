@@ -6,84 +6,85 @@ using namespace std;
 class UnionFind {
 private:
   vector<int> parent;
-  // vector<int> rank;
   int count;
 
 public:
   void UF(int n) {
     this->count = n;
-    // rank.resize(n, 1);
-    parent.resize(n);
+    this->parent.resize(n);
     for (int i = 0; i < n; i++) {
       parent[i] = i;
     }
   }
 
-  int _union(int p, int q) {
-    int rootp = find(p);
-    int rootq = find(q);
-    if (rootp == rootq) {
-      return false;
-    }
-    // if (rank[rootp] < rank[rootq]) {
-    // swap(rootp, rootq);
-    // }
-    // rank[rootp] += rank[rootq];
-    parent[rootq] = rootp;
-    count--;
-    return true;
-  }
-
   int find(int x) {
-    while (parent[x] != x) {
+    while (x != parent[x]) {
       parent[x] = parent[parent[x]];
       x = parent[x];
     }
     return x;
   }
+
+  void _union(int n, int m) {
+    int rootn = find(n);
+    int rootm = find(m);
+    if (rootn == rootm) {
+      return;
+    }
+    parent[rootm] = rootn;
+  }
+
+  bool connected(int n, int m) {
+    int rootn = find(n);
+    int rootm = find(m);
+    return rootn == rootm;
+  }
+
+  int _count() { return count; }
 };
 
 class Solution {
-private:
-  struct Edge {
-    int len, x, y;
-    Edge(int len, int x, int y) : len(len), x(x), y(y) {}
-  };
-
 public:
-  // compute distance of each points
-  int distance(vector<int> a, vector<int> b) {
-    return abs(a[0] - b[0]) + abs(a[1] - b[1]);
+  int distance(vector<int> na, vector<int> nb) {
+    return abs(na[0] - nb[0]) + abs(na[1] - nb[1]);
   }
 
+  // static bool cmp(const vector<int> na, const vector<int> nb) {
+  // return na[0] < nb[0];
+  // }
+
+  struct cmp {
+    bool operator()(vector<int> na, vector<int> nb) { return na[0] > nb[0]; }
+  };
+
   int minCostConnectPoints(vector<vector<int>> &points) {
-    int n = points.size();
-    UnionFind *uf = new UnionFind;
-    uf->UF(n);
-    vector<Edge> edges;
+    int n = (int)points.size();
+    int res = 0;
+    priority_queue<vector<int>, vector<vector<int>>, cmp> edge;
     for (int i = 0; i < n; i++) {
       for (int j = i + 1; j < n; j++) {
-        edges.emplace_back(distance(points[i], points[j]), i, j);
+        edge.push({distance(points[i], points[j]), i, j});
       }
     }
 
-    // sort by length
-    sort(edges.begin(), edges.end(),
-         [](Edge a, Edge b) -> int { return a.len < b.len; });
-
-    int ret = 0, num = 1;
-    for (int i = 0; i < (int)edges.size(); i++) {
-      // if edge(x, y) connect two different block,
-      // this edge is useful.
-      if (uf->_union(edges[i].x, edges[i].y)) {
-        ret += edges[i].len;
-        num++;
-        if (num == n) {
+    // sort(edge.begin(), edge.end(), cmp);
+    UnionFind *uf = new UnionFind;
+    uf->UF(n);
+    vector<int> tmp;
+    // for (int i = 0; i < (int)edge.size(); i++) {
+    while (!edge.empty()) {
+      tmp = edge.top();
+      edge.pop();
+      if (!uf->connected(tmp[1], tmp[2])) {
+        uf->_union(tmp[1], tmp[2]);
+        res += tmp[0];
+        n--;
+        if (n == 0) {
           break;
         }
       }
     }
-    return ret;
+    return res;
   }
 };
 
