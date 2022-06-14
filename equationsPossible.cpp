@@ -37,7 +37,7 @@ public:
 
   int find(int x) {
     while (parent[x] != x) {
-      parent[x] = parent[parent[x]];
+      // parent[x] = parent[parent[x]]; // optimize tree
       x = parent[x];
     }
     return x;
