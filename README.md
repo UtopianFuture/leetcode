@@ -1529,12 +1529,17 @@
 
      用 `priority_queue` 小顶堆保存边更高效。
 
-141. [networkDelayTime](https://leetcode-cn.com/problems/network-delay-time/)
+150. [networkDelayTime](https://leetcode-cn.com/problems/network-delay-time/)
 
-     dijkstra 算法，以前觉得这算法挺复杂的，现在写一遍也没有那么难啊，就是复杂一点的 bfs，但同样有几点需要注意：
+     dijkstra 算法，以前觉得这算法挺复杂的，现在写一遍也没有那么难啊，就是复杂一点的 bfs。首先 dijkstra 算法的大致思路是这样的：
+
+     - 从 start 节点出发，创建一个 disTo 数组，用来记录其他节点到 start 节点的距离，初始时除 start 为 0 其他都为 INT_MAX；
+     - 同时为每个节点维护一个入栈结构 `vector<int> tmp` ，`tmp[0]` 表示该节点的索引，`tmp[1]` 表示该节点到 start 节点的距离；
+     - 如果遍历到某个节点，该节点 `tmp[1] > disTo[]` ，那么说明这条路肯定不是最优的，这个节点就直接跳过，不用遍历；
+     - 否则遍历该节点所有的邻接节点，更新邻接节点到 start 节点的距离 `int nextNodeToStart = graph[curNode][i][1] + disTo[curNode];`，如果这条路径距离更近，那么更新 `disTo[i]`，同时将该节点入栈；
+
+     然后有几点需要注意：
      （1）需要根据题目条件建立图，一般是使用邻接表表示，需要注意节点的索引是从 0 开始还是从 1 开始；
-     （2）需要使用 State 类保存节点索引和与 start 节点之间的距离作为辅助，每个节点都有一个 State 对象与之对应。
-     （3）使用 `priority_queue` 按照该节点到 start 的距离保存所有的 State 对象；具体实现看代码更清晰。
 
 142. [maxProbability](https://leetcode-cn.com/problems/path-with-maximum-probability/)
 

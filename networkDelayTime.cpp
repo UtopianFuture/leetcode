@@ -86,6 +86,67 @@ public:
   }
 };
 
+class Solution1 {
+public:
+  struct cmp {
+    bool operator()(vector<int> na, vector<int> nb) { return na[1] > nb[1]; }
+  };
+
+  vector<int> dijkstra(vector<vector<vector<int>>> graph, int k) {
+    int n = (int)graph.size();
+    vector<int> disTo(n, INT_MAX); // distance from current node to start node.
+    disTo[k] = 0;
+    priority_queue<vector<int>, vector<vector<int>>, cmp> pq;
+    pq.push({k, 0}); // 'k' is start node,
+                     //'0' is distance from current node to start node.
+    vector<int> tmp;
+    int curNode, curNodeToStart;
+    while (!pq.empty()) {
+      tmp = pq.top();
+      pq.pop();
+
+      curNode = tmp[0];
+      curNodeToStart = tmp[1];
+      if (disTo[curNode] < curNodeToStart) {
+        continue;
+      }
+
+      for (int i = 0; i < (int)graph[curNode].size(); i++) {
+        int nextNode = graph[curNode][i][0];
+        int nextNodeToStart = graph[curNode][i][1] + disTo[curNode];
+        if (nextNodeToStart < disTo[nextNode]) {
+          disTo[nextNode] = nextNodeToStart;
+          pq.push({nextNode, nextNodeToStart});
+        }
+      }
+    }
+    return disTo;
+  }
+
+  int networkDelayTime(vector<vector<int>> &times, int n, int k) {
+    vector<vector<vector<int>>> graph(n + 1);
+    int from, to, distance;
+    for (int i = 0; i < (int)times.size(); i++) {
+      from = times[i][0];
+      to = times[i][1];
+      distance = times[i][2];
+      graph[from].push_back({to, distance});
+    }
+
+    vector<int> disTo = dijkstra(graph, k);
+    int max = INT_MIN;
+    for (int i = 1; i <= n; i++) {
+      if (disTo[i] == INT_MAX) {
+        return -1;
+      }
+      if (disTo[i] > max) {
+        max = disTo[i];
+      }
+    }
+    return max;
+  }
+};
+
 int main(int argc, char *argv[]) {
   int n = 4, k = 2;
   vector<vector<int>> times = {{2, 1, 1}, {2, 3, 1}, {3, 4, 1}};
