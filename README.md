@@ -1541,7 +1541,7 @@
      然后有几点需要注意：
      （1）需要根据题目条件建立图，一般是使用邻接表表示，需要注意节点的索引是从 0 开始还是从 1 开始；
 
-142. [maxProbability](https://leetcode-cn.com/problems/path-with-maximum-probability/)
+151. [maxProbability](https://leetcode-cn.com/problems/path-with-maximum-probability/)
 
      和上一题类似，不过这里**建立邻接表时要建立双向的**，不然会导致有些情况返回 0。还有就是不需要求所有的路径的可能性，只要求 start -> end 的就可以的了，其他的都一样。
 
@@ -1549,6 +1549,16 @@
        if (curStateId == end) {
          return {1, curStateProbability};
        }
+     ```
+
+152. [minimumEffortPath](https://leetcode.cn/problems/path-with-minimum-effort/)
+
+     还是按照上面的模板，这里需要遍历当前节点的 4 个相邻节点（如果 4 个相邻节点都没有越界的话），然后 `vector<vector<int>> heightTo(row, vector<int>(col, INT_MAX));` 记录的是当前节点的最大高度差，如果相邻节点与当前节点的高度差大于 `heightTo[curNodex][curNodey]` 就需要更新，
+
+     ```c
+             int heightBetween =
+                 abs(heights[nextNodex][nextNodey] - heights[curNodex][curNodey]);
+             heightBetween = max(heightBetween, heightTo[curNodex][curNodey]);
      ```
 
 143. [implementTrie](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
