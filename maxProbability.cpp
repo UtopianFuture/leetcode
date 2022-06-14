@@ -72,6 +72,60 @@ public:
   }
 };
 
+class Solution1 {
+public:
+  struct cmp {
+    bool operator()(vector<double> na, vector<double> nb) {
+      return na[1] < nb[1];
+    }
+  };
+
+  vector<double> dijkstra(int n, vector<vector<vector<double>>> graph,
+                          int start) {
+    vector<double> disTo(n, 0);
+    disTo[start] = 1;
+    priority_queue<vector<double>, vector<vector<double>>, cmp> pq;
+    pq.push({(double)start, 1});
+    double curNode, curNodeToStart;
+    vector<double> tmp;
+    while (!pq.empty()) {
+      tmp = pq.top();
+      pq.pop();
+
+      curNode = tmp[0];
+      curNodeToStart = tmp[1];
+      if (curNodeToStart < disTo[curNode]) {
+        continue;
+      }
+      for (int i = 0; i < (int)graph[curNode].size(); i++) {
+        double nextNode = graph[curNode][i][0];
+        double nextNodeToStart = disTo[curNode] * graph[curNode][i][1];
+        if (nextNodeToStart > disTo[nextNode]) {
+          disTo[nextNode] = nextNodeToStart;
+          pq.push({nextNode, nextNodeToStart});
+        }
+      }
+    }
+    return disTo;
+  }
+
+  double maxProbability(int n, vector<vector<int>> &edges,
+                        vector<double> &succProb, int start, int end) {
+    vector<vector<vector<double>>> graph(n);
+    double from, to, prob;
+    for (int i = 0; i < (int)edges.size(); i++) {
+      from = edges[i][0];
+      to = edges[i][1];
+      prob = succProb[i];
+      graph[from].push_back({to, prob});
+      graph[to].push_back({from, prob});
+    }
+
+    vector<double> disTo = dijkstra(n, graph, start);
+    return disTo[end];
+  }
+};
+
 int main(int argc, char *argv[]) {
   int n = 5;
   int start = 3, end = 4;

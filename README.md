@@ -1543,7 +1543,7 @@
 
 142. [maxProbability](https://leetcode-cn.com/problems/path-with-maximum-probability/)
 
-     和上一题类似，不过这里建立邻接表时要建立双向的，不然会导致有些情况返回 0。还有就是不需要求所有的路径的可能性，只要求 start -> end 的就可以的了，其他的都一样。
+     和上一题类似，不过这里**建立邻接表时要建立双向的**，不然会导致有些情况返回 0。还有就是不需要求所有的路径的可能性，只要求 start -> end 的就可以的了，其他的都一样。
 
      ```c
        if (curStateId == end) {
