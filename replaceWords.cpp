@@ -9,7 +9,11 @@ private:
   bool isEnd;
 
 public:
-  Trie() : children(26), isEnd(false){};
+  Trie() {
+    this->children.resize(26);
+    this->isEnd = false;
+  }
+
   string search(string word) {
     Trie *node = this;
     string res;

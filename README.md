@@ -1592,11 +1592,11 @@
 
 144. [WordDictionary](https://leetcode.cn/problems/design-add-and-search-words-data-structure/)
 
-     和上面一样，但是要考虑 '.' 的情况，因为 '.' 能适配任何单词，所以使用 dfs 遍历每一个 children，只要有一个匹配就返回 true。
+     可算过了，折腾人。思路还是一样的，但是要考虑 `.` 的情况。当 `ch == '.'` 时，需要用 dfs 遍历该节点所有非空的子结点，同时 `word` 也要调整，去掉第一个字符。同时还需要考虑 `word` 虽然能够匹配 trie，但是长度比 trie 短的情况，这种算作不匹配。
 
 144. [replaceWords](https://leetcode-cn.com/problems/replace-words/)
 
-     可算过了，折腾人。思路还是一样的，但是要考虑 `.` 的情况。当 `ch == '.'` 时，需要用 dfs 遍历该节点所有非空的子结点，同时 `word` 也要调整，去掉第一个字符。同时还需要考虑 `word` 虽然能够匹配 trie，但是长度比 trie 短的情况，这种算作不匹配。
+     还是和上面一样的做法，但是要考虑一种情况：如果**继承词**有许多可以形成它的**词根**，则用**最短**的词根替换它。所以我们在每次插入字符串结束后都要 `node->isEnd = true;`，之后在查找的时候每查找完一个字符就检查该字符是否是 `node->isEnd = true;`。
 
 145. [dailyTemperatures](https://leetcode-cn.com/problems/daily-temperatures/)
 
