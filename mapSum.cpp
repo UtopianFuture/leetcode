@@ -68,7 +68,7 @@ private:
   Trie *trie;
 
 public:
-  MapSum() { this->trie = new Trie; }
+  MapSum1() { this->trie = new Trie; }
 
   void insert(string key, int val) {
     if (map[key]) {

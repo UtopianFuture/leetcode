@@ -592,6 +592,8 @@
     }
     ```
 
+    直接用双端队列，更好用。
+
 41. [mergeTwoLists](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
     定义一个 next 指向两个链表中值较小的那个，然后将较小的那个链表表头指向下一个元素，再重复进行下一个比较。
 
@@ -1602,7 +1604,7 @@
 
      cao，搞了半天，直接暴力法就行。
 
-145. [dailyTemperatures](https://leetcode-cn.com/problems/daily-temperatures/)
+157. [dailyTemperatures](https://leetcode-cn.com/problems/daily-temperatures/)
 
      求下一个更大的元素，就是用单调栈解。单调栈即从后面开始遍历，不断将小于当前元素的值出栈，从而找到第一个比当前元素大的值，然后将当前元素入栈。这里由于要求第几天会遇到比当前温度高的温度，所以多存储一个天数信息。
 
