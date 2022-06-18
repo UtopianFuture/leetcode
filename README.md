@@ -1028,9 +1028,13 @@
 74. [isPowerOfThree](https://leetcode-cn.com/problems/power-of-three/)
     这种题目不用位操作也行，不过效率更低一点。
 
-74. [isPowerOfFour](https://leetcode.cn/problems/power-of-four/)
+80. [isPowerOfFour](https://leetcode.cn/problems/power-of-four/)
 
     简单。
+
+81. [missingNumber](https://leetcode.cn/problems/missing-number/)
+
+    好吧，用异或更简单。
 
 75. [multiply](https://leetcode-cn.com/problems/multiply-strings/)
     这题可以用作大数乘法，即按照手算的方式做乘法。这里有一点需要特别注意，`num1[i] * num2[j]` 相乘结果是在 `res[i + j]`
