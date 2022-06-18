@@ -2720,7 +2720,7 @@
          }
      ```
 
-247. [canPartition](https://leetcode.cn/problems/partition-equal-subset-sum/)
+262. [canPartition](https://leetcode.cn/problems/partition-equal-subset-sum/)
 
      md，差点得了图灵奖，
 
@@ -2730,7 +2730,7 @@
 
      还是用动态规划，不过我想不出来。
 
-     首先确定状态转移方程：`dp[i][j]` 表示在 `nums[0..i]` 中是否能够选取几个数字（包括 0 个），使得其和为 `j`，那么就有两种情况：
+     首先确定状态转移方程：`dp[i][j]` 表示在 `nums[0..i]` 中是否能够选取几个数字（包括 0 个）使得其和为 `j`，那么就有两种情况：
 
      - `j < nums[i]`，那么 `nums[i]` 就不能加入讨论，所以 `dp[i][j] = dp[i - 1][j];`
      - `j >= nums[i]`，那么 `nums[i]` 能够加入讨论，`dp[i][j] = dp[i - 1][j] | dp[i - 1][j - nums[i]];`
@@ -2767,6 +2767,8 @@
      ```
 
      这道题还要多做几次。
+
+     暴力回溯也能做，不过会超时。
 
 248. [findTargetSumWays](https://leetcode.cn/problems/target-sum/)
 

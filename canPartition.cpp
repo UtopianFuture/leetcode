@@ -49,6 +49,53 @@ public:
   }
 };
 
+class Solution1 {
+private:
+  vector<int> used;
+
+public:
+  bool backtrace(vector<int> nums, vector<int> used, int sum, int target) {
+    if (sum == target) {
+      return true;
+    }
+
+    for (int i = 0; i < (int)nums.size(); i++) {
+      if (used[i] == 1) {
+        continue;
+      }
+
+      sum += nums[i];
+      if (sum > target) {
+        sum -= nums[i];
+        continue;
+      }
+      used[i] = 1;
+      if (backtrace(nums, used, sum, target)) {
+        return true;
+      }
+      used[i] = 0;
+      sum -= nums[i];
+    }
+    return false;
+  }
+
+  bool canPartition(vector<int> &nums) {
+    int sum = 0;
+    int n = (int)nums.size();
+    used.resize(n, 0);
+    for (int i = 0; i < n; i++) {
+      sum += nums[i];
+    }
+
+    if (sum % 2) {
+      return false;
+    }
+
+    sum /= 2;
+    return backtrace(nums, used, 0, sum);
+  }
+};
+
 int main(int argc, char *argv[]) {
   REOPEN_READ;
   int n;
@@ -58,7 +105,7 @@ int main(int argc, char *argv[]) {
     cin >> nums[i];
   }
 
-  Solution *s = new Solution;
+  Solution1 *s = new Solution1;
   cout << (bool)s->canPartition(nums) << endl;
   return 0;
 }
