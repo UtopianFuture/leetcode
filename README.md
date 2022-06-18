@@ -1965,9 +1965,13 @@
 
      简单。用一个哈希表 `unordered_map` 存储 A 链表，然后遍历 B 链表，看 `unordered_map` 中是否存在即可。
 
-181. [kthLargest](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)
+197. [kthLargest](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)
 
      简单，中序遍历即可。
+
+198. [singleNumber](https://leetcode.cn/problems/single-number/)
+
+     先做的下一题，这题看起来就顺眼多了。
 
 182. [singleNumbers](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
 
@@ -1995,7 +1999,7 @@
          }
      ```
 
-183. [singleNumber](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
+183. [singleNumbers_ii](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
 
      好吧，这题不用那么复杂的算法，直接 `unordered_map` 即可。
 

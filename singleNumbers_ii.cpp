@@ -6,8 +6,15 @@ using namespace std;
 class Solution {
 public:
   int singleNumber(vector<int> &nums) {
-    for (int i = 1; i < (int)nums.size(); i++) {
-      nums[0] ^= nums[i];
+    unordered_map<int, int> m;
+    int n = (int)nums.size();
+    for (int i = 0; i < n; i++) {
+      m[nums[i]]++;
+    }
+    for (int i = 0; i < n; i++) {
+      if (m[nums[i]] == 1) {
+        return nums[i];
+      }
     }
     return nums[0];
   }
