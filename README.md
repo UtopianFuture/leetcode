@@ -3105,9 +3105,45 @@
 
      首先，125 / 5 = 25，这一步就是计算有多少个像 5，15，20，25 这些 5 的倍数，它们一定可以提供一个因子 5。但是，这些足够吗？刚才说了，像 25，50，75 这些 25 的倍数，可以提供两个因子 5，那么我们再计算出 `125!` 中有 125 / 25 = 5 个 25 的倍数，它们每人可以额外再提供一个因子 5。够了吗？我们发现 125 = 5 x 5 x 5，像 125，250 这些 125 的倍数，可以提供 3 个因子 5，那么我们还得再计算出 `125!` 中有 125 / 125 = 1 个 125 的倍数，它还可以额外再提供一个因子 5。这下应该够了，`125!` 最多可以分解出 25 + 5 + 1 = 31 个因子 5，也就是说阶乘结果的末尾有 31 个 0。
 
-262. [preimageSizeFZF](https://leetcode.cn/problems/preimage-size-of-factorial-zeroes-function/)
+281. [preimageSizeFZF](https://leetcode.cn/problems/preimage-size-of-factorial-zeroes-function/)
 
-     对每个数用上一题的方法计算出其最后有几个 0，然后用二分法确定上下界。
+     对每个数用上一题的方法计算出其最后有几个 0，然后用二分法确定上下界。不过这种做法会超时。
+
+     哦，原来不是算法有问题，是我的二分法写的有问题。以后按这个写，
+
+     ```c
+       long upper(int k) {
+         long left = 0, right = 2 * (long)INT_MAX;
+         long mid;
+         long num_zero;
+         while (left < right) {
+           mid = (left + right) / 2;
+           num_zero = trailingZeroes(mid);
+           if (num_zero > k) {
+             right = mid;
+           } else if (num_zero <= k) {
+             left = mid + 1;
+           }
+         }
+         return left - 1;
+       }
+
+       long lower(int k) {
+         long left = 0, right = 2 * (long)INT_MAX;
+         long mid;
+         long num_zero;
+         while (left < right) {
+           mid = (left + right) / 2;
+           num_zero = trailingZeroes(mid);
+           if (num_zero >= k) {
+             right = mid;
+           } else if (num_zero < k) {
+             left = mid + 1;
+           }
+         }
+         return left;
+       }
+     ```
 
 262. [moveZeroes](https://leetcode.cn/problems/move-zeroes/)
 

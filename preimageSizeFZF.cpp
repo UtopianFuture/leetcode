@@ -16,39 +16,35 @@ public:
   }
 
   long upper(int k) {
-    long left = 0, right = LONG_MAX;
+    long left = 0, right = 2 * (long)INT_MAX;
     long mid;
     long num_zero;
     while (left < right) {
       mid = (left + right) / 2;
       num_zero = trailingZeroes(mid);
       if (num_zero > k) {
-        right = mid - 1;
-      } else if (num_zero < k) {
+        right = mid;
+      } else if (num_zero <= k) {
         left = mid + 1;
-      } else {
-        left = mid;
       }
     }
-    return num_zero < k ? mid + 1 : mid;
+    return left - 1;
   }
 
   long lower(int k) {
-    long left = 0, right = LONG_MAX;
+    long left = 0, right = 2 * (long)INT_MAX;
     long mid;
     long num_zero;
     while (left < right) {
       mid = (left + right) / 2;
       num_zero = trailingZeroes(mid);
-      if (num_zero > k) {
-        right = mid + 1;
+      if (num_zero >= k) {
+        right = mid;
       } else if (num_zero < k) {
         left = mid + 1;
-      } else {
-        right = mid;
       }
     }
-    return num_zero < k ? mid + 1 : mid;
+    return left;
   }
 
   int preimageSizeFZF(int k) {
