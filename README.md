@@ -1187,6 +1187,18 @@
 96. [countPrimes](https://leetcode-cn.com/problems/count-primes/)
     这题用 `tmp = sqrt(n)` 解还是超时，学会了一种新的方法，排除法。从 2 开始，如果 i 是前面的数的倍数，那么 i 肯定不是素数。从 2 遍历到 `sqrt(n)`，将所有的非素数排除，再计算即可。
 
+96. [numSquares](https://leetcode.cn/problems/perfect-squares/)
+
+    这也能用动态规划是我没想到的，
+
+    动态转移方程：dp[i] = 1 + min(dp[i - j * j]) (1 < j < sqrt(i))
+
+    dp[i] 表示最少需要多少个数的平方来表示整数 i。
+
+    这些数必然落在区间 `[1, sqrt(n)]`。我们可以枚举这些数，假设当前枚举到 j，那么我们还需要取若干数的平方，构成 `i - j^2`。
+
+    dp base：dp[0]= 0
+
 97. [isUgly](https://leetcode-cn.com/problems/ugly-number/)
     这题要读懂题目，是只包含质因数 2, 3, 5 的整数。
 
