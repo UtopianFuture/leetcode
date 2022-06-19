@@ -1175,9 +1175,15 @@
 93. [generateParenthesis](https://leetcode-cn.com/problems/generate-parentheses/)
     这题使用之前学过的回溯法加上上一题的 `isValid`。回溯法能够生成所有可能的情况，再用 `isValid` 一一判断。
 
-93. [minAddToMakeValid](https://leetcode.cn/problems/minimum-add-to-make-parentheses-valid/)
+102. [minAddToMakeValid](https://leetcode.cn/problems/minimum-add-to-make-parentheses-valid/)
 
-    同样可以利用上面的方法，最后返回栈的大小即可。
+     同样可以利用上面的方法，最后返回栈的大小即可。
+
+103. [minInsertions](https://leetcode.cn/problems/minimum-insertions-to-balance-a-parentheses-string/)
+
+     这题做法和前面的不一样。遍历字符串，通过一个 `need` 变量记录对右括号的需求数，根据 `need` 的变化来判断是否需要插入。当 `need == -1` 时，意味着我们遇到一个多余的右括号，显然需要插入一个左括号。另外，当遇到左括号时，若对右括号的需求量为奇数，需要插入 1 个右括号，因为一个左括号需要两个右括号嘛，右括号的需求必须是偶数。
+
+     我们调试一下 `)))())(` 这个案例就清楚了。
 
 93. [letterCombinations](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
 
