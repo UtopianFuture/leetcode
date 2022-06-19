@@ -1149,7 +1149,7 @@
 89. [bulbSwitch](https://leetcode-cn.com/problems/bulb-switcher/)
     只有被按下奇数次的灯泡最后才是亮着的，所以只有因子个数为奇数的灯泡序号才会亮，只有平方数的因子数为奇数（比如 6 = 1 * 6, 2 * 3，它们的因子总是成对出现的，而 4=1 * 4, 2 * 2，只有平方数的平方根因子会只出现 1 次），所以最终答案等于 n 以内（包括 n 和 1）的平方数数量，只要计算 sqrt(n)即可。
 
-90. [isSubsequence](https://leetcode-cn.com/problems/is-subsequence/)
+98. [isSubsequence](https://leetcode-cn.com/problems/is-subsequence/)
 
 91. [isPalindrome](https://leetcode-cn.com/problems/palindrome-linked-list/)
     关于单链表的实用技巧：
@@ -2721,18 +2721,18 @@
          }
      ```
 
-246. [longestValidParentheses](https://leetcode.cn/problems/longest-valid-parentheses/)
+269. [longestValidParentheses](https://leetcode.cn/problems/longest-valid-parentheses/)
 
      用这种方式判断括号串是否合法，
 
      ```c
      	for (int i = 0; i < n; i++) {
-           if (s[i] == '(') {
+           if (s[i] == '(') { // 如果是 '(' 将 index 入栈
              stk.push(i);
            } else {
-             if (!stk.empty()) {
+             if (!stk.empty()) { // 如果是 ')'，那么直接和栈顶的 '(' 匹配，计算长度
                tmp = stk.top();
-               stk.pop();
+               stk.pop(); // 栈里只有 '('
                len = i - tmp + 1;
              } else {
                // 没有匹配的‘)’，直接跳过或出错
@@ -2741,7 +2741,7 @@
          }
      ```
 
-     然后用 `dp[i]` 表示到 `s[i - 1]` 为止有效括号的长度，所以最后的算法是这样的，
+     然后用 **`dp[i]` 表示到 `s[i - 1]` 为止有效括号的长度**，所以最后的算法是这样的，
 
      ```c
          for (int i = 0; i < n; i++) {
@@ -2760,6 +2760,8 @@
            }
          }
      ```
+
+     以 '()()()' 为例，遍历完第一个 '()' 后，`dp[2] = 2`，继续遍历下一个 '()' 时，'(' 的索引是 2，所以能够加上。
 
 262. [canPartition](https://leetcode.cn/problems/partition-equal-subset-sum/)
 

@@ -37,4 +37,12 @@ public:
   }
 };
 
-int main(int argc, char *argv[]) { return 0; }
+int main(int argc, char *argv[]) {
+  REOPEN_READ;
+  string s;
+  cin >> s;
+
+  Solution *so = new Solution;
+  cout << so->longestValidParentheses(s) << endl;
+  return 0;
+}
