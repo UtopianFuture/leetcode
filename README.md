@@ -102,14 +102,13 @@
     `dp[i][j]` 表示 `piles[i ~ j]` 石子堆中当前玩家与另一个玩家的石子数量差的最大值，
     dp base 是 `dp[i][i] = piles[i]`，要求的是 `dp[0][size]`，
     当 `i < j` 时，当前玩家可以选择取走 `piles[i]` 或 `piles[j]`，
-    然后轮到另一个玩家在剩下的石子堆中取走石子。在两种方案中，当前玩家会选择最优的方案，
-    使得自己的石子数量最大化。而状态转移方程为：
+    然后轮到另一个玩家在剩下的石子堆中取走石子。在两种方案中，当前玩家会选择最优的方案，使得自己的石子数量最大化。而状态转移方程为：
 
     ```c
     dp[i][j] = max{piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]}
     ```
 
-    官方解析中给出了数学分析，这种情况永远是先手获胜，所以可以直接返回 true。总结一下这题和上一题，虽然给出的都是一个序列，但是，虽然给出的都是一个序列，但是 dp 数组都是二维的，因为需要遍历这个序列中每个字符的每种组合。然后关于状态转移方程，应该先考虑将问题分为子问题，如这题分成 `piles[i ~ j]` 子序列，上题也是分成 `s[i ~ j]` 子序列。分成子问题之后再考虑怎样转移，那么就要确定最终要求什么，如上题要求最长回文子序列的长度，那么子问题就也是求长度，加上新的字符长度会怎样变化，这题需要将胜负转换成差值，然后求差值的变化。
+    官方解析中给出了数学分析，这种情况永远是先手获胜，所以可以直接返回 true。总结一下这题和上一题，虽然给出的都是一个序列，但是 dp 数组都是二维的，因为需要遍历这个序列中每个字符的每种组合。然后关于状态转移方程，应该先考虑将问题分为子问题，如这题分成 `piles[i ~ j]` 子序列，上题也是分成 `s[i ~ j]` 子序列。分成子问题之后再考虑怎样转移，那么就要确定最终要求什么，如上题要求最长回文子序列的长度，那么子问题就也是求长度，加上新的字符长度会怎样变化，这题需要将胜负转换成差值，然后求差值。
 
 11. [eraseOverlapIntervals](https://leetcode-cn.com/problems/non-overlapping-intervals/)
     首先这题的代码在 leetcode 上能通过，但是在本地编译错误，应该是使用的 `qsort` 不同。这题是区间调度的题目，思路和之前的动态规划有很大不同，将它归为单纯的贪心比较合适。将 intervals 按 end 递增序排列，不重叠要满足条件 `intervals[i][0] >= base[1]` ，即 `end >= start`，将不满足条件的 `intervals[i]` 去掉即可。
@@ -1141,10 +1140,10 @@
     这题和上题一样，都是反转链表。
 
 88. [canWinNim](https://leetcode-cn.com/problems/nim-game/)
-    额，解法很简单，谁在取石头的时候四头数是 4 的倍数就输了。
+    额，解法很简单，谁在取石头的时候石头数是 4 的倍数就输了。
 
 89. [bulbSwitch](https://leetcode-cn.com/problems/bulb-switcher/)
-    只有被按下奇数次的灯泡最后才是亮着的，所以只有因子个数为奇数的灯泡序号才会亮，只有平方数的因子数为奇数（比如 6=1*6,2*3，它们的因子总是成对出现的，而 4=1*4,2*2，只有平方数的平方根因子会只出现 1 次），所以最终答案等于 n 以内（包括 n 和 1）的平方数数量，只要计算 sqrt(n)即可。
+    只有被按下奇数次的灯泡最后才是亮着的，所以只有因子个数为奇数的灯泡序号才会亮，只有平方数的因子数为奇数（比如 6 = 1 * 6, 2 * 3，它们的因子总是成对出现的，而 4=1 * 4, 2 * 2，只有平方数的平方根因子会只出现 1 次），所以最终答案等于 n 以内（包括 n 和 1）的平方数数量，只要计算 sqrt(n)即可。
 
 90. [isSubsequence](https://leetcode-cn.com/problems/is-subsequence/)
 
@@ -1896,7 +1895,7 @@
 
 174. [countDigitOne](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)
 
-     题目看起来简单，但每想对思路很难做出来。[这篇](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/)题解写的很清楚。这里的笔记是我自己对题解的理解。
+     题目看起来简单，但没想对思路很难做出来。[这篇](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/)题解写的很清楚。这里的笔记是我自己对题解的理解。
 
      将 `n` 分成 `high`, `cur`, `low`，
 
@@ -3172,6 +3171,10 @@
 269. [nestedIterator](https://leetcode.cn/problems/flatten-nested-list-iterator/)
 
      没怎么看懂题目，就是一个多叉树的遍历。按照前序遍历将结果保存下来，然后逐个输出即可。
+
+287. [myPow](https://leetcode.cn/problems/powx-n/)
+
+     这题主要是注意临界情况不要越界。
 
 ### reference
 
