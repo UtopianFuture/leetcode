@@ -3176,6 +3176,16 @@
 
      这题主要是注意临界情况不要越界。
 
+288. [superPow](https://leetcode.cn/problems/super-pow/)
+
+     > 计算 `ab` 对 `1337` 取模，`a` 是一个正整数，`b` 是一个非常大的正整数且会以数组形式给出。
+
+     从后面开始遍历，这里会用到公式，
+
+     - **`(a * b) % k = (a % k)(b % k) % k`**
+
+     因为 “`b` 是一个非常大的正整数且会以数组形式给出”，所以每次需要计算 `pow(a, 10)`。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
