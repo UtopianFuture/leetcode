@@ -1098,7 +1098,11 @@
     还是利用上一题的思路，根据开始值和时间间隔构建出区间，然后进行合并，计算合并后的长度即可。
 
 80. [intervalIntersection](https://leetcode-cn.com/problems/interval-list-intersections/)
-    思路类似，将两个 list 合成一个，然后计算重叠区域，只不过这次需要记录的是 `list[j][0]` 和 `list[j][1] < max ? list[j][1] : max`
+    思路类似，将两个 list 合成一个，然后计算重叠区域，只不过这次需要记录的是 `list[j][0]` 和 `list[j][1] < max ? list[j][1] : max`。
+
+80. [removeCoveredIntervals](https://leetcode.cn/problems/remove-covered-intervals/)
+
+    和上面一样的思路，计算多少个重复的区间即可。
 
 81. [subarraySum](https://leetcode-cn.com/problems/subarray-sum-equals-k/)
     这题需要用到前缀和，即保存 `nums[0 ~ i)` 的和 `sum[i]` ，然后 `nums[i ~ j]` 的和就等于 `sum[j + 1] - sum[i]` 。但这题还需要在前缀和的基础上优化计算任意一个子串是否满足和为 k 即计算 `sum[j + 1] - sum[i] == k` 是否成立，我们可以将这个式子转化为  `sum[i] == sum[j + 1] - k` 是否成立，那么我们需要计算在前面已经计算的子串中是否有满足条件的，如果有，那么直接加上该前缀和出现的次数即可。

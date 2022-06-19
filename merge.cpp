@@ -32,6 +32,31 @@ public:
   }
 };
 
+class Solution1 {
+public:
+  static bool cmp(vector<int> a, vector<int> b) { return a[0] < b[0]; }
+
+  vector<vector<int>> merge(vector<vector<int>> &intervals) {
+    intervals.push_back({INT_MAX, INT_MAX});
+    sort(intervals.begin(), intervals.end(), cmp);
+    int n = (int)intervals.size();
+    vector<vector<int>> res;
+    int start = intervals[0][0], end = intervals[0][1];
+    for (int i = 1; i < n; i++) {
+      if (end < intervals[i][1]) {
+        if (intervals[i][0] > end) {
+          res.push_back({start, end});
+          start = intervals[i][0];
+          end = intervals[i][1];
+        } else {
+          end = intervals[i][1];
+        }
+      }
+    }
+    return res;
+  }
+};
+
 int main(int argc, char *argv[]) {
   REOPEN_READ;
   int n;
