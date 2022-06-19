@@ -3190,6 +3190,15 @@
 
      因为 “`b` 是一个非常大的正整数且会以数组形式给出”，所以每次需要计算 `pow(a, 10)`。
 
+290. [isPossible](https://leetcode.cn/problems/split-array-into-consecutive-subsequences/)
+
+     解法真的巧妙。用一个 `unordered_map<int, int> times` 记录所有数字出现的次数，一个 `unordered_map<int, int> order` 记录所有以 k 结尾的字符串出现的次数。
+
+     - 遍历所有的字符，如果该字符 `i` 出现的次数为 0，那么跳过这个字符；
+     - 如果该字符 `i` 出现的次数不为 0，同时以 `i - 1` 结尾的字符串出现次数不为 0，那么该字符 `i` 就可以加入到字符串中，同时 `order[i - 1]--; order[i]++`；
+     - 如果该字符 `i` 出现的次数不为 0，同时字符 `i + 1`, `i + 2` 出现次数不为 0，那么就可以构成一个新的字符串；
+     - 如果上述条件都不满足，那么返回 false。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
