@@ -1175,6 +1175,10 @@
 93. [generateParenthesis](https://leetcode-cn.com/problems/generate-parentheses/)
     这题使用之前学过的回溯法加上上一题的 `isValid`。回溯法能够生成所有可能的情况，再用 `isValid` 一一判断。
 
+93. [minAddToMakeValid](https://leetcode.cn/problems/minimum-add-to-make-parentheses-valid/)
+
+    同样可以利用上面的方法，最后返回栈的大小即可。
+
 93. [letterCombinations](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
 
     回溯法，比较简单。
