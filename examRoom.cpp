@@ -28,7 +28,7 @@ private:
   int n;
 
 public:
-  ExamRoom(int n) {
+  ExamRoom1(int n) {
     struct Node *head = new Node;
     struct Node *tail = new Node;
     struct Node *p = new Node(n, 0, n, false, -1, tail, head);

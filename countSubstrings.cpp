@@ -22,11 +22,48 @@ public:
   }
 };
 
+class Solution1 {
+public:
+  int countSubstrings(string s) {
+    int n = s.size();
+    vector<vector<int>> dp(n, vector<int>(n, 0));
+    int res = 0;
+    for (int i = 0; i < n; i++) {
+      dp[i][i] = 1;
+      res++;
+    }
+
+    for (int l = 2; l <= n; l++) {
+      for (int i = 0; i < n; i++) {
+        int j = i + l - 1;
+        if (j >= n) {
+          break;
+        }
+
+        if (s[i] == s[j]) {
+          if (j - i < 2) {
+            dp[i][j] = 1;
+            res++;
+          } else {
+            dp[i][j] = dp[i + 1][j - 1];
+            if (dp[i][j]) {
+              res++;
+            }
+          }
+        } else {
+          dp[i][i] = 0;
+        }
+      }
+    }
+    return res;
+  }
+};
+
 int main(int argc, char *argv[]) {
   REOPEN_READ;
-  string s = "abc";
+  string s = "aaa";
 
-  Solution *so = new Solution;
+  Solution1 *so = new Solution1;
   cout << (bool)so->countSubstrings(s) << "\n";
 
   return 0;
