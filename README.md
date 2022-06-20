@@ -1111,7 +1111,7 @@
     这题和上一题有点不同，需要满足子数组元素总和为 k 的倍数，如果还是像上题那样将所有的前缀和保存下来，那么只能一个个遍看是否满足。这里有一个性质，当 `sum[j] - sum[i] == nk` 时，`sum[j]` 和 `sum[i]` 除以 k 的余数相等。所以存储余数和产生该余数的位置，然后就和上一题一样了。同时由于还需要满足子数组大小至少为 2 ，所以除非 map 中不存在该余数，否则不要更新 map，不然会导致 `5 0 0 0 0` 判断错误的情况，因为余数一直为 2，每次都更新就不能满足子数组大小至少为 2。这里还需要注意 unordered_map 的使用方法，像数组一样使用就行。
 
 83. [maxEnvelopes](https://leetcode-cn.com/problems/russian-doll-envelopes/)
-    有趣，官方答案超时。这题和 LengthOfLIS 一样，时间复杂度同样是 n^2。
+    有趣，官方答案超时。这题和 LengthOfLIS 一样，时间复杂度同样是 n^2。同样是用 `dp[i]` 记录到 i 为止的最多信封数量。
 
 84. [minEatingSpeed](https://leetcode-cn.com/problems/koko-eating-bananas/)
     这题居然使用二分法做，好吧，我没有想到。`left = 1`, `right = max`。

@@ -14,12 +14,9 @@ public:
   int maxEnvelopes(vector<vector<int>> &envelopes) {
     int size = (int)envelopes.size();
     int val1 = 0, val2 = 0, max = 0;
-    int *dp = (int *)malloc(size * sizeof(int));
-    for (int i = 0; i < size; i++) {
-      dp[i] = 1;
-    }
+    vector<int> dp(size, 1);
 
-    // sort(envelopes.begin(), envelopes.end(), cmp);
+    sort(envelopes.begin(), envelopes.end(), cmp);
     for (int i = 1; i < size; i++) {
       for (int j = 0; j < i; j++) {
         if (isMatch(envelopes[i], envelopes[j])) {
