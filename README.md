@@ -3211,6 +3211,10 @@
      - 如果该字符 `i` 出现的次数不为 0，同时字符 `i + 1`, `i + 2` 出现次数不为 0，那么就可以构成一个新的字符串；
      - 如果上述条件都不满足，那么返回 false。
 
+293. [diffWaysToCompute](https://leetcode.cn/problems/different-ways-to-add-parentheses/)
+
+     分治法，其实就是转换成二叉树然后递归计算子树，可以加上一个 `unordered_map` 来减少重复计算。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
