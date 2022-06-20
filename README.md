@@ -3217,7 +3217,25 @@
 
 294. [examRoom](https://leetcode.cn/problems/exam-room/)
 
-     用 set，这个容器可以按照元素大小插入。每次插入位置索引，然后计算两个元素间的距离，找到最大的插入。
+     用 set，这个容器可以按照元素大小插入。每次插入位置索引，然后计算两个元素间的距离，找到最大的插入。同时需要考虑在第一个位置插入，
+
+     ```c
+     	int pos = 0, pre = -1, maxDist = 0;
+         for (int cur : s) {
+           int dist = (cur - pre) / 2;
+           if (dist > maxDist) {
+             pos = pre == -1 ? 0 : pre + dist; // .....5....这种情况就需要插入位置 0
+             maxDist = pre == -1 ? cur : dist;
+           }
+           pre = cur;
+         }
+     ```
+
+295. [isRectangleCover](https://leetcode.cn/problems/perfect-rectangle/)
+
+     这题解法也很巧妙。首先遍历所有的点，计算位于 4 个角的点，同时计算所有矩形的面积和以及每个点出现的次数。如果理论上的矩形面积和计算出来的面积和不同，说明不是完美矩形；如果位于 4 个角的点不在所有给出来的点中，说明这些小矩形不能组成大的矩形；除了 4 个角的点，其他的点都只能出现 2 次或 4 次。
+
+     最后使用 `typedef pair<int, int> Point;` 来表示一个点。
 
 ### reference
 
