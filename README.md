@@ -22,6 +22,14 @@
     dp[i] = (dp[i] < (dp[i - coins[j]] + 1)) ? dp[i] : (dp[i - coins[j]] + 1);
     ```
 
+2. [change](https://leetcode.cn/problems/coin-change-2/)
+
+    和上一题不一样，这题是 0-1 背包问题，`dp[i][j]` 表示若只使用前 `i` 个物品（可以重复使用），当背包容量为 `j` 时，有 `dp[i][j]` 种方法可以装满背包。然后考虑 2 中情况：
+
+    - **如果你不把这第 `i` 个物品装入背包**，也就是说你不使用 `coins[i]` 这个面值的硬币，那么凑出面额 `j` 的方法数 `dp[i][j]` 应该等于 `dp[i-1][j]`，继承之前的结果。
+
+    - **如果你把这第 `i` 个物品装入了背包**，也就是说你使用 `coins[i]` 这个面值的硬币，那么 `dp[i][j]` 应该等于 `dp[i][j-coins[i-1]]`。
+
 3. [climbStairs](https://leetcode-cn.com/problems/climbing-stairs/)
     最后一次可能是跨一步或两步，即：
 
@@ -2842,24 +2850,14 @@
      首先确定状态转移方程：`dp[i][j]` 表示 `matrix[i][j]` 最大的正方形面积
 
      - `matrix[i][j] = '1'`: `dp[i][j] = (min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1) ^ 2`；
-     - `matrix[i][j] = '1'`: `dp[i][j] = 0`；
+     - `matrix[i][j] = '0'`: `dp[i][j] = 0`；
 
      dp base：
 
      - `dp[0][i] = matrix[0][i] - '0';`
      - `dp[i][0] = matrix[i][0] - '0';`
 
-     ```c
-         for (int i = start; i < end; i++) {
-           tmp.push_back(candidates[i]);
-           sum += candidates[i];
-           backtrace(tmp, sum, i, end); // 可以重复使用，从本身开始递归
-           sum -= candidates[i];
-           tmp.pop_back();
-         }
-     ```
-
-     最后返回最大值。
+     最后返回最大
 
 250. [combinationSum](https://leetcode.cn/problems/combination-sum/)
 
