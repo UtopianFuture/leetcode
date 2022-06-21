@@ -1113,6 +1113,10 @@
 83. [maxEnvelopes](https://leetcode-cn.com/problems/russian-doll-envelopes/)
     有趣，官方答案超时。这题和 LengthOfLIS 一样，时间复杂度同样是 n^2。同样是用 `dp[i]` 记录到 i 为止的最多信封数量。
 
+83. [constrainedSubsetSum](https://leetcode.cn/problems/constrained-subsequence-sum/?show=1)
+
+
+
 84. [minEatingSpeed](https://leetcode-cn.com/problems/koko-eating-bananas/)
     这题居然使用二分法做，好吧，我没有想到。`left = 1`, `right = max`。
 
@@ -3236,6 +3240,10 @@
      这题解法也很巧妙。首先遍历所有的点，计算位于 4 个角的点，同时计算所有矩形的面积和以及每个点出现的次数。如果理论上的矩形面积和计算出来的面积和不同，说明不是完美矩形；如果位于 4 个角的点不在所有给出来的点中，说明这些小矩形不能组成大的矩形；除了 4 个角的点，其他的点都只能出现 2 次或 4 次。
 
      最后使用 `typedef pair<int, int> Point;` 来表示一个点。
+
+297. [minFallingPathSum](https://leetcode.cn/problems/minimum-falling-path-sum/)
+
+     不难，直接递归计算即可，但从后往前递归时间复杂度更好一点。
 
 ### reference
 
