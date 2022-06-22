@@ -3247,6 +3247,22 @@
 
      很难，这题好像从后面遍历，没做出来。
 
+290. [calculateMinimumHP](https://leetcode.cn/problems/dungeon-game/)
+
+     这题确实想不到。
+
+     `dp[i][j]` 表示从 `[i, j]` 到终点需要的最小 HP，
+
+     状态转移方程：
+
+     `int tmp = min(dp[i + 1][j], dp[i][j + 1]) - dungeon[i][j])`，这个可以理解，到达下个最小 HP 需要的 HP，
+
+     `dp[i][j] = max(tmp, 1)`，这个 1 是因为 HP 必须大于 1。
+
+     dp base：
+
+     到达终点的状态为 HP = 1，所以 `dp[row][col -1] = dp[row - 1][col] =1`。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
