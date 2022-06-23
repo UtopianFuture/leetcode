@@ -3263,6 +3263,12 @@
 
      到达终点的状态为 HP = 1，所以 `dp[row][col -1] = dp[row - 1][col] =1`。
 
+291. [canCompleteCircuit](https://leetcode.cn/problems/gas-station/)
+
+     我只能想出 O(n^2) 的暴力算法。
+
+     首先计算 sum，如果 `sum < 0` 那么无解，而且解一定为最差情况（sum 最少的站点）的下一个站点。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
