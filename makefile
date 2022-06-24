@@ -1,5 +1,5 @@
 #!/usr/bin/make
-CFLAGS = -g -Wall -Werror -fsanitize=address
+CFLAGS = -g -Wall -fsanitize=address
 C_SRC_FILES = $(ENV_SRC_FILES)
 C_SRC_FILES += $(wildcard *.c)
 CPP_SRC_FILES = $(ENV_SRC_FILES)
