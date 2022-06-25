@@ -3343,6 +3343,10 @@
 
      看题目给的图我首先想到的是二分法，但是二分法是错误的，应该直接用 DFS 计算所有的数，然后取这个数左右两侧的最大值，再取所有数中的最小值。
 
+296. [findClosestElements](https://leetcode.cn/problems/find-k-closest-elements/)
+
+     这道题比较简单，直接双指针即可。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
