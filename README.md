@@ -3308,6 +3308,41 @@
 
      最后计算 `dp[0][n - 1][0] - dp[0][n - 1][1]` 的差值。
 
+294. [canIWin](https://leetcode.cn/problems/can-i-win/)
+
+     思路是对的，用 DFS 算法。任选一个数 `i`，如果这个数没有被使用过，那么可以使用这个数，如果 `i >= desiredTotal` 则直接返回 true；否则`desiredTotal - i`，让下一个人选，即递归调用 DFS，如果下一个人能赢，那么这个人就输了。
+
+     ```c
+       bool dfs(int used, int total) {
+         if (dp[used] == 0) {
+           for (int i = 1; i <= maxChoosableInteger; i++) {
+             if (used & (1 << i)) {
+               continue;
+             }
+             if (total + i >= desiredTotal) {
+               dp[used] = 1;
+               return true;
+             }
+             // used |= (1 << i);
+             // desiredTotal -= i;
+             // if another one return true, it means this one is lose.
+             if (!dfs(used | (1 << i), total + i)) {
+               dp[used] = 1;
+               return true;
+             }
+             // desiredTotal += i;
+             // used &= (0 << i);
+           }
+           dp[used] = false;
+         }
+         return dp[used];
+       }
+     ```
+
+295. [getMoneyAmount](https://leetcode.cn/problems/guess-number-higher-or-lower-ii/)
+
+     看题目给的图我首先想到的是二分法，但是二分法是错误的，应该直接用 DFS 计算所有的数，然后取这个数左右两侧的最大值，再取所有数中的最小值。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
