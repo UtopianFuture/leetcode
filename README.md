@@ -3347,6 +3347,38 @@
 
      这道题比较简单，直接双指针即可。
 
+297. [maxCoins](https://leetcode.cn/problems/burst-balloons/)
+
+     DFS 是正确的，但是复杂度太高了。
+
+     ```c
+         // if (!map[nums]) {
+         int n = nums.size();
+         if (n == 1) {
+           return nums[0];
+         }
+
+         int res = 0, tmp;
+         vector<int> tmpnums;
+         for (int i = 0; i < n; i++) {
+           if (i - 1 == -1) {
+             tmp = nums[i] * nums[i + 1];
+           } else if (i + 1 == n) {
+             tmp = nums[i - 1] * nums[i];
+           } else {
+             tmp = nums[i - 1] * nums[i] * nums[i + 1];
+           }
+
+           tmpnums.assign(nums.begin(), nums.end());
+           tmpnums.erase(tmpnums.begin() + i);
+           res = max(res, dfs(tmpnums) + tmp);
+         }
+         return res;
+         // map[nums] = res;
+         // }
+         // return map[nums];
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
