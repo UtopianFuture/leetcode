@@ -165,6 +165,8 @@
 15. [shortestPalindrome](https://leetcode-cn.com/problems/shortest-palindrome/)
     这题的做法很巧妙，求最短回文串，用暴力的解法比较简单，将后面的字符和前面的字符一个个遍历对比，如果不相同，则插入。而 KMP 算法是先求出原字符串的 next 数组，然后将字符串反转得到 txt 数组。之后按照 kmp 遍历，看 txt 数组的最后一个字符对应 next 数组的哪个字符，将该字符之后的字符都加入到 txt 数组。
 
+    暴力算法最后两个案例不能通过。
+
 16. [longestPalindrome](https://leetcode-cn.com/problems/longest-palindromic-substring/)
   - 原做法（错误）
     这题没有使用 kmp 算法，而是使用动态规划，`dp[i][j]` 表示 `s[i ~ j]` 的最长回文串，
@@ -1124,10 +1126,6 @@
 
 83. [maxEnvelopes](https://leetcode-cn.com/problems/russian-doll-envelopes/)
     有趣，官方答案超时。这题和 LengthOfLIS 一样，时间复杂度同样是 n^2。同样是用 `dp[i]` 记录到 i 为止的最多信封数量。
-
-83. [constrainedSubsetSum](https://leetcode.cn/problems/constrained-subsequence-sum/?show=1)
-
-
 
 84. [minEatingSpeed](https://leetcode-cn.com/problems/koko-eating-bananas/)
     这题居然使用二分法做，好吧，我没有想到。`left = 1`, `right = max`。
