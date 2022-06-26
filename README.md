@@ -445,6 +445,8 @@
 
     但关键是这点想不到啊。
 
+    还是使用 DFS，不过细节处理起来很麻烦，有些案例没有通过。
+
 27. [isMatch_wildcard](https://leetcode-cn.com/problems/wildcard-matching/)
     这题和上一题一样，只是 '*' 的意义变成匹配任意字符串，那么当 `p[j] == '*'` 时还是匹配 0 个字符或多个字符。
 
