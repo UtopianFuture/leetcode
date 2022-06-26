@@ -3393,6 +3393,34 @@
          // return map[nums];
      ```
 
+307. [findRotateSteps](https://leetcode.cn/problems/freedom-trail/)
+
+     好吧，暴力贪心是错误的。
+
+     还是用 DFS，这个好好用，暴力遍历必选啊！不过想不到子问题是什么。这题的子问题是因为 ring 中可能有多个同样的字符，所以这些字符都要遍历，选择这些字符中结果最小的，然后用一个额外的数组进行枝减。
+
+     ```c
+       int dfs(string ring, int m, string key, int n) {
+         if (n == (int)key.size()) {
+           return 0;
+         }
+         if (dp[m][n]) {
+           return dp[m][n];
+         }
+
+         int length = ring.size();
+         int res = INT_MAX;
+         for (auto k : map[key[n]]) {
+           int dis = abs(m - k);
+           dis = min(dis, length - dis);
+           int tmp = dfs(ring, k, key, n + 1);
+           res = min(res, 1 + tmp + dis);
+         }
+         dp[m][n] = res;
+         return dp[m][n];
+       }
+     ```
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
