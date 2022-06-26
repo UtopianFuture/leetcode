@@ -1604,7 +1604,7 @@
        }
      ```
 
-152. [minimumEffortPath](https://leetcode.cn/problems/path-with-minimum-effort/)
+159. [minimumEffortPath](https://leetcode.cn/problems/path-with-minimum-effort/)
 
      还是按照上面的模板，这里需要遍历当前节点的 4 个相邻节点（如果 4 个相邻节点都没有越界的话），然后 `vector<vector<int>> heightTo(row, vector<int>(col, INT_MAX));` 记录的是当前节点的最大高度差，如果相邻节点与当前节点的高度差大于 `heightTo[curNodex][curNodey]` 就需要更新，
 
@@ -1612,6 +1612,18 @@
              int heightBetween =
                  abs(heights[nextNodex][nextNodey] - heights[curNodex][curNodey]);
              heightBetween = max(heightBetween, heightTo[curNodex][curNodey]);
+     ```
+
+160. [findCheapestPrice](https://leetcode.cn/problems/cheapest-flights-within-k-stops/)
+
+     还是 dijkstra 算法，但是加了“最多经过 `k` 站中转的路线“这一限制，有些案例不能通过，比如这个，
+
+     ```plain
+     4
+     [[0,1,1],[0,2,5],[1,2,1],[2,3,1]]
+     0
+     3
+     1
      ```
 
 143. [implementTrie](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
