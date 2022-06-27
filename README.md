@@ -3431,6 +3431,10 @@
 
      还是 DFS，将边缘的 '0' 及其相连的 ‘0’ 转换为 ‘1’，那么剩下的就都是岛屿。遍历所有的格点，遇到岛屿计数器就加 1，同时将 ‘0’ 转换为 ‘1’，这样就能计算出所有的岛屿。
 
+310. [isValidSudoku](https://leetcode.cn/problems/valid-sudoku/)
+
+     简单。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
