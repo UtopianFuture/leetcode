@@ -1508,9 +1508,13 @@
 
      **拓扑排序**：对一个[有向无环图](https://baike.baidu.com/item/有向无环图/10972513) （Directed Acyclic Graph 简称 DAG）G 进行拓扑排序，是将 G 中所有顶点排成一个线性序列，使得图中任意一对顶点 u 和 v，若边 `<u,v>∈E(G)`，则 u 在线性序列中出现在 v 之前。通常，这样的线性序列称为满足拓扑次序（Topological Order）的序列，简称拓扑序列。
 
-137. [findOrder](https://leetcode-cn.com/problems/course-schedule-ii/)
+153. [findOrder](https://leetcode-cn.com/problems/course-schedule-ii/)
 
      和上题一样的拓扑排序，只需要额外创建一个数组，用于保存序列，当该节点的状态为“已完成”时就可以将其加入到路径中。
+
+154. [findMinHeightTrees](https://leetcode.cn/problems/minimum-height-trees/)
+
+     暴力 BFS，超时。
 
 146. [isBipartite](https://leetcode-cn.com/problems/is-graph-bipartite/)
 
@@ -2672,11 +2676,11 @@
          }
      ```
 
-262. [uniquePaths](https://leetcode.cn/problems/unique-paths/)
+263. [uniquePaths](https://leetcode.cn/problems/unique-paths/)
 
      简单的动态规划。
 
-263. [uniquePathsIII](https://leetcode.cn/problems/unique-paths-iii/)
+264. [uniquePathsIII](https://leetcode.cn/problems/unique-paths-iii/)
 
 
 
@@ -3399,7 +3403,7 @@
          // return map[nums];
      ```
 
-308. [findRotateSteps](https://leetcode.cn/problems/freedom-trail/)
+309. [findRotateSteps](https://leetcode.cn/problems/freedom-trail/)
 
      好吧，暴力贪心是错误的。
 
@@ -3427,15 +3431,15 @@
        }
      ```
 
-309. [numEnclaves](https://leetcode.cn/problems/number-of-enclaves/)
+310. [numEnclaves](https://leetcode.cn/problems/number-of-enclaves/)
 
      简单的 DFS。
 
-310. [closedIsland](https://leetcode.cn/problems/number-of-closed-islands/)
+311. [closedIsland](https://leetcode.cn/problems/number-of-closed-islands/)
 
      还是 DFS，将边缘的 '0' 及其相连的 ‘0’ 转换为 ‘1’，那么剩下的就都是岛屿。遍历所有的格点，遇到岛屿计数器就加 1，同时将 ‘0’ 转换为 ‘1’，这样就能计算出所有的岛屿。
 
-311. [isValidSudoku](https://leetcode.cn/problems/valid-sudoku/)
+312. [isValidSudoku](https://leetcode.cn/problems/valid-sudoku/)
 
      简单。
 
