@@ -32,10 +32,42 @@ public:
   }
 };
 
+class Solution1 {
+private:
+  vector<vector<int>> graph;
+  vector<vector<int>> res;
+  int end;
+
+public:
+  void backtrace(int cur, vector<int> tmp, int n) {
+    if (tmp.size() == 0) {
+      tmp.push_back(cur);
+    }
+    if ((int)tmp.back() == n) {
+      this->res.push_back(tmp);
+      return;
+    }
+
+    for (int i = 0; i < (int)graph[cur].size(); i++) {
+      tmp.push_back(graph[cur][i]);
+      backtrace(graph[cur][i], tmp, n);
+      tmp.pop_back();
+    }
+  }
+
+  vector<vector<int>> allPathsSourceTarget(vector<vector<int>> &graph) {
+    this->graph = graph;
+    this->end = graph.size() - 1;
+    vector<int> tmp;
+    backtrace(0, tmp, this->end);
+    return this->res;
+  }
+};
+
 int main(int argc, char *argv[]) {
   REOPEN_READ;
   vector<vector<int>> graph = {{1, 2}, {3}, {3}, {}};
-  Solution *s = new Solution;
+  Solution1 *s = new Solution1;
   vector<vector<int>> res = s->allPathsSourceTarget(graph);
   for (int i = 0; i < (int)res.size(); i++) {
     for (int j = 0; j < (int)res[i].size(); j++) {

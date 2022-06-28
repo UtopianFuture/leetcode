@@ -54,7 +54,6 @@ private:
   vector<int> visited;
   vector<int> res;
   bool vaild = true;
-  int num;
 
 public:
   void dfs(int n) {
@@ -63,12 +62,12 @@ public:
       if (visited[edge[n][i]] == 0) {
         dfs(edge[n][i]);
         if (!vaild) {
-          res.pop_back();
-          return;
-        } else if (visited[edge[n][i]] == 1) {
-          vaild = false;
           return;
         }
+      }
+      if (visited[edge[n][i]] == 1) {
+        vaild = false;
+        return;
       }
     }
     visited[n] = 2;
@@ -76,7 +75,6 @@ public:
   }
 
   vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites) {
-    this->num = numCourses;
     edge.resize(numCourses);
     visited.resize(numCourses);
     for (int i = 0; i < (int)prerequisites.size(); i++) {
@@ -88,7 +86,7 @@ public:
         dfs(i);
       }
     }
-    return vaild ? res : vector<int>{-1, -1};
+    return vaild ? res : vector<int>{};
   }
 };
 

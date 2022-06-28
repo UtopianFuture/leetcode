@@ -1481,7 +1481,7 @@
 
 144. [canFinish](https://leetcode-cn.com/problems/course-schedule/)
 
-     开始想的是建立一个哈希表，记录哪些节点已经完成了，如果某个节点所有的需求都已经完成了，那么这个节点也可以完成。之后遍历哈希表，如果有节点没有完成，那么返回 false。这是其实是求是否存在一个拓扑排序，可以采用 dfs 来求。我们将每个节点的状态分为三种：
+     开始想的是建立一个哈希表，记录哪些节点已经完成了，如果某个节点所有的需求都已经完成了，那么这个节点也可以完成。之后遍历哈希表，如果有节点没有完成，那么返回 false。这是其实是求是否存在一个**拓扑排序**，可以采用 dfs 来求。我们将每个节点的状态分为三种：
      （1）未搜索：还没有搜索到这个节点；
      （2）搜索中：已经搜索过这个节点，但还没有回溯到该节点，其还有相邻的节点没有入栈；
      （3）已完成：已经搜索并完成该节点，可以入栈。
@@ -1506,7 +1506,7 @@
 
      搜索该节点的所有相邻节点，如果该相邻节点的状态是未搜索，那么对其进行 dfs 递归，如果该节点的状态是“搜索中”，那么不存在拓扑排序，返回 false，在所有的相邻节点遍历完后，该节点的状态变为“已完成”。
 
-     拓扑排序：对一个[有向无环图](https://baike.baidu.com/item/有向无环图/10972513) （Directed Acyclic Graph 简称 DAG）G 进行拓扑排序，是将 G 中所有顶点排成一个线性序列，使得图中任意一对顶点 u 和 v，若边 `<u,v>∈E(G)`，则 u 在线性序列中出现在 v 之前。通常，这样的线性序列称为满足拓扑次序（Topological Order）的序列，简称拓扑序列。
+     **拓扑排序**：对一个[有向无环图](https://baike.baidu.com/item/有向无环图/10972513) （Directed Acyclic Graph 简称 DAG）G 进行拓扑排序，是将 G 中所有顶点排成一个线性序列，使得图中任意一对顶点 u 和 v，若边 `<u,v>∈E(G)`，则 u 在线性序列中出现在 v 之前。通常，这样的线性序列称为满足拓扑次序（Topological Order）的序列，简称拓扑序列。
 
 137. [findOrder](https://leetcode-cn.com/problems/course-schedule-ii/)
 
@@ -2672,9 +2672,13 @@
          }
      ```
 
-238. [uniquePaths](https://leetcode.cn/problems/unique-paths/)
+262. [uniquePaths](https://leetcode.cn/problems/unique-paths/)
 
      简单的动态规划。
+
+263. [uniquePathsIII](https://leetcode.cn/problems/unique-paths-iii/)
+
+
 
 239. [minPathSum](https://leetcode.cn/problems/minimum-path-sum/)
 
@@ -3395,7 +3399,7 @@
          // return map[nums];
      ```
 
-307. [findRotateSteps](https://leetcode.cn/problems/freedom-trail/)
+308. [findRotateSteps](https://leetcode.cn/problems/freedom-trail/)
 
      好吧，暴力贪心是错误的。
 
@@ -3423,15 +3427,15 @@
        }
      ```
 
-308. [numEnclaves](https://leetcode.cn/problems/number-of-enclaves/)
+309. [numEnclaves](https://leetcode.cn/problems/number-of-enclaves/)
 
      简单的 DFS。
 
-309. [closedIsland](https://leetcode.cn/problems/number-of-closed-islands/)
+310. [closedIsland](https://leetcode.cn/problems/number-of-closed-islands/)
 
      还是 DFS，将边缘的 '0' 及其相连的 ‘0’ 转换为 ‘1’，那么剩下的就都是岛屿。遍历所有的格点，遇到岛屿计数器就加 1，同时将 ‘0’ 转换为 ‘1’，这样就能计算出所有的岛屿。
 
-310. [isValidSudoku](https://leetcode.cn/problems/valid-sudoku/)
+311. [isValidSudoku](https://leetcode.cn/problems/valid-sudoku/)
 
      简单。
 

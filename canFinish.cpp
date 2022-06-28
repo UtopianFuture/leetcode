@@ -119,6 +119,45 @@ public:
   }
 };
 
+class Solution3 {
+private:
+  vector<vector<int>> graph;
+  vector<int> state; // 0 for free, 1 for used, 2 for finished
+  int isVaild = 1;
+
+public:
+  void dfs(int n) {
+    state[n] = 1;
+    for (int i = 0; i < (int)graph[n].size(); i++) {
+      if (state[graph[n][i]] == 1) {
+        this->isVaild = 0;
+        return;
+      } else if (state[graph[n][i]] == 0) {
+        dfs(graph[n][i]);
+        if (this->isVaild == 0) {
+          return;
+        }
+      }
+    }
+    state[n] = 2;
+  }
+  bool canFinish(int numCourses, vector<vector<int>> &prerequisites) {
+    int n = prerequisites.size();
+    this->graph.resize(numCourses);
+    this->state.resize(numCourses);
+    for (int i = 0; i < n; i++) {
+      graph[prerequisites[i][1]].push_back(prerequisites[i][0]);
+    }
+
+    for (int i = 0; i < numCourses && this->isVaild; i++) {
+      if (state[i] == 0) {
+        dfs(i);
+      }
+    }
+    return this->isVaild;
+  }
+};
+
 int main(int argc, char *argv[]) {
   vector<vector<int>> prerequisites = {{2, 1}, {1, 0}};
   int numCourses = 3;
