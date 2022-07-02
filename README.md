@@ -3453,6 +3453,9 @@
      item 为 .. ：弹出栈顶元素（若存在）；
      item 为 . ：不作处理。
 
+314. [partitionLabels](https://leetcode.cn/problems/partition-labels/)
+
+     这题使用贪心，计算每个字符最后出现的位置，然后进行划分。
 
 ### reference
 
