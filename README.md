@@ -3443,6 +3443,17 @@
 
      简单。
 
+313. [simplifyPath](https://leetcode.cn/problems/simplify-path/)
+
+     这题还是用栈才能做的出来。
+
+     从前往后处理 path，每次以 item 为单位进行处理（有效的文件名），根据 item 为何值进行分情况讨论：
+
+     item 为有效值 ：存入栈中；
+     item 为 .. ：弹出栈顶元素（若存在）；
+     item 为 . ：不作处理。
+
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
