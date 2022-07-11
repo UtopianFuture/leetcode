@@ -3477,6 +3477,14 @@
 
      这题虽然之前做过类似的，但还是想不出来。判断每个字符是否是回文字符，如果是的话检查下一个子串；如果不是则继续增加子串的长度。
 
+319. [countSubIslands](https://leetcode.cn/problems/count-sub-islands/)
+
+     这题开始想遇到 `grid1[i][j] != 1` 就返回 false，但是写出来，所以维护一个全局变量。
+
+320. [MagicDictionary](https://leetcode.cn/problems/implement-magic-dictionary/)
+
+     这题直接用暴力匹配比较简单，反倒是用 trie 树很难调。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
