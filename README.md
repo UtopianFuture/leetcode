@@ -3497,6 +3497,10 @@
 
      是的，用图的方法更简单，但面试的时候不一定能想出来。因为数组不包含重复元素，所以将数组连成图的话肯定会构成一个或多个环，找到最大的那个即可。
 
+324. [combinationSum_iv](https://leetcode.cn/problems/combination-sum-iv/)
+
+     这题做过类似的，但想不到它类似与爬楼梯那题，其实回溯也可以做，只是超时了，然后这题和 coinchange 也类似，但是那题无法计算重复的情况，如 [1,1,2] 和 [1,2,1]。
+
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
