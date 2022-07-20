@@ -147,10 +147,73 @@ public:
   }
 };
 
+class Solution2 {
+public:
+  struct cmp {
+    bool operator()(pair<int, int> a, pair<int, int> b) {
+      return a.second < b.second;
+    }
+  };
+
+  vector<int> dijkstra(int n, int start, vector<vector<pair<int, int>>> graph) {
+    vector<int> disTo(n + 1, INT_MAX);
+    disTo[start] = 0;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pq;
+    pq.push({start, 0});
+    int curNode, curNodeToStart;
+    pair<int, int> tmp;
+    while (!pq.empty()) {
+      tmp = pq.top();
+      pq.pop();
+
+      curNode = tmp.first;
+      curNodeToStart = tmp.second;
+
+      if (curNodeToStart > disTo[curNode]) {
+        continue;
+      }
+
+      for (int i = 0; i < graph[curNode].size(); i++) {
+        int nextNode = graph[curNode][i].first;
+        int nextNodeToStart = graph[curNode][i].second + disTo[curNode];
+        if (nextNodeToStart < disTo[nextNode]) {
+          disTo[nextNode] = nextNodeToStart;
+          pq.push({nextNode, nextNodeToStart});
+        }
+      }
+    }
+    return disTo;
+  }
+
+  int networkDelayTime(vector<vector<int>> &times, int n, int k) {
+    vector<vector<pair<int, int>>> graph(n + 1);
+    graph[0].push_back({INT_MIN, INT_MIN});
+    int from, to, dis;
+    for (int i = 0; i < times.size(); i++) {
+      from = times[i][0];
+      to = times[i][1];
+      dis = times[i][2];
+      graph[from].push_back({to, dis});
+    }
+
+    int res = INT_MIN;
+    vector<int> disTo = dijkstra(n, k, graph);
+    for (int i = 1; i < disTo.size(); i++) {
+      if (disTo[i] == INT_MAX) {
+        res = -1;
+        break;
+      } else if (i != k && disTo[i] > res) {
+        res = disTo[i];
+      }
+    }
+    return res;
+  }
+};
+
 int main(int argc, char *argv[]) {
   int n = 4, k = 2;
   vector<vector<int>> times = {{2, 1, 1}, {2, 3, 1}, {3, 4, 1}};
-  Solution *s = new Solution;
+  Solution2 *s = new Solution2;
   cout << s->networkDelayTime(times, n, k);
 
   return 0;
