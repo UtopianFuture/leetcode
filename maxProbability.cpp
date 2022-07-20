@@ -126,12 +126,72 @@ public:
   }
 };
 
+class Solution2 {
+public:
+  struct cmp {
+    bool operator()(pair<int, double> a, pair<int, double> b) {
+      return a.second < b.second;
+    }
+  };
+
+  double dijkstra(vector<vector<pair<int, double>>> graph, int start, int end,
+                  int n) {
+    priority_queue<pair<int, double>, vector<pair<int, double>>, cmp> pq;
+    vector<double> disTo(n, -1);
+    disTo[start] = 1;
+    pq.push({start, 1});
+    pair<int, double> tmp;
+    int curNode;
+    double curNodeToStart;
+    while (!pq.empty()) {
+      tmp = pq.top();
+      pq.pop();
+
+      curNode = tmp.first;
+      curNodeToStart = tmp.second;
+
+      if (curNode == end) {
+        return curNodeToStart;
+      }
+
+      if (disTo[curNode] > curNodeToStart) {
+        continue;
+      }
+
+      for (int i = 0; i < graph[curNode].size(); i++) {
+        int nextNode = graph[curNode][i].first;
+        double nextNodeToStart = graph[curNode][i].second * disTo[curNode];
+        if (nextNodeToStart > disTo[nextNode]) {
+          disTo[nextNode] = nextNodeToStart;
+          pq.push({nextNode, nextNodeToStart});
+        }
+      }
+    }
+    return 0.0;
+  }
+
+  double maxProbability(int n, vector<vector<int>> &edges,
+                        vector<double> &succProb, int start, int end) {
+    int size = edges.size();
+    vector<vector<pair<int, double>>> graph(n);
+    int from, to;
+    for (int i = 0; i < size; i++) {
+      from = edges[i][0];
+      to = edges[i][1];
+      graph[from].push_back({to, succProb[i]});
+      graph[to].push_back({from, succProb[i]});
+    }
+
+    return dijkstra(graph, start, end, n);
+  }
+};
+
 int main(int argc, char *argv[]) {
-  int n = 5;
-  int start = 3, end = 4;
-  vector<vector<int>> edges = {{1, 4}, {2, 4}, {0, 4}, {0, 3}, {0, 2}, {2, 3}};
-  vector<double> succProb = {0.37, 0.17, 0.93, 0.23, 0.39, 0.04};
-  Solution *s = new Solution;
+  int n = 3;
+  int start = 0, end = 2;
+  vector<vector<int>> edges = {{0, 1}, {1, 2}, {0, 2}};
+  vector<double> succProb = {0.5, 0.5, 0.2};
+  Solution2 *s = new Solution2;
   cout << s->maxProbability(n, edges, succProb, start, end);
 
   return 0;
