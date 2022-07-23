@@ -347,6 +347,7 @@
 24. [rob_ii](https://leetcode-cn.com/problems/house-robber-ii/)
     首尾是连接的，那么就分两种情况考虑，
     （1）抢劫 first house 不抢劫 last house
+
     ```c
     dp[0] = nums[0];
     dp[1] = nums[1];
@@ -772,7 +773,7 @@
 57. [twoSum](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/)
     开始想用回溯法，因为就是求两个数的和，跟 [combine](53. [combine](https://leetcode-cn.com/problems/combinations/)) 一样。但是会超时。还是需要使用双指针法，只要数组有序，就应该想到双指针技巧。
 
-57. [threeSum](.)
+57. [threeSum](https://leetcode.cn/problems/3sum/)
 
     唉，我想到的回溯法其实是暴力排序，
 
@@ -857,7 +858,7 @@
 
 62. [longestSubarray](https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/?show=1)
 
-    这题开始的做法是使用滑动窗口，但是要不断寻找窗口内的最大最小值，最后一个测试案例会超时，所有使用双端队列维护最大最小值，
+    这题开始的做法是使用滑动窗口，但是要不断寻找窗口内的最大最小值，最后一个测试案例会超时，所以使用双端队列维护最大最小值，
 
     ```c
         deque<int> maxq, minq;
@@ -1220,13 +1221,13 @@
 
     这也能用动态规划是我没想到的，
 
-    动态转移方程：dp[i] = 1 + min(dp[i - j * j]) (1 < j < sqrt(i))
+    动态转移方程：`dp[i] = 1 + min(dp[i - j * j]) (1 < j < sqrt(i))`
 
-    dp[i] 表示最少需要多少个数的平方来表示整数 i。
+    `dp[i]` 表示最少需要多少个数的平方来表示整数 i。
 
     这些数必然落在区间 `[1, sqrt(n)]`。我们可以枚举这些数，假设当前枚举到 j，那么我们还需要取若干数的平方，构成 `i - j^2`。
 
-    dp base：dp[0]= 0
+    dp base：`dp[0]= 0`
 
 97. [isUgly](https://leetcode-cn.com/problems/ugly-number/)
     这题要读懂题目，是只包含质因数 2, 3, 5 的整数。
@@ -3508,6 +3509,10 @@
 326. [maxScoreSightseeingPair](https://leetcode.cn/problems/best-sightseeing-pair/)
 
      这种给出公式的数学题要尝试从公式入手。将其拆分成 `values[i]+i` 和 `values[j]−j` 两部分，这样对于统计景点 j 答案的时候，由于 `values[j]−j` 是固定不变的，因此其实就等价于求 `[0,j-1]` 中 `values[i]+i` 的最大值 `mx`，景点 j 的答案即为 `mx+values[j]−j`。而 `mx` 的值我们只要从前往后遍历 j 的时候同时维护即可。
+
+301. [sequenceReconstruction](https://leetcode.cn/problems/ur2n8P/)
+
+     原来这题用的是拓扑排序，而拓扑排序的关键就是不断找到图中入度为 0 的节点入对，然后用 bfs 遍历与该节点相连的点，计算其入度是否为 0。
 
 ### reference
 
