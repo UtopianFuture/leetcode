@@ -41,7 +41,7 @@ public:
         }
 
         if (s[i] == s[j]) {
-          if (j - i < 2) {
+          if (j - i < 3) {
             dp[i][j] = 1;
             res++;
           } else {
