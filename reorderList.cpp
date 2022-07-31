@@ -54,4 +54,36 @@ public:
   }
 };
 
+class Solution1 {
+public:
+  void reorderList(ListNode *head) {
+    vector<ListNode *> tmp;
+    ListNode *p = head;
+    while (p != NULL) {
+      tmp.push_back(p);
+      // cout << tmp.back() << endl;
+      p = p->next;
+    }
+
+    int n = tmp.size();
+    int left = 1, right = n - 1;
+    p = head;
+    assert(p == tmp[0]);
+    while (left < right) {
+      // cout << tmp[left] << " " << tmp[right] << endl;
+      p->next = tmp[right];
+      p = p->next;
+      p->next = tmp[left];
+      p = p->next;
+      right--;
+      left++;
+      cout << p << " " << p->next << endl;
+      cout << right << " " << left << endl;
+    }
+    if (left == right) {
+      p->next = tmp[left];
+    }
+  }
+};
+
 int main(int argc, char *argv[]) { return 0; }

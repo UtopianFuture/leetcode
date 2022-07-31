@@ -1451,7 +1451,7 @@
        }
      ```
 
-     中序遍历，那么在中间操作的就是父节点，`pre` 一定是左子树节点或父节点，递归会对所有的节点做同样的操作。
+     中序遍历，那么在中间操作的就是父节点，**`pre` 一定是左子树节点或父节点**，递归会对所有的节点做同样的操作。
 
 133. [lowestCommonAncestor](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 
@@ -1480,7 +1480,7 @@
 
      这题使用回溯法(DFS)遍历所有的路径，从第一个节点开始，遍历每个节点相连的节点，如果该节点是末端节点，那么这条路径就是一个符合条件的路径。
 
-144. [canFinish](https://leetcode-cn.com/problems/course-schedule/)
+152. [canFinish](https://leetcode-cn.com/problems/course-schedule/)
 
      开始想的是建立一个哈希表，记录哪些节点已经完成了，如果某个节点所有的需求都已经完成了，那么这个节点也可以完成。之后遍历哈希表，如果有节点没有完成，那么返回 false。这是其实是求是否存在一个**拓扑排序**，可以采用 dfs 来求。我们将每个节点的状态分为三种：
      （1）未搜索：还没有搜索到这个节点；
@@ -1508,6 +1508,8 @@
      搜索该节点的所有相邻节点，如果该相邻节点的状态是未搜索，那么对其进行 dfs 递归，如果该节点的状态是“搜索中”，那么不存在拓扑排序，返回 false，在所有的相邻节点遍历完后，该节点的状态变为“已完成”。
 
      **拓扑排序**：对一个[有向无环图](https://baike.baidu.com/item/有向无环图/10972513) （Directed Acyclic Graph 简称 DAG）G 进行拓扑排序，是将 G 中所有顶点排成一个线性序列，使得图中任意一对顶点 u 和 v，若边 `<u,v>∈E(G)`，则 u 在线性序列中出现在 v 之前。通常，这样的线性序列称为满足拓扑次序（Topological Order）的序列，简称拓扑序列。
+
+     当然，如果是要构建一个拓扑排序，需要用到 BFS，不断找到入度为 0 的节点，然后入栈。
 
 153. [findOrder](https://leetcode-cn.com/problems/course-schedule-ii/)
 
@@ -1593,7 +1595,7 @@
 
      dijkstra 算法，以前觉得这算法挺复杂的，现在写一遍也没有那么难啊，就是复杂一点的 bfs。首先 dijkstra 算法的大致思路是这样的：
 
-     - 从 start 节点出发，创建一个 disTo 数组，用来记录其他节点到 start 节点的距离，初始时除 start 为 0 其他都为 INT_MAX；
+     - 从 start 节点出发，创建一个 disTo 数组，用来记录其他节点到 start 节点的距离，初始时除 start 为 0 其他都为 `INT_MAX`；
      - 同时为每个节点维护一个入栈结构 `vector<int> tmp` ，`tmp[0]` 表示该节点的索引，`tmp[1]` 表示该节点到 start 节点的距离；
      - 如果遍历到某个节点，该节点 `tmp[1] > disTo[]` ，那么说明这条路肯定不是最优的，这个节点就直接跳过，不用遍历；
      - 否则遍历该节点所有的邻接节点，更新邻接节点到 start 节点的距离 `int nextNodeToStart = graph[curNode][i][1] + disTo[curNode];`，如果这条路径距离更近，那么更新 `disTo[i]`，同时将该节点入栈；
@@ -1765,7 +1767,7 @@
 
      简单。
 
-160. [reverseList][https://leetcode.cn/problems/fan-zhuan-lian-biao-lcof/]
+160. [reverseList](https://leetcode.cn/problems/fan-zhuan-lian-biao-lcof/)
 
      简单。
 
@@ -3517,3 +3519,5 @@
 ### reference
 
 [1] https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E8%BF%9B%E9%98%B6.md
+
+[https://leetcode.cn/problems/fan-zhuan-lian-biao-lcof/]:
