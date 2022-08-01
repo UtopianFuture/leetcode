@@ -15,7 +15,7 @@ public:
     for (auto c : s) {
       if (visited[c - 'a'] != 1) {
         while (!res.empty() && res.back() > c) {
-          if (num[c - 'a'] > 0) {
+          if (num[res.back() - 'a'] > 0) {
             visited[res.back() - 'a'] = 0;
             res.pop_back();
           } else {
